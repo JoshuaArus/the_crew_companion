@@ -1,7 +1,8 @@
+
 import 'aimOption.dart';
 
 class Mission {
-  String id;
+  int id;
   String title;
   String description;
   int aimCount;

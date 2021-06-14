@@ -23,11 +23,12 @@ class _TeamStatsState extends State<TeamStats> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(widget.team.name),),
+        title: Text(widget.team.name),
+        centerTitle: true,
       ),
       body: Container(
-        
         child : Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text("Joueurs : " + widget.team.players.join(", ")),
             Text("Dernière mission : " + widget.team.achievedMissions.last.title),

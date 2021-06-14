@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum AimOption {
   One,
   Two,
@@ -17,7 +19,7 @@ extension AimOptionExtension on AimOption {
       case AimOption.One :
         return "1";
       case AimOption.Two: 
-      return "2";
+        return "2";
       case AimOption.Three : 
         return "3";
       case AimOption.Four : 
@@ -35,5 +37,9 @@ extension AimOptionExtension on AimOption {
       case AimOption.Last : 
         return "Ω";      
         }
+  }
+  
+  Widget getIcon(BuildContext context) {
+    return Text(this.displayValue);
   }
 }

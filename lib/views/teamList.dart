@@ -1,41 +1,40 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/views/playGame.dart';
 
 import '../constant.dart';
-import '../entities/mission.dart';
+import '../controller.dart';
 import '../entities/team.dart';
+import 'components/teamListComponents.dart';
 import 'teamCreation.dart';
-import 'teamMission.dart';
 import 'teamStats.dart';
 
 class TeamList extends StatefulWidget {
   TeamList(
       {Key? key,
       required this.title,
-      required this.existingTeams,
-      required this.availableMissions})
+      required this.controller})
       : super(key: key);
 
   final String title;
-  final List<Mission> availableMissions;
-  final List<Team> existingTeams;
-
+  final Controller controller;
+  
   @override
   _TeamListState createState() => _TeamListState();
 }
 
 class _TeamListState extends State<TeamList> {
-
   void _addTeam() async {
     final newTeam = Team();
     final created = await Navigator.push(
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => TeamCreation(team: newTeam)));
-    if (created) {
-      widget.existingTeams.add(newTeam);
+    if (created == true) {
+      widget.controller.teams.add(newTeam);
+      await widget.controller.saveDatas();
       setState(() {}); //refresh UI
-    } 
+    }
   }
 
   void _editTeam(Team team) async {
@@ -43,9 +42,9 @@ class _TeamListState extends State<TeamList> {
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => TeamCreation(team: team)));
-    if (edited) setState(() {}); //refresh UI
+    if (edited == true) setState(() {}); //refresh UI
   }
-  
+
   void _goToStats(Team team) async {
     Navigator.push(
         context,
@@ -54,35 +53,33 @@ class _TeamListState extends State<TeamList> {
   }
 
   void _removeTeam(Team team) async {
-    bool confirmed = await confirm(
-      context,
-      content: Text("Voulez vous vraiment supprimer l'équipe " + team.name + " ?"),
-      textOK: Text("Oui"),
-      textCancel: Text("Non"),
-      title: Text("Suppression de l'équipe")
-    );
-    if (confirmed) {
-      widget.existingTeams.remove(team);
+    bool confirmed = await confirm(context,
+        content:
+            Text("Voulez vous vraiment supprimer l'équipe " + team.name + " ?"),
+        textOK: Text("Oui"),
+        textCancel: Text("Non"),
+        title: Text("Suppression de l'équipe"));
+    if (confirmed == true) {
+      widget.controller.teams.remove(team);
       setState(() {});
-    }    
+    }
   }
 
   void _play(Team team) async {
-    await Navigator.push(
+    Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (BuildContext context) => TeamMission(team: team)));
+            builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
 
-    setState(() {});
+    // setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(widget.title),
-        ),
+        title:  Text(widget.title),
+        centerTitle: true,
       ),
       body: Container(
         padding: EdgeInsets.all(defaultPadding),
@@ -90,60 +87,37 @@ class _TeamListState extends State<TeamList> {
           children: [
             new Expanded(
               child: new ListView.builder(
-                itemCount: widget.existingTeams.length,
+                itemCount: widget.controller.teams.length,
                 itemBuilder: (BuildContext ctxt, int index) {
-                  final team = widget.existingTeams[index];
+                  final team = widget.controller.teams[index];
                   return Container(
-                    margin: EdgeInsets.only(top: defaultPadding),
                     padding: EdgeInsets.all(defaultPadding),
-                    decoration: BoxDecoration(
-                        border: Border.all(
+                    child: OutlinedButton(
+                      onPressed: (){
+                        _play(team);
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.30),
+                        padding: EdgeInsets.all(defaultPadding*2),
+                        elevation: 10,
+                        side: BorderSide(
                           width: 2,
-                          color: primayColor.withOpacity(0.70),
+                          color: primaryColor.withOpacity(0.70),
                         ),
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(defaultPadding)),
-                        color: Theme.of(context)
-                            .backgroundColor
-                            .withOpacity(0.30)),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(defaultPadding)))
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              _play(team);
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  team.name,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style:
-                                      Theme.of(context).textTheme.headline3,
-                                ),
-                                Text(
-                                  team.players.join(" - "),
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1!
-                                      .copyWith(color: Colors.white70),
-                                ),
-                                Text(
-                                  team.achievedMissions.last.title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2!
-                                      .copyWith(color: Colors.white70),
-                                )
-                              ],
-                            )
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TeamName(team: team),
+                              Padding(padding: EdgeInsets.all(8)),
+                              TeamPlayers(team: team),
+                              Padding(padding: EdgeInsets.all(8)),
+                              TeamProgress(team: team)
+                            ],
                           ),
                           PopupMenuButton(
                             itemBuilder: (context) {
@@ -153,7 +127,8 @@ class _TeamListState extends State<TeamList> {
                                   value: 1,
                                 ),
                                 PopupMenuItem(
-                                  child: Text("Voir les statistiques l'équipe"),
+                                  child: Text(
+                                      "Voir les statistiques l'équipe"),
                                   value: 2,
                                 ),
                                 PopupMenuItem(
@@ -162,7 +137,8 @@ class _TeamListState extends State<TeamList> {
                                 ),
                               ];
                             },
-                            icon: Icon(Icons.more_vert, color: Colors.white54),
+                            icon: Icon(Icons.more_vert,
+                                color: Colors.white54),
                             onSelected: (value) async {
                               switch (value) {
                                 case 1:
@@ -178,8 +154,8 @@ class _TeamListState extends State<TeamList> {
                             },
                           ),
                         ],
-                      ),
-                    ),
+                      )
+                    )
                   );
                 },
               ),
