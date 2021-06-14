@@ -1,17 +1,13 @@
-import 'package:flutter/material.dart';
+import 'mission.dart';
 
 class Team {
   
-  String name;
-  List<String> players;
-  List<Mission> achievedMission;
-  int test;
-  Int test2;
-  
-  Team(this.name){
-    players = List<String>();
-    achievedMission = List<Mission>();
-  }
+  String name = "";
+  DateTime creationDate = DateTime.now();
+  List<String> players = [];
+  List<Mission> achievedMissions = [];
 
-  Team(this.name, this.players, this.achievedMission);
+  Team();
+
+  Team.withName(this.name);
 }

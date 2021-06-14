@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'aimOption.dart';
 
 class Mission {
   String id;
@@ -9,12 +9,6 @@ class Mission {
   bool satelliteUsed;
   List<AimOption> aimOptions;
   
-  Mission(this.id, this.title, this.description) {
-    attempts = 0;
-    satelliteUsed = false;
-    aimOptions = List<AimOption>();
-  }
-
   Mission(this.id, this.title, this.description, this.aimCount, this.attempts, this.satelliteUsed, this.aimOptions);
 }
 

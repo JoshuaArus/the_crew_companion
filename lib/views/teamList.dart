@@ -1,56 +1,64 @@
 import 'package:flutter/material.dart';
 
+import '../constant.dart';
+import '../entities/mission.dart';
+import '../entities/team.dart';
+import 'teamCreation.dart';
+import 'teamStats.dart';
+import 'teamSummary.dart';
+
 class TeamList extends StatefulWidget {
-  TeamList({Key? key, required this.title}) : super(key: key);
+  TeamList({Key? key, required this.title, required this.existingTeams, required this.availableMissions}) : super(key: key);
 
   final String title;
+  final List<Mission> availableMissions;
+  final List<Team> existingTeams;
 
   @override
   _TeamListState createState() => _TeamListState();
 }
 
 class _TeamListState extends State<TeamList> {
-  int _counter = 0;
 
-  List<Team> teams = [
-    Team("Team 1"),
-    Team("Team 2"),
-    Team("Team 3")
-  ];
-
-  void _addTeam() {
-    setState(() {
-      teams.add(Team("Team " + teams.length));
-    });
+  void _addTeam() async {
+    final newTeam = Team();
+    final created = await Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => TeamCreation(team: newTeam)));
+    if (created) widget.existingTeams.add(newTeam);
+    setState(() {});//refresh UI
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _addTeam method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the TeamList object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Center(
+          child: Text(widget.title),
+        ),
       ),
-      body: Column(
-        new Expanded(
-          child: new ListView.builder(
-            itemCount: teams.length,
-            itemBuilder: (BuildContext ctxt, int index) {
-              return new Text(teams[index].name);
-            }
-          ),
+      body: Container(
+        padding: EdgeInsets.all(defaultPadding),
+        child: Column(
+          children: [
+            new Expanded(
+              child: new ListView.builder(
+                itemCount: widget.existingTeams.length,
+                itemBuilder: (BuildContext ctxt, int index) {
+                  final team = widget.existingTeams[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => TeamStats(team: team)));
+                    },
+                    child: TeamSummary(team: team),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addTeam,
-        tooltip: 'Add team',
+        tooltip: 'Ajouter une équipe',
         child: Icon(Icons.add),
       ),
     );
