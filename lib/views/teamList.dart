@@ -42,7 +42,10 @@ class _TeamListState extends State<TeamList> {
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => TeamCreation(team: team)));
-    if (edited == true) setState(() {}); //refresh UI
+    if (edited == true) {
+      await widget.controller.saveDatas();
+      setState(() {}); //refresh UI
+    }
   }
 
   void _goToStats(Team team) async {
@@ -61,6 +64,7 @@ class _TeamListState extends State<TeamList> {
         title: Text("Suppression de l'équipe"));
     if (confirmed == true) {
       widget.controller.teams.remove(team);
+      await widget.controller.saveDatas();
       setState(() {});
     }
   }

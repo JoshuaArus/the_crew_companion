@@ -37,6 +37,7 @@ class PlayGameState extends State<PlayGame> {
       mission.attempts = int.parse(attempts.text);
       mission.satelliteUsed = satUsed;
       widget.team.achievedMissions.add(mission);
+      await widget.controller.saveDatas();
       setState(() {});
     }
   }

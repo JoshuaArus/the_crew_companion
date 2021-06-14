@@ -13,6 +13,12 @@ enum AimOption {
   Last
 }
 
+class AimOptionFactory {
+  static AimOption fromString(String val) {
+    return AimOption.values.firstWhere((element) => element.toString() == val);
+  }
+}
+
 extension AimOptionExtension on AimOption {
   String get displayValue {
     switch (this) {
@@ -41,5 +47,5 @@ extension AimOptionExtension on AimOption {
   
   Widget getIcon(BuildContext context) {
     return Text(this.displayValue);
-  }
+  } 
 }
