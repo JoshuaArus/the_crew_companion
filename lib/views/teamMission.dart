@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../entities/team.dart';
 
 class TeamMission extends StatefulWidget {
   const TeamMission({ Key? key, required this.team }) : super(key: key);
