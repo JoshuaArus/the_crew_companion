@@ -6,6 +6,7 @@ import '../constant.dart';
 import '../controller.dart';
 import '../entities/team.dart';
 import 'components/teamListComponents.dart';
+import 'missionList.dart';
 import 'teamCreation.dart';
 import 'teamStats.dart';
 
@@ -76,9 +77,28 @@ class _TeamListState extends State<TeamList> {
             builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
   }
 
+  void _goToMissionList() async {
+    Navigator.pop(context);// hide menu
+
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+            builder: (BuildContext context) => MissionList(controller: widget.controller)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text("Liste des missions"),
+              onTap: _goToMissionList,
+            )
+          ],
+        )
+      ),
       appBar: AppBar(
         title:  Text(widget.title),
         centerTitle: true,
