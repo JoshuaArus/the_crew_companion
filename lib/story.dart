@@ -4,7 +4,7 @@ import 'entities/mission.dart';
 
 class Story {
   static final List<Mission> missions = [
-    Mission(0, "Mission 1", "Description 1", 1, 0, false, [AimOption.One, AimOption.First, AimOption.Second, AimOption.Last]),
+    Mission(0, "Mission 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", 1, 0, false, [AimOption.One, AimOption.First, AimOption.Second, AimOption.Last]),
     Mission(1, "Mission 2", "Description 2", 2, 0, false, [AimOption.One]),
     Mission(2, "Mission 3", "Description 3", 3, 0, false, [AimOption.One, AimOption.Two]),
     Mission(3, "Mission 4", "Description 4", 3, 0, false, [AimOption.One, AimOption.Second, AimOption.Last]),
