@@ -13,6 +13,10 @@ class Mission {
   
   Mission(this.id, this.title, this.description, this.aimCount, this.attempts, this.satelliteUsed, this.aimOptions);
 
+  Mission get copy {
+    return Mission.fromJson(jsonDecode(jsonEncode(this)));
+  }
+
   Mission.fromData({
     required this.id, 
     required this.title, 
