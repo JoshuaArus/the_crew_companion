@@ -71,10 +71,12 @@ class _TeamListState extends State<TeamList> {
   }
 
   void _play(Team team) async {
-    Navigator.push(
+    await Navigator.push(
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
+
+    setState(() {});
   }
 
   void _goToMissionList() async {
