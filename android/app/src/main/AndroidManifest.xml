@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.the_crew_companion">
+    package="com.joshuaarus.the_crew_companion">
    <application
-        android:label="the_crew_companion"
+        android:label="The Crew Companion"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -9,7 +9,7 @@ import 'story.dart';
 class Controller {
   final List<Team> teams = [];
   final List<Mission> missions = Story.missions;
-  final LocalStorage storage = LocalStorage("the_crew_companion");
+  final LocalStorage storage = LocalStorage("com.joshuaarus.the_crew_companion");
 
   Future saveDatas() {
     final serializedTeams = jsonEncode(teams);
