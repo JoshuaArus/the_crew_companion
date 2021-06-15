@@ -51,7 +51,6 @@ class GoalButton extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  bool usePrimaryColor = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,7 @@ class GoalButton extends StatelessWidget {
         border: Border.all(
           color : primaryColor
         ),
-        color: usePrimaryColor ? primaryColor : secondaryColor,
+        color: secondaryColor,
         shape: BoxShape.circle
       ),
       child: Center(
@@ -76,11 +75,34 @@ class GoalButton extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class AimButton extends GoalButton {
+class AimButton extends StatelessWidget {
   AimButton({
     Key? key,
-    required text,
-  }) : super(key: key, text: text) {
-    usePrimaryColor = true;
+    required this.text,
+  }) : super(key: key);
+    
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 55,
+      width: 40,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color : secondaryColor,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: primaryColor.withOpacity(0.7),
+        shape:  BoxShape.rectangle,
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: Theme.of(context).textTheme.headline5,
+        )
+      )
+    );
   }
+
 }
