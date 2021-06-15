@@ -17,8 +17,6 @@ class MissionDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       description,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context).textTheme.headline5,
     );
   }
 }
