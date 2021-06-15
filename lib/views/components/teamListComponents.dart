@@ -71,10 +71,7 @@ class TeamProgress extends StatelessWidget {
 
     return Chip(
       label:  Text(
-        "Prochaine mission : " + 
-          (team.achievedMissions.length > 0
-          ? (team.achievedMissions.last.id + 1).toString()
-          : "1"),
+        "Prochaine mission : " + (team.achievedMissions.length + 1).toString(),
         style: Theme.of(context).textTheme.subtitle1,
       )
     );
