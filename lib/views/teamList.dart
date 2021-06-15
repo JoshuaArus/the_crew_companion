@@ -108,7 +108,7 @@ class _TeamListState extends State<TeamList> {
       body: Container(
         child: Column(
           children: [
-            new Expanded(
+            Expanded(
               child: new ListView.builder(
                 itemCount: widget.controller.teams.length,
                 itemBuilder: (BuildContext ctxt, int index) {

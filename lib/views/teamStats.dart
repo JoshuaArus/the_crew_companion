@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
-import 'package:the_crew_companion/entities/mission.dart';
 import '../entities/team.dart';
 import 'teamCreation.dart';
 
@@ -18,7 +17,7 @@ class _TeamStatsState extends State<TeamStats> {
   void editTeam() async {
     final edited = await Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => TeamCreation(team: widget.team)));
     if (edited == true)
-      setState(() {});//refresh
+      setState(() {});
   }
 
   @override
