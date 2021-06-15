@@ -37,7 +37,7 @@ class _TeamStatsState extends State<TeamStats> {
               children: [
                 Text("Dernière mission terminée : "),
                 Text(
-                  widget.team.achievedMissions.last.title,
+                  widget.team.achievedMissions.length > 0 ? widget.team.achievedMissions.last.title : "-",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 )
               ],
