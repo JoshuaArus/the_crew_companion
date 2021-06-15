@@ -3,8 +3,9 @@ import 'package:the_crew_companion/entities/team.dart';
 
 import '../../constant.dart';
 
-class TeamProgress extends StatelessWidget {
-  const TeamProgress({
+
+class TeamName extends StatelessWidget {
+  const TeamName({
     Key? key,
     required this.team,
   }) : super(key: key);
@@ -13,16 +14,16 @@ class TeamProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      team.achievedMissions.length > 0
-          ? team.achievedMissions.last.title
-          : "Partie non commencée !",
+    return Center(
+      child: Text(
+      team.name,
       maxLines: 1,
       overflow: TextOverflow.ellipsis,
       style: Theme.of(context)
           .textTheme
-          .subtitle2!
-          .copyWith(color: Colors.white70),
+          .headline4!
+          .copyWith(decoration: TextDecoration.underline),
+      )
     );
   }
 }
@@ -37,19 +38,28 @@ class TeamPlayers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      team.players.join(" - "),
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context)
-          .textTheme
-          .subtitle1!
-          .copyWith(color: Colors.white70),
+    return Wrap(
+      alignment: WrapAlignment.start,
+      spacing: 5,
+      direction: Axis.horizontal,
+      children: team.players.map((player) => 
+          Chip(
+            label: Text(
+              player,
+              style: Theme.of(context)
+                .textTheme
+                .subtitle1!
+                .copyWith(color: Colors.white70),
+          )
+        )
+      ).toList()
     );
   }
 }
 
-class TeamName extends StatelessWidget {
-  const TeamName({
+
+class TeamProgress extends StatelessWidget {
+  const TeamProgress({
     Key? key,
     required this.team,
   }) : super(key: key);
@@ -58,17 +68,18 @@ class TeamName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      team.name,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context)
-          .textTheme
-          .headline3,
+
+    return Chip(
+      label:  Text(
+        "Prochaine mission : " + 
+          (team.achievedMissions.length > 0
+          ? (team.achievedMissions.last.id + 1).toString()
+          : "1"),
+        style: Theme.of(context).textTheme.subtitle1,
+      )
     );
   }
 }
-
 
 class TeamListItem extends StatelessWidget {
   const TeamListItem({
@@ -96,8 +107,7 @@ class TeamListItem extends StatelessWidget {
               .backgroundColor
               .withOpacity(0.30)),
       child: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: defaultPadding),
+        padding: EdgeInsets.all(defaultPadding),
         child: child
       )
     );

@@ -74,8 +74,6 @@ class _TeamListState extends State<TeamList> {
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
-
-    // setState(() {});
   }
 
   @override
@@ -86,7 +84,6 @@ class _TeamListState extends State<TeamList> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
             new Expanded(
@@ -102,7 +99,7 @@ class _TeamListState extends State<TeamList> {
                       },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.30),
-                        padding: EdgeInsets.all(defaultPadding*2),
+                        padding: EdgeInsets.all(defaultPadding),
                         elevation: 10,
                         side: BorderSide(
                           width: 2,
@@ -112,51 +109,57 @@ class _TeamListState extends State<TeamList> {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TeamName(team: team),
-                              Padding(padding: EdgeInsets.all(8)),
-                              TeamPlayers(team: team),
-                              Padding(padding: EdgeInsets.all(8)),
-                              TeamProgress(team: team)
-                            ],
+                          Expanded(
+                            flex: 10,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                TeamName(team: team),
+                                TeamPlayers(team: team),
+                                TeamProgress(team: team)
+                              ],
+                            )
                           ),
-                          PopupMenuButton(
-                            itemBuilder: (context) {
-                              return [
-                                PopupMenuItem(
-                                  child: Text("Editer l'équipe"),
-                                  value: 1,
-                                ),
-                                PopupMenuItem(
-                                  child: Text(
-                                      "Voir les statistiques l'équipe"),
-                                  value: 2,
-                                ),
-                                PopupMenuItem(
-                                  child: Text("Supprimer l'équipe"),
-                                  value: 3,
-                                ),
-                              ];
-                            },
-                            icon: Icon(Icons.more_vert,
-                                color: Colors.white54),
-                            onSelected: (value) async {
-                              switch (value) {
-                                case 1:
-                                  _editTeam(team);
-                                  break;
-                                case 2:
-                                  _goToStats(team);
-                                  break;
-                                case 3:
-                                  _removeTeam(team);
-                                  break;
-                              }
-                            },
-                          ),
+                          Expanded(
+                            flex: 1,
+                            child: PopupMenuButton(
+                              itemBuilder: (context) {
+                                return [
+                                  PopupMenuItem(
+                                    child: Text("Editer l'équipe"),
+                                    value: 1,
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text(
+                                        "Voir les statistiques l'équipe"),
+                                    value: 2,
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text("Supprimer l'équipe"),
+                                    value: 3,
+                                  ),
+                                ];
+                              },
+                              icon: Icon(Icons.more_vert,
+                                  color: Colors.white54),
+                              onSelected: (value) async {
+                                switch (value) {
+                                  case 1:
+                                    _editTeam(team);
+                                    break;
+                                  case 2:
+                                    _goToStats(team);
+                                    break;
+                                  case 3:
+                                    _removeTeam(team);
+                                    break;
+                                }
+                              },
+                            ),
+                          )
                         ],
                       )
                     )
