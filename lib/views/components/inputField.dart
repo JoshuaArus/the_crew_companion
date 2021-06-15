@@ -15,16 +15,10 @@ class InputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(
-        fontSize: 48
-      ),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(defaultPadding),
         labelText: hint,
         border: InputBorder.none,
-        labelStyle: TextStyle(
-          fontSize: 24
-        )
       ),
       controller: model,
     );
