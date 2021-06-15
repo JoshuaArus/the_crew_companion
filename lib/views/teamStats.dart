@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/constant.dart';
 import '../entities/team.dart';
 import 'teamCreation.dart';
 
@@ -26,14 +27,24 @@ class _TeamStatsState extends State<TeamStats> {
         title: Text(widget.team.name),
         centerTitle: true,
       ),
-      body: Container(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(defaultPadding),
         child : Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Joueurs : " + widget.team.players.join(", ")),
-            Text("Dernière mission : " + widget.team.achievedMissions.last.title),
+            Row(
+              children: [
+                Text("Dernière mission terminée : "),
+                Text(
+                  widget.team.achievedMissions.last.title,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
             Text(widget.team.achievedMissions.last.description),
-            Text("Nombre d'essais : " + widget.team.achievedMissions.map((e) => e.attempts).reduce((value, element) => value = value + element).toString()),
+            Text("Nombre d'essais de la mission : " + (widget.team.achievedMissions.length > 0 ? widget.team.achievedMissions.last.attempts.toString() : "0")),
+            Text("Nombre d'essais totaux : " + widget.team.achievedMissions.map((e) => e.attempts).reduce((value, element) => value = value + element).toString()),
           ]
         )
       ),
