@@ -29,11 +29,13 @@ class TeamCreation extends StatelessWidget {
         title: Text("Création d'équipe"),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          InputField(hint: "Nom de l'équipe", model: teamName),
-          Divider(),
-        ]..addAll(playerFields),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            InputField(hint: "Nom de l'équipe", model: teamName),
+            Divider(),
+          ]..addAll(playerFields),
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -48,7 +50,7 @@ class TeamCreation extends StatelessWidget {
                   TextButton(onPressed: () {Navigator.of(context).pop();}, child: Text("OK"))
                 ]);
             });
-            return;
+            return;//cancel save
           }
             
           team.name = teamName.text;
