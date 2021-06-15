@@ -17,6 +17,7 @@ class MissionDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       description,
+      textAlign: TextAlign.justify,
     );
   }
 }

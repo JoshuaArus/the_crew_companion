@@ -49,7 +49,10 @@ class _MissionListState extends State<MissionList> {
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(mission.description),
+                      Text(
+                        mission.description,
+                        textAlign: TextAlign.justify,
+                      ),
                       Padding(padding: EdgeInsets.all(defaultPadding)),
                       MissionAims(currentMission: mission)
                     ],
