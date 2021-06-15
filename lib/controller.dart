@@ -1,27 +1,29 @@
 import 'dart:convert';
 
-import 'package:localstorage/localstorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constant.dart';
 import 'entities/mission.dart';
 import 'entities/team.dart';
 import 'story.dart';
 
 class Controller {
-  final List<Team> teams = [];
+  
+  List<Team> teams = [];
   final List<Mission> missions = Story.missions;
-  final LocalStorage storage = LocalStorage("com.joshuaarus.the_crew_companion");
 
-  Future saveDatas() {
+  Future<void> saveDatas() async {
     final serializedTeams = jsonEncode(teams);
-    return storage.setItem("teams", serializedTeams);
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(storageKey, serializedTeams);
   }
 
-  void readDatas() {
-    teams.clear();
-    String data = storage.getItem("teams") ?? "";
+  Future<bool> readDatas() async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = prefs.getString(storageKey) ?? "";
     if (data != "") {
-      List<Team> teams = jsonDecode(data).map((t) => Team.fromJson(t)).toList();
-      teams.addAll(teams);
+      this.teams = (jsonDecode(data) as List<dynamic>).map((t) => Team.fromJson(t)).toList();
     }
+    return true;
   }
 }

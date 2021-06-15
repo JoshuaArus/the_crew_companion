@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/views/splashScreen.dart';
 
 import 'constant.dart';
 import 'controller.dart';
@@ -10,22 +11,31 @@ void main() {
 
 class TheCrewCompanionApp extends StatelessWidget {
 
-  final String appTitle = 'The Crew Companion';
-
+  final Controller controller = Controller();
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Controller controller = Controller();
-    controller.readDatas();
-
     return MaterialApp(
-      
       title: appTitle,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: bgColor,
         canvasColor: secondaryColor,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(
+            fontSize: 18
+          )
+        )
       ),
-      home: TeamList(controller: controller, title: appTitle),
+      home: FutureBuilder<bool>(
+        future: controller.readDatas(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData)
+            return TeamList(controller: controller, title: appTitle);
+          else
+            return SplashScreen();
+        }
+      )
     );
   }
 }
