@@ -88,6 +88,7 @@ class _TeamListState extends State<TeamList> {
         centerTitle: true,
       ),
       body: Container(
+        padding: EdgeInsets.only(top: defaultPadding/2),
         child: Column(
           children: [
             Expanded(
@@ -96,7 +97,7 @@ class _TeamListState extends State<TeamList> {
                 itemBuilder: (BuildContext ctxt, int index) {
                   final team = widget.controller.teams[index];
                   return Container(
-                    padding: EdgeInsets.all(defaultPadding),
+                    padding: EdgeInsets.fromLTRB(defaultPadding, defaultPadding/2, defaultPadding, defaultPadding/2),
                     child: OutlinedButton(
                       onPressed: (){
                         _play(team);
@@ -109,7 +110,7 @@ class _TeamListState extends State<TeamList> {
                           width: 2,
                           color: primaryColor.withOpacity(0.70),
                         ),
-                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(defaultPadding)))
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
