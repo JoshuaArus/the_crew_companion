@@ -5,6 +5,7 @@ import 'package:the_crew_companion/views/playGame.dart';
 import '../constant.dart';
 import '../controller.dart';
 import '../entities/team.dart';
+import 'components/menu.dart';
 import 'components/teamListComponents.dart';
 import 'missionList.dart';
 import 'teamCreation.dart';
@@ -79,28 +80,10 @@ class _TeamListState extends State<TeamList> {
     setState(() {});
   }
 
-  void _goToMissionList() async {
-    Navigator.pop(context);// hide menu
-
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => MissionList(controller: widget.controller)));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text("Liste des missions"),
-              onTap: _goToMissionList,
-            )
-          ],
-        )
-      ),
+      drawer: Menu(controller: widget.controller),
       appBar: AppBar(
         title:  Text(widget.title),
         centerTitle: true,
