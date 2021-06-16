@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
+import '../controller.dart';
 import '../entities/team.dart';
 import 'teamCreation.dart';
 
 class TeamStats extends StatefulWidget {
-  const TeamStats({ Key? key, required this.team }) : super(key: key);
+  const TeamStats({ Key? key, required this.controller, required this.team }) : super(key: key);
 
   final Team team;
+  final Controller controller;
 
   @override
   _TeamStatsState createState() => _TeamStatsState();
@@ -16,64 +19,73 @@ class _TeamStatsState extends State<TeamStats> {
 
   void editTeam() async {
     final edited = await Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => TeamCreation(team: widget.team)));
-    if (edited == true)
+    if (edited == true) {
+      await widget.controller.saveDatas();
       setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-
-    if (widget.team.achievedMissions.length == 0){
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.team.name),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(defaultPadding),
-          child : Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.team.name),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: editTeam,
+            icon: Icon(Icons.edit),
+            tooltip: "Editer l'équipe",
+          )
+        ]
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(defaultPadding),
+        child : (widget.team.achievedMissions.length == 0)
+          ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Joueurs : " + widget.team.players.join(", ")),
-              Text("Aucune mission réalisée jusqu'à présent"),
+              Container(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Text("Joueurs : " + widget.team.players.join(", ")),
+              ),
+              Container(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Text("Aucune mission réalisée jusqu'à présent"),
+              ),
             ]
           )
-        )
-      );
-    } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.team.name),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(defaultPadding),
-          child : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Joueurs : " + widget.team.players.join(", ")),
-              Row(
+        : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(defaultPadding),
+              child: Text("Joueurs : " + widget.team.players.join(", ")),
+            ),
+            Container(
+              padding: EdgeInsets.all(defaultPadding),
+              child: Text("Missions réalisées : " + widget.team.achievedMissions.length.toString() + " / " + widget.controller.missions.length.toString()),
+            ),
+            MissionExpansionPanelList(
+              missions: widget.team.achievedMissions,
+              expandedMissionId: widget.team.achievedMissions.last.id,
+            ),
+            Container(
+              padding: EdgeInsets.all(defaultPadding),
+              child : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Dernière mission terminée : "),
+                  Text("Nombre de tentatives totales : "),
                   Text(
-                    widget.team.achievedMissions.last.title,
+                    widget.team.achievedMissions.map((e) => e.attempts).reduce((value, element) => value = value + element).toString(),
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
               ),
-              Text(widget.team.achievedMissions.last.description),
-              Text("Nombre d'essais de la mission : " + widget.team.achievedMissions.last.attempts.toString()),
-              Text("Nombre d'essais totaux : " + widget.team.achievedMissions.map((e) => e.attempts).reduce((value, element) => value = value + element).toString()),
-            ]
-          )
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: editTeam,
-          tooltip: "Modifier l'équipe",
-          child: Icon(Icons.edit)
-        ),
-      );
-    }
+            ),
+          ]
+        )
+      ),
+    );
   }
-
 }

@@ -53,7 +53,7 @@ class _TeamListState extends State<TeamList> {
     Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (BuildContext context) => TeamStats(team: team)));
+            builder: (BuildContext context) => TeamStats(controller: widget.controller, team: team)));
   }
 
   void _removeTeam(Team team) async {
