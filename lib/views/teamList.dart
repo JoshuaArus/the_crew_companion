@@ -49,6 +49,20 @@ class _TeamListState extends State<TeamList> {
     }
   }
 
+  void _resetProgress(Team team) async {
+    bool confirmed = await confirm(context,
+        content:
+            Text("Voulez vous vraiment réinitialiser la progression de l'équipe " + team.name + " ?"),
+        textOK: Text("Oui"),
+        textCancel: Text("Non"),
+        title: Text("Réinitialisation de la progression"));
+    if (confirmed == true) {
+      team.achievedMissions.clear();
+      await widget.controller.saveDatas();
+      setState(() {});
+    }
+  }
+
   void _goToStats(Team team) async {
     Navigator.push(
         context,
@@ -138,13 +152,16 @@ class _TeamListState extends State<TeamList> {
                                     value: 1,
                                   ),
                                   PopupMenuItem(
-                                    child: Text(
-                                        "Voir les statistiques l'équipe"),
+                                    child: Text("Voir les statistiques l'équipe"),
                                     value: 2,
                                   ),
                                   PopupMenuItem(
-                                    child: Text("Supprimer l'équipe"),
+                                    child: Text("Réinitialiser la progression"),
                                     value: 3,
+                                  ),
+                                  PopupMenuItem(
+                                    child: Text("Supprimer l'équipe"),
+                                    value: 4,
                                   ),
                                 ];
                               },
@@ -159,6 +176,9 @@ class _TeamListState extends State<TeamList> {
                                     _goToStats(team);
                                     break;
                                   case 3:
+                                    _resetProgress(team);
+                                    break;
+                                  case 4:
                                     _removeTeam(team);
                                     break;
                                 }
