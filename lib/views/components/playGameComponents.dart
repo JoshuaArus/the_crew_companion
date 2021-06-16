@@ -119,10 +119,14 @@ class AimButton extends StatelessWidget {
         color: primaryColor.withOpacity(0.7),
         shape:  BoxShape.rectangle,
       ),
-      child: Center(
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.headline6,
+      child: IconButton(
+        tooltip: text + " objectifs",
+        onPressed : null,
+        icon: Center(
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.headline6,
+          )
         )
       )
     );
