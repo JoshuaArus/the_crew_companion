@@ -61,9 +61,7 @@ class PlayGameState extends State<PlayGame> {
         padding: EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
-            MissionDescription(description: currentMission.description),
-            Divider(),
-            MissionAims(currentMission: currentMission),
+            MissionDescription(mission: currentMission),
             Divider(),
             Column(
               children: [

@@ -8,16 +8,23 @@ import '../../constant.dart';
 class MissionDescription extends StatelessWidget {
   const MissionDescription({
     Key? key,
-    required this.description,
+    required this.mission
   }) : super(key: key);
 
-  final String description;
+  final Mission mission;
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      description,
-      textAlign: TextAlign.justify,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          mission.description,
+          textAlign: TextAlign.justify,
+        ),
+        Divider(),
+        MissionAims(currentMission: mission)
+      ],
     );
   }
 }
