@@ -106,8 +106,6 @@ class PlayGameState extends State<PlayGame> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: primaryColor,
-          foregroundColor: Colors.white,
           onPressed: () {
             _endCurrentMission(currentMission);
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/views/splashScreen.dart';
 
 import 'constant.dart';
@@ -18,15 +19,7 @@ class TheCrewCompanionApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
-        canvasColor: secondaryColor,
-        textTheme: TextTheme(
-          bodyText2: TextStyle(
-            fontSize: 18
-          )
-        )
-      ),
+      theme: CustomThemes.dark(),
       home: FutureBuilder<bool>(
         future: controller.readDatas(),
         builder: (context, snapshot) {
