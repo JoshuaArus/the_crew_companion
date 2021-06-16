@@ -7,7 +7,6 @@ import '../controller.dart';
 import '../entities/team.dart';
 import 'components/menu.dart';
 import 'components/teamListComponents.dart';
-import 'missionList.dart';
 import 'teamCreation.dart';
 import 'teamStats.dart';
 

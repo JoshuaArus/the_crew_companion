@@ -57,7 +57,6 @@ class TeamPlayers extends StatelessWidget {
   }
 }
 
-
 class TeamProgress extends StatelessWidget {
   const TeamProgress({
     Key? key,
@@ -73,39 +72,6 @@ class TeamProgress extends StatelessWidget {
       label:  Text(
         "Prochaine mission : " + (team.achievedMissions.length + 1).toString(),
         style: Theme.of(context).textTheme.subtitle1,
-      )
-    );
-  }
-}
-
-class TeamListItem extends StatelessWidget {
-  const TeamListItem({
-    Key? key,
-    required this.team,
-    required this.child
-  }) : super(key: key);
-
-  final Team team;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: defaultPadding),
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-          border: Border.all(
-            width: 2,
-            color: primaryColor.withOpacity(0.70),
-          ),
-          borderRadius: BorderRadius.all(
-              Radius.circular(defaultPadding)),
-          color: Theme.of(context)
-              .backgroundColor
-              .withOpacity(0.30)),
-      child: Padding(
-        padding: EdgeInsets.all(defaultPadding),
-        child: child
       )
     );
   }
