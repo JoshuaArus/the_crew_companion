@@ -24,6 +24,43 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     });    
   }
 
+  List<Widget> buildChildrens(Mission mission) {
+    List<Widget> children = [
+      MissionDescription(mission: mission),
+    ];
+
+    if (mission.attempts > 0) {
+      children.addAll([
+        Divider(
+        ),
+        Padding(padding: EdgeInsets.only(top: defaultPadding)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Tentatives : "),
+            Text(
+              mission.attempts.toString(),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Satellite : "),
+            Switch(
+                thumbColor: MaterialStateProperty.resolveWith(getStateColor),
+                trackColor: MaterialStateProperty.resolveWith(getStateFadedColor),
+                value: mission.satelliteUsed,
+                onChanged: null)
+          ],
+        )
+      ]);
+    };
+
+    return children;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isOpen.length == 0)
@@ -42,33 +79,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
           body: ListTile(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MissionDescription(mission: mission),
-                Divider(
-                  height: 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Tentatives : "),
-                    Text(
-                      mission.attempts.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Satellite : "),
-                    Switch(
-                        thumbColor: MaterialStateProperty.resolveWith(getStateColor),
-                        trackColor: MaterialStateProperty.resolveWith(getStateFadedColor),
-                        value: mission.satelliteUsed,
-                        onChanged: null)
-                  ],
-                )
-              ],
+              children: buildChildrens(mission),
             )
           ),
           isExpanded: isOpen[mission.id]
@@ -87,3 +98,4 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
       return getStateColor(states)?.withOpacity(0.5);
   }
 }
+

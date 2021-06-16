@@ -18,13 +18,12 @@ class MissionDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+         Text(
           mission.description,
           textAlign: TextAlign.justify,
         ),
-        Divider(
-          height: 50,
-        ),
+        Padding(padding: EdgeInsets.only(bottom: defaultPadding)),
+        Divider(),
         MissionAims(currentMission: mission)
       ],
     );
@@ -41,12 +40,15 @@ class MissionAims extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "-")
-      ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue)).toList()),
+    return Container(
+      padding: EdgeInsets.all(defaultPadding),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "-")
+        ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue)).toList()),
+      )
     );
   }
 }
