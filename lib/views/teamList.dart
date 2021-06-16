@@ -138,6 +138,7 @@ class _TeamListState extends State<TeamList> {
                               children: [
                                 TeamName(team: team),
                                 TeamPlayers(team: team),
+                                Padding(padding: EdgeInsets.only(top: defaultPadding)),
                                 TeamProgress(team: team)
                               ],
                             )

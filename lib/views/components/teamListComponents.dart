@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
 
 class TeamName extends StatelessWidget {
@@ -35,21 +36,24 @@ class TeamPlayers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.start,
-      spacing: 5,
-      direction: Axis.horizontal,
-      children: team.players.map((player) => 
-          Chip(
-            label: Text(
-              player,
-              style: Theme.of(context)
-                .textTheme
-                .subtitle1!
-                .copyWith(color: Colors.white70),
+    return Container(
+      padding: EdgeInsets.only(top: defaultPadding),
+      child: Wrap(
+        alignment: WrapAlignment.start,
+        spacing: 5,
+        direction: Axis.horizontal,
+        children: team.players.map((player) => 
+            Chip(
+              label: Text(
+                player,
+                style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(color: Colors.white70),
+            )
           )
-        )
-      ).toList()
+        ).toList()
+      )
     );
   }
 }
@@ -64,11 +68,18 @@ class TeamProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Chip(
-      label:  Text(
-        "Prochaine mission : " + (team.achievedMissions.length + 1).toString(),
-        style: Theme.of(context).textTheme.subtitle1,
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(defaultPadding/2),
+      decoration: BoxDecoration(
+        color: primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Center(
+        child: Text(
+          "Prochaine mission : " + (team.achievedMissions.length + 1).toString(),
+          style: Theme.of(context).textTheme.subtitle1,
+        )
       )
     );
   }
