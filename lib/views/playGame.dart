@@ -74,22 +74,24 @@ class PlayGameState extends State<PlayGame> {
                   children: [
                     Text("Nombre de tentatives : "),
                     Container(
-                        width: 100,
-                        child: TextField(
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.all(defaultPadding),
-                              hintText: "1",
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                width: 1,
-                              )),
-                            ),
-                            textAlign: TextAlign.right,
-                            controller: attempts,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ])),
+                      width: 70,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(defaultPadding),
+                          hintText: "1",
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                            width: 1,
+                          )),
+                        ),
+                        textAlign: TextAlign.right,
+                        controller: attempts,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ]
+                      )
+                    ),
                   ],
                 ),
                 Row(

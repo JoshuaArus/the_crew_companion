@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:the_crew_companion/entities/aimOption.dart';
 import 'package:the_crew_companion/entities/mission.dart';
@@ -18,11 +19,13 @@ class MissionDescription extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Text(
-          mission.description,
-          textAlign: TextAlign.justify,
+        MarkdownBody(
+          data: mission.description,
+          styleSheet: MarkdownStyleSheet(
+            textAlign: WrapAlignment.spaceEvenly
+          ),
         ),
-        Padding(padding: EdgeInsets.only(bottom: defaultPadding)),
+        Padding(padding: EdgeInsets.only(bottom: defaultPadding/2)),
         Divider(),
         MissionAims(currentMission: mission)
       ],
@@ -46,8 +49,8 @@ class MissionAims extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "-")
-        ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue)).toList()),
+          AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "")
+        ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue, tooltip: ao.tooltip)).toList()),
       )
     );
   }
@@ -58,9 +61,11 @@ class GoalButton extends StatelessWidget {
   GoalButton({
     Key? key,
     required this.text,
+    required this.tooltip
   }) : super(key: key);
 
   final String text;
+  final String tooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +79,15 @@ class GoalButton extends StatelessWidget {
         color: secondaryColor,
         shape: BoxShape.circle
       ),
-      child: Center(
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.headline6,
-        )
+      child: IconButton(
+        tooltip: tooltip,
+        onPressed: null,
+        icon: FittedBox(
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.headline6
+          )
+        ),
       )
     );
   }
@@ -95,14 +104,18 @@ class AimButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (text == "")
+      return Container();
+
     return Container(
-      height: 55,
-      width: 40,
+      height: 50,
+      width: 35,
       decoration: BoxDecoration(
         border: Border.all(
-          color : secondaryColor,
+          color : Colors.white,
+          width: 2
         ),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderRadius: BorderRadius.all(Radius.circular(8)),
         color: primaryColor.withOpacity(0.7),
         shape:  BoxShape.rectangle,
       ),

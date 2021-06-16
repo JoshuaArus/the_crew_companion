@@ -10,7 +10,9 @@ enum AimOption {
   Second,
   Third,
   Fourth,
-  Last
+  Last,
+  Disturbance,
+  Hidden
 }
 
 class AimOptionFactory {
@@ -41,8 +43,41 @@ extension AimOptionExtension on AimOption {
       case AimOption.Fourth : 
         return ">>>>";
       case AimOption.Last : 
-        return "Ω";      
-        }
+        return "Ω";
+      case AimOption.Disturbance : 
+        return "🕬";
+      case AimOption.Hidden : 
+        return "⟲";
+    }
+  }
+
+  String get tooltip {
+    switch (this) {
+      case AimOption.One :
+        return "Ordre 1";
+      case AimOption.Two: 
+        return "Ordre 2";
+      case AimOption.Three : 
+        return "Ordre 3";
+      case AimOption.Four : 
+        return "Ordre 4";
+      case AimOption.Five : 
+        return "Ordre 5";
+      case AimOption.First : 
+        return "Priorité 1";
+      case AimOption.Second : 
+        return "Priorité 2";
+      case AimOption.Third : 
+        return "Priorité 3";
+      case AimOption.Fourth : 
+        return "Priorité 4";
+      case AimOption.Last : 
+        return "En dernier";
+      case AimOption.Disturbance : 
+        return "Communications perturbées";
+      case AimOption.Hidden : 
+        return "Cartes faces cachées";
+    }
   }
   
   Widget getIcon(BuildContext context) {

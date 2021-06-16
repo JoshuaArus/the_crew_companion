@@ -56,7 +56,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
           ],
         )
       ]);
-    };
+    }
 
     return children;
   }
