@@ -11,7 +11,7 @@ enum AimOption {
   Third,
   Fourth,
   Last,
-  Disturbance,
+  Comms,
   Hidden
 }
 
@@ -44,8 +44,8 @@ extension AimOptionExtension on AimOption {
         return ">>>>";
       case AimOption.Last : 
         return "Ω";
-      case AimOption.Disturbance : 
-        return "🕬";
+      case AimOption.Comms : 
+        return "©";
       case AimOption.Hidden : 
         return "⟲";
     }
@@ -73,7 +73,7 @@ extension AimOptionExtension on AimOption {
         return "Priorité 4";
       case AimOption.Last : 
         return "En dernier";
-      case AimOption.Disturbance : 
+      case AimOption.Comms : 
         return "Communications perturbées";
       case AimOption.Hidden : 
         return "Cartes faces cachées";

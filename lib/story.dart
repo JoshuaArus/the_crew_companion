@@ -56,7 +56,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.First, AimOption.Second]
+      [AimOption.First, AimOption.Second, AimOption.Comms]
     ),
     Mission(
       6,
@@ -101,7 +101,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.One]
+      [AimOption.One, AimOption.Comms]
     ),
     Mission(
       11,
@@ -128,7 +128,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
     ),
     Mission(
       14,
@@ -164,7 +164,7 @@ class Story {
       5,
       0,
       false,
-      []
+      [AimOption.Comms]
     ),
     Mission(
       18,
@@ -173,7 +173,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.One]
+      [AimOption.One, AimOption.Comms]
     ),
     Mission(
       19,
@@ -191,7 +191,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.One, AimOption.Two]
+      [AimOption.One, AimOption.Two, AimOption.Comms]
     ),
     Mission(
       21,
@@ -227,7 +227,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.First, AimOption.Second]
+      [AimOption.First, AimOption.Second, AimOption.Comms]
     ),
     Mission(
       25,
@@ -254,7 +254,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.One, AimOption.Last]
+      [AimOption.One, AimOption.Last, AimOption.Comms]
     ),
     Mission(
       28,
@@ -263,7 +263,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [AimOption.Comms]
     ),
     Mission(
       29,
@@ -272,7 +272,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
     ),
     Mission(
       30,
@@ -344,7 +344,7 @@ class Story {
       8,
       0,
       false,
-      []
+      [AimOption.Comms]
     ),
     Mission(
       38,
@@ -353,7 +353,7 @@ class Story {
       8,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
     ),
     Mission(
       39,
