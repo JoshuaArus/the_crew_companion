@@ -60,17 +60,19 @@ class PlayGameState extends State<PlayGame> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(defaultPadding),
+        padding: EdgeInsets.fromLTRB(defaultPadding, defaultPadding, defaultPadding, 100),
         child: Column(
           children: [
             MissionDescription(mission: currentMission),
-            Divider(),
+            Divider(
+              height: 50,
+            ),
             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Nombre d'essais : "),
+                    Text("Nombre de tentatives : "),
                     Container(
                         width: 100,
                         child: TextField(

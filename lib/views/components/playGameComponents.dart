@@ -22,7 +22,9 @@ class MissionDescription extends StatelessWidget {
           mission.description,
           textAlign: TextAlign.justify,
         ),
-        Divider(),
+        Divider(
+          height: 50,
+        ),
         MissionAims(currentMission: mission)
       ],
     );

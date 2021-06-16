@@ -1,9 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:the_crew_companion/entities/team.dart';
 
-import '../../constant.dart';
-
-
 class TeamName extends StatelessWidget {
   const TeamName({
     Key? key,
