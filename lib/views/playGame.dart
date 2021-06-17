@@ -6,7 +6,7 @@ import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 
 import '../controller.dart';
-import 'components/playGameComponents.dart';
+import 'components/missionDescription.dart';
 
 class PlayGame extends StatefulWidget {
   const PlayGame({Key? key, required this.team, required this.controller})

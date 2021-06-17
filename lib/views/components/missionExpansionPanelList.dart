@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
-import 'package:the_crew_companion/views/components/playGameComponents.dart';
+
+import 'missionDescription.dart';
 
 // ignore: must_be_immutable
 class MissionExpansionPanelList extends StatefulWidget {
