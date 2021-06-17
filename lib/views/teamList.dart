@@ -95,6 +95,49 @@ class _TeamListState extends State<TeamList> {
     setState(() {});
   }
 
+  Widget buildTeamMenu(Team team) {
+    return PopupMenuButton(
+      itemBuilder: (context) {
+        return [
+          PopupMenuItem(
+            child: Text("Editer l'équipe"),
+            value: 1,
+          ),
+          PopupMenuItem(
+            child: Text("Voir les statistiques l'équipe"),
+            value: 2,
+          ),
+          PopupMenuItem(
+            child: Text("Réinitialiser la progression"),
+            value: 3,
+          ),
+          PopupMenuItem(
+            child: Text("Supprimer l'équipe"),
+            value: 4,
+          ),
+        ];
+      },
+      icon: Icon(Icons.more_vert,
+          color: Colors.white54),
+      onSelected: (value) async {
+        switch (value) {
+          case 1:
+            _editTeam(team);
+            break;
+          case 2:
+            _goToStats(team);
+            break;
+          case 3:
+            _resetProgress(team);
+            break;
+          case 4:
+            _removeTeam(team);
+            break;
+        }
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,68 +171,19 @@ class _TeamListState extends State<TeamList> {
                         ),
                         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            flex: 10,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                TeamName(team: team),
-                                TeamPlayers(team: team),
-                                Padding(padding: EdgeInsets.only(top: defaultPadding)),
-                                TeamProgress(team: team)
-                              ],
-                            )
+                          ListTile(
+                            leading: Icon(Icons.ac_unit, color: primaryColor.withAlpha(0),),
+                            title : TeamName(team: team),
+                            trailing: buildTeamMenu(team),                            
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: PopupMenuButton(
-                              itemBuilder: (context) {
-                                return [
-                                  PopupMenuItem(
-                                    child: Text("Editer l'équipe"),
-                                    value: 1,
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text("Voir les statistiques l'équipe"),
-                                    value: 2,
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text("Réinitialiser la progression"),
-                                    value: 3,
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text("Supprimer l'équipe"),
-                                    value: 4,
-                                  ),
-                                ];
-                              },
-                              icon: Icon(Icons.more_vert,
-                                  color: Colors.white54),
-                              onSelected: (value) async {
-                                switch (value) {
-                                  case 1:
-                                    _editTeam(team);
-                                    break;
-                                  case 2:
-                                    _goToStats(team);
-                                    break;
-                                  case 3:
-                                    _resetProgress(team);
-                                    break;
-                                  case 4:
-                                    _removeTeam(team);
-                                    break;
-                                }
-                              },
-                            ),
-                          )
+                          TeamPlayers(team: team),
+                          Padding(padding: EdgeInsets.only(top: defaultPadding)),
+                          TeamProgress(team: team)
                         ],
-                      )
+                      ),
                     )
                   );
                 },
