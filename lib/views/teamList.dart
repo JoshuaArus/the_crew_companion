@@ -6,7 +6,9 @@ import '../constant.dart';
 import '../controller.dart';
 import '../entities/team.dart';
 import 'components/menu.dart';
-import 'components/teamListComponents.dart';
+import 'components/teamName.dart';
+import 'components/teamPlayers.dart';
+import 'components/teamProgress.dart';
 import 'teamCreation.dart';
 import 'teamStats.dart';
 
