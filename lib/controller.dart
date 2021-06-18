@@ -22,7 +22,7 @@ class Controller {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(storageKey) ?? "";
     if (data != "") {
-      this.teams = (jsonDecode(data) as List<dynamic>).map((t) => Team.fromJson(t)).toList();
+      this.teams = List<Team>.from(jsonDecode(data).map((t) => Team.fromMap(t)));
     }
     return true;
   }

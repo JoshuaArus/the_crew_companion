@@ -28,7 +28,7 @@ class TeamList extends StatefulWidget {
 
 class _TeamListState extends State<TeamList> {
   void _addTeam() async {
-    final newTeam = Team();
+    final newTeam = Team.empty();
     final created = await Navigator.push(
         context,
         new MaterialPageRoute(

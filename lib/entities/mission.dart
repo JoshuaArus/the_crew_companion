@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+
 import 'aimOption.dart';
 
 class Mission {
@@ -11,44 +13,97 @@ class Mission {
   bool satelliteUsed;
   List<AimOption> aimOptions;
   
-  Mission(this.id, this.title, this.description, this.aimCount, this.attempts, this.satelliteUsed, this.aimOptions);
+  Mission(
+    this.id,
+    this.title,
+    this.description,
+    this.aimCount,
+    this.attempts,
+    this.satelliteUsed,
+    this.aimOptions,
+  );
 
   Mission get copy {
     return Mission.fromJson(jsonDecode(jsonEncode(this)));
   }
 
-  Mission.fromData({
-    required this.id, 
-    required this.title, 
-    required this.description, 
-    required this.aimCount, 
-    required this.attempts, 
-    required this.satelliteUsed, 
-    required this.aimOptions
-  });
-
-  factory Mission.fromJson(Map<String, dynamic> json) {
-    List<dynamic> dyn = (jsonDecode(json["aimOptions"]) as List<dynamic>);
-    List<AimOption> aimOptions = dyn.map((ao) => AimOptionFactory.fromString(ao.toString())).toList();
-    return Mission.fromData(
-      id: json["id"] as int,
-      title: json["title"] as String,
-      description: json["description"] as String,
-      aimCount: json["aimCount"] as int,
-      attempts: json["attempts"] as int,
-      satelliteUsed: json["satelliteUsed"] as bool,
-      aimOptions: aimOptions,
+  Mission copyWith({
+    int? id,
+    String? title,
+    String? description,
+    int? aimCount,
+    int? attempts,
+    bool? satelliteUsed,
+    List<AimOption>? aimOptions,
+  }) {
+    return Mission(
+      id ?? this.id,
+      title ?? this.title,
+      description ?? this.description,
+      aimCount ?? this.aimCount,
+      attempts ?? this.attempts,
+      satelliteUsed ?? this.satelliteUsed,
+      aimOptions ?? this.aimOptions,
     );
   }
 
-  Map toJson() => {
-    "id": id,
-    "title": title,
-    "description": description,
-    "aimCount": aimCount,
-    "attempts": attempts,
-    "satelliteUsed": satelliteUsed,
-    "aimOptions": jsonEncode(aimOptions.map((ao) => ao.toString()).toList())
-  };
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'aimCount': aimCount,
+      'attempts': attempts,
+      'satelliteUsed': satelliteUsed,
+      'aimOptions': aimOptions.map((x) => x.toString()).toList(),
+    };
+  }
+
+  factory Mission.fromMap(Map<String, dynamic> map) {
+    return Mission(
+      map['id'],
+      map['title'],
+      map['description'],
+      map['aimCount'],
+      map['attempts'],
+      map['satelliteUsed'],
+      List<AimOption>.from(map['aimOptions']?.map((x) => AimOptionFactory.fromString(x))),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Mission.fromJson(String source) => Mission.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'Mission(id: $id, title: $title, description: $description, aimCount: $aimCount, attempts: $attempts, satelliteUsed: $satelliteUsed, aimOptions: $aimOptions)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+  
+    return other is Mission &&
+      other.id == id &&
+      other.title == title &&
+      other.description == description &&
+      other.aimCount == aimCount &&
+      other.attempts == attempts &&
+      other.satelliteUsed == satelliteUsed &&
+      listEquals(other.aimOptions, aimOptions);
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+      title.hashCode ^
+      description.hashCode ^
+      aimCount.hashCode ^
+      attempts.hashCode ^
+      satelliteUsed.hashCode ^
+      aimOptions.hashCode;
+  }
 }
 

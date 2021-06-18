@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+
 import 'mission.dart';
 
 class Team {
@@ -9,30 +11,60 @@ class Team {
   List<String> players = [];
   List<Mission> achievedMissions = [];
 
-  Team();
+  Team.empty();
 
-  Team.fromData({
-    required this.name,
-    required this.creationDate,
-    required this.players,
-    required this.achievedMissions
-  });
+  Team(
+    this.name,
+    this.players,
+    this.achievedMissions,
+  );
 
-  factory Team.fromJson(Map<String, dynamic> json) {
-    List<String> players = (jsonDecode(json['players']) as List<dynamic>).map((p) => p.toString()).toList();
-    List<Mission> achievedMissions = (jsonDecode(json['achievedMissions']) as List<dynamic>).map((am) => Mission.fromJson(am)).toList();
-    return Team.fromData(
-      name : json['name'] as String,
-      creationDate : DateTime.parse(json['creationDate']),
-      players : players,
-      achievedMissions : achievedMissions
+  Team copyWith({
+    String? name,
+    List<String>? players,
+    List<Mission>? achievedMissions,
+  }) {
+    return Team(
+      name ?? this.name,
+      players ?? this.players,
+      achievedMissions ?? this.achievedMissions,
     );
   }
 
-  Map toJson() => {
-    "name": name,
-    "creationDate": creationDate.toString(),
-    "players": jsonEncode(players),
-    "achievedMissions": jsonEncode(achievedMissions)
-  };
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'players': players,
+      'achievedMissions': achievedMissions.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory Team.fromMap(Map<String, dynamic> map) {
+    return Team(
+      map['name'],
+      List<String>.from(map['players']),
+      List<Mission>.from(map['achievedMissions']?.map((x) => Mission.fromMap(x))),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Team.fromJson(String source) => Team.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'Team(name: $name, players: $players, achievedMissions: $achievedMissions)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+  
+    return other is Team &&
+      other.name == name &&
+      listEquals(other.players, players) &&
+      listEquals(other.achievedMissions, achievedMissions);
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ players.hashCode ^ achievedMissions.hashCode;
 }
