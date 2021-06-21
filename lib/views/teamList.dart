@@ -5,7 +5,6 @@ import 'package:the_crew_companion/views/playGame.dart';
 import '../constant.dart';
 import '../controller.dart';
 import '../entities/team.dart';
-import 'components/menu.dart';
 import 'components/teamName.dart';
 import 'components/teamPlayers.dart';
 import 'components/teamProgress.dart';
@@ -15,11 +14,9 @@ import 'teamStats.dart';
 class TeamList extends StatefulWidget {
   TeamList(
       {Key? key,
-      required this.title,
       required this.controller})
       : super(key: key);
 
-  final String title;
   final Controller controller;
   
   @override
@@ -27,19 +24,7 @@ class TeamList extends StatefulWidget {
 }
 
 class _TeamListState extends State<TeamList> {
-  void _addTeam() async {
-    final newTeam = Team();
-    final created = await Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => TeamCreation(team: newTeam)));
-    if (created == true) {
-      widget.controller.teams.add(newTeam);
-      await widget.controller.saveDatas();
-      setState(() {}); //refresh UI
-    }
-  }
-
+  
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
         context,
@@ -82,17 +67,22 @@ class _TeamListState extends State<TeamList> {
     if (confirmed == true) {
       widget.controller.teams.remove(team);
       await widget.controller.saveDatas();
-      setState(() {});
+
+      if (widget.controller.teams.length == 0)
+        Navigator.pop(context);
+      else 
+        setState(() {});
     }
   }
 
   void _play(Team team) async {
-    await Navigator.push(
+    Navigator.pop(context);
+    Navigator.push(
         context,
         new MaterialPageRoute(
             builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
 
-    setState(() {});
+    // setState(() {});
   }
 
   Widget buildTeamMenu(Team team) {
@@ -141,9 +131,8 @@ class _TeamListState extends State<TeamList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Menu(controller: widget.controller),
       appBar: AppBar(
-        title:  Text(widget.title),
+        title:  Text(widget.controller.appName),
         centerTitle: true,
       ),
       body: Container(
@@ -191,11 +180,6 @@ class _TeamListState extends State<TeamList> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _addTeam,
-        tooltip: 'Ajouter une équipe',
-        child: Icon(Icons.add),
       ),
     );
   }
