@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/views/about.dart';
 
 import '../../controller.dart';
 import '../missionList.dart';
@@ -16,13 +17,21 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   
-  void _goToMissionList() async {
+  void _goto(Widget page) {
     Navigator.pop(context);// hide menu
 
     Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (BuildContext context) => MissionList(controller: widget.controller)));
+            builder: (BuildContext context) => page));
+  }
+
+  void _goToMissionList() {
+    _goto(MissionList(controller: widget.controller));
+  }
+
+  void _goToAbout() {
+    _goto(About(controller: widget.controller));
   }
 
   @override
@@ -31,9 +40,11 @@ class _MenuState extends State<Menu> {
         child: ListView(
           children: [
             Container(
-              height: 0,
               child: DrawerHeader(
-                child: Text(""),//en attente d'une image
+                padding: EdgeInsets.all(defaultPadding),
+                child: Image(
+                  image: AssetImage("assets/images/astronautHelmet.png")
+                ),
               )
             ),
             ListTile(
@@ -41,9 +52,18 @@ class _MenuState extends State<Menu> {
                 "Liste des missions",
                 style: Theme.of(context).textTheme.headline6,
               ),
-              tileColor: primaryColor,
               onTap: _goToMissionList,
-            )
+              leading: Icon(Icons.article_outlined),
+            ),
+            Padding(padding: EdgeInsets.only(top:10)),
+            ListTile(
+              title: Text(
+                "A propos",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _goToAbout,
+              leading: Icon(Icons.lightbulb_outline),
+            ),
           ],
         )
       );
