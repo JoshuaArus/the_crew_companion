@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("v" + version),
+            Text("v " + version),
             // Text(developper)
           ],
         )
