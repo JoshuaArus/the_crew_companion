@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/views/teamCreation.dart';
 import 'package:the_crew_companion/views/teamList.dart';
 
 import '../controller.dart';
 import 'components/homeScreenButton.dart';
-import 'components/menu.dart';
+import 'components/customDrawer.dart';
 import 'playGame.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -58,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(title),
         centerTitle: true,
       ),
-      drawer: Menu(controller: widget.controller),
+      drawer: CustomDrawer(controller: widget.controller),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -68,14 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child : Container(
           padding: EdgeInsets.only(top: 250),
-          child: Expanded(
-            child: Column(
+          child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 HomeScreenButton(text: "Nouvelle partie", onPressed: _addTeam),
                 HomeScreenButton(text: "Charger une partie", onPressed: _goToTeamList, disabled: widget.controller.teams.length == 0),
               ],
-            )
           ),
         )
       ),
