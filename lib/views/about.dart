@@ -19,7 +19,6 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
 
-    String title = widget.controller.appName;
     String version = widget.controller.appVersion;
     String developper = widget.controller.developper;
 

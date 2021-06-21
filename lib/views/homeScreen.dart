@@ -5,7 +5,7 @@ import 'package:the_crew_companion/views/teamList.dart';
 
 import '../controller.dart';
 import 'components/homeScreenButton.dart';
-import 'components/menu.dart';
+import 'components/customDrawer.dart';
 import 'playGame.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(title),
         centerTitle: true,
       ),
-      drawer: Menu(controller: widget.controller),
+      drawer: CustomDrawer(controller: widget.controller),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

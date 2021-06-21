@@ -6,16 +6,16 @@ import '../../controller.dart';
 import '../missionList.dart';
 
 
-class Menu extends StatefulWidget {
-  const Menu({ Key? key, required this.controller }) : super(key: key);
+class CustomDrawer extends StatefulWidget {
+  const CustomDrawer({ Key? key, required this.controller }) : super(key: key);
 
   final Controller controller;
 
   @override
-  _MenuState createState() => _MenuState();
+  _CustomDrawerState createState() => _CustomDrawerState();
 }
 
-class _MenuState extends State<Menu> {
+class _CustomDrawerState extends State<CustomDrawer> {
   
   void _goto(Widget page) {
     Navigator.pop(context);// hide menu
