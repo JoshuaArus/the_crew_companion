@@ -1,7 +1,7 @@
 name: Outdated dependencies
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # manual trigger
   schedule:
     - cron: '0 6 * * *' # every day at 6
 
@@ -19,7 +19,7 @@ jobs:
           flutter-version: '1.12.13+hotfix.5'
           channel: 'stable'
       - name: run flutter package updater
-        uses: tianhaoz95/update-flutter-packages@v0.0.1
+        uses: tianhaoz95/update-flutter-packages@v0.0.5
         with:
           flutter-project: './'
           git-email: 'joshua.arus@gmail.com'
