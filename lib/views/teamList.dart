@@ -91,8 +91,6 @@ class _TeamListState extends State<TeamList> {
             PlayGame(controller: widget.controller, team: team),
       ),
     );
-
-    // setState(() {});
   }
 
   Widget buildTeamMenu(Team team) {
@@ -145,7 +143,7 @@ class _TeamListState extends State<TeamList> {
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.only(top: defaultPadding / 2),
+        padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),
         child: Column(
           children: [
             Expanded(
@@ -179,10 +177,6 @@ class _TeamListState extends State<TeamList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
-                            leading: Icon(
-                              Icons.ac_unit,
-                              color: primaryColor.withAlpha(0),
-                            ),
                             title: TeamName(team: team),
                             trailing: buildTeamMenu(team),
                           ),
