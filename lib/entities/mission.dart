@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'aimOption.dart';
 
 class Mission {
-  int id;
-  String title;
-  String description;
-  int aimCount;
-  int attempts;
-  bool satelliteUsed;
-  List<AimOption> aimOptions;
+  late int id;
+  late String title;
+  late String description;
+  late int aimCount;
+  late int attempts;
+  late bool satelliteUsed;
+  late List<AimOption> aimOptions;
 
   Mission(this.id, this.title, this.description, this.aimCount, this.attempts,
       this.satelliteUsed, this.aimOptions);

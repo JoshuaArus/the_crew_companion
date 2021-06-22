@@ -3,12 +3,17 @@ import 'dart:convert';
 import 'mission.dart';
 
 class Team {
-  String name = "";
-  DateTime creationDate = DateTime.now();
-  List<String> players = [];
-  List<Mission> achievedMissions = [];
+  late String name;
+  late DateTime creationDate;
+  late List<String> players;
+  late List<Mission> achievedMissions;
 
-  Team();
+  Team() {
+    name = "";
+    creationDate = DateTime.now();
+    players = [];
+    achievedMissions = [];
+  }
 
   Team.fromData(
       {required this.name,
