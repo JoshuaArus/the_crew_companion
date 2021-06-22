@@ -66,6 +66,17 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     return children;
   }
 
+  Color? getStateColor(states) {
+    const Set<MaterialState> activeStates = {MaterialState.selected};
+    return states.any((element) => activeStates.contains(element))
+        ? primaryColor
+        : null;
+  }
+
+  Color? getStateFadedColor(states) {
+    return getStateColor(states)?.withOpacity(0.5);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isOpen.length == 0)
@@ -79,7 +90,9 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
           return ExpansionPanel(
             canTapOnHeader: true,
             headerBuilder: (BuildContext context, bool isOpen) {
-              return ListTile(title: Text(mission.title));
+              return ListTile(
+                title: Text(mission.title),
+              );
             },
             body: ListTile(
               title: Column(
@@ -92,16 +105,5 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         },
       ).toList(),
     );
-  }
-
-  Color? getStateColor(states) {
-    const Set<MaterialState> activeStates = {MaterialState.selected};
-    return states.any((element) => activeStates.contains(element))
-        ? primaryColor
-        : null;
-  }
-
-  Color? getStateFadedColor(states) {
-    return getStateColor(states)?.withOpacity(0.5);
   }
 }
