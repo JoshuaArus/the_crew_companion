@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../controller.dart';
 
 class About extends StatefulWidget {
-  const About({ Key? key, required this.controller }) : super(key: key);
+  const About({Key? key, required this.controller}) : super(key: key);
 
   final Controller controller;
 
@@ -15,10 +15,8 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
-
   @override
   Widget build(BuildContext context) {
-
     String version = widget.controller.appVersion;
     String developper = widget.controller.developper;
 
@@ -31,56 +29,54 @@ class _AboutState extends State<About> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/homeScreenBackground.png"),
-            fit: BoxFit.cover
-          )
+              image: AssetImage("assets/images/homeScreenBackground.png"),
+              fit: BoxFit.cover),
         ),
-        child : Container(
+        child: Container(
           padding: EdgeInsets.only(top: 270),
           child: Container(
-            padding: EdgeInsets.all(defaultPadding*2),
+            padding: EdgeInsets.all(defaultPadding * 2),
             decoration: BoxDecoration(
-              border: Border.all(
-                color : Colors.white,
-                width: 2
-              ),
+              border: Border.all(color: Colors.white, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(8)),
               color: secondaryColor.withOpacity(0.7),
-              shape:  BoxShape.rectangle,
+              shape: BoxShape.rectangle,
             ),
-            child : Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 MarkdownBody(
-                  data: "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",
+                  data:
+                      "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",
                   styleSheet: MarkdownStyleSheet(
                     textAlign: WrapAlignment.spaceEvenly,
                     p: TextStyle(
-                      height: 2, 
-                    )
+                      height: 2,
+                    ),
                   ),
-                  onTapLink: (text, url, title){
-                      launch(url!);
+                  onTapLink: (text, url, title) {
+                    launch(url!);
                   },
                 ),
                 Text("Développé par " + developper),
                 MarkdownBody(
-                  data: "Suivre le projet sur [github](https://github.com/JoshuaArus/the_crew_companion/)",
+                  data:
+                      "Suivre le projet sur [github](https://github.com/JoshuaArus/the_crew_companion/)",
                   styleSheet: MarkdownStyleSheet(
                     textAlign: WrapAlignment.spaceEvenly,
                     p: TextStyle(
-                      height: 2, 
-                    )
+                      height: 2,
+                    ),
                   ),
-                  onTapLink: (text, url, title){
-                      launch(url!);
+                  onTapLink: (text, url, title) {
+                    launch(url!);
                   },
                 ),
                 Text("Version " + version),
               ],
             ),
-          )
-        )
+          ),
+        ),
       ),
     );
   }

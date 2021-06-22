@@ -22,9 +22,17 @@ class MissionAims extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "")
-        ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue, tooltip: ao.tooltip)).toList()),
-      )
+          AimButton(
+              text: currentMission.aimCount > 0
+                  ? currentMission.aimCount.toString()
+                  : "")
+        ]..addAll(
+            currentMission.aimOptions
+                .map((ao) =>
+                    GoalButton(text: ao.displayValue, tooltip: ao.tooltip))
+                .toList(),
+          ),
+      ),
     );
   }
 }

@@ -6,10 +6,7 @@ import '../../constant.dart';
 import 'missionAims.dart';
 
 class MissionDescription extends StatelessWidget {
-  const MissionDescription({
-    Key? key,
-    required this.mission
-  }) : super(key: key);
+  const MissionDescription({Key? key, required this.mission}) : super(key: key);
 
   final Mission mission;
 
@@ -20,11 +17,9 @@ class MissionDescription extends StatelessWidget {
       children: [
         MarkdownBody(
           data: mission.description,
-          styleSheet: MarkdownStyleSheet(
-            textAlign: WrapAlignment.spaceEvenly
-          ),
+          styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceEvenly),
         ),
-        Padding(padding: EdgeInsets.only(bottom: defaultPadding/2)),
+        Padding(padding: EdgeInsets.only(bottom: defaultPadding / 2)),
         Divider(),
         MissionAims(currentMission: mission)
       ],

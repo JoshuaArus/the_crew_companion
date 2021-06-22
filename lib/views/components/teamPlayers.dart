@@ -19,18 +19,20 @@ class TeamPlayers extends StatelessWidget {
         alignment: WrapAlignment.start,
         spacing: 5,
         direction: Axis.horizontal,
-        children: team.players.map((player) => 
-            Chip(
-              label: Text(
-                player,
-                style: Theme.of(context)
-                  .textTheme
-                  .subtitle1!
-                  .copyWith(color: Colors.white70),
+        children: team.players
+            .map(
+              (player) => Chip(
+                label: Text(
+                  player,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: Colors.white70),
+                ),
+              ),
             )
-          )
-        ).toList()
-      )
+            .toList(),
+      ),
     );
   }
 }

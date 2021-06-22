@@ -12,24 +12,22 @@ import 'teamCreation.dart';
 import 'teamStats.dart';
 
 class TeamList extends StatefulWidget {
-  TeamList(
-      {Key? key,
-      required this.controller})
-      : super(key: key);
+  TeamList({Key? key, required this.controller}) : super(key: key);
 
   final Controller controller;
-  
+
   @override
   _TeamListState createState() => _TeamListState();
 }
 
 class _TeamListState extends State<TeamList> {
-  
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => TeamCreation(team: team)));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => TeamCreation(team: team),
+      ),
+    );
     if (edited == true) {
       await widget.controller.saveDatas();
       setState(() {}); //refresh UI
@@ -37,12 +35,16 @@ class _TeamListState extends State<TeamList> {
   }
 
   void _resetProgress(Team team) async {
-    bool confirmed = await confirm(context,
-        content:
-            Text("Voulez vous vraiment réinitialiser la progression de l'équipe " + team.name + " ?"),
-        textOK: Text("Oui"),
-        textCancel: Text("Non"),
-        title: Text("Réinitialisation de la progression"));
+    bool confirmed = await confirm(
+      context,
+      content: Text(
+          "Voulez vous vraiment réinitialiser la progression de l'équipe " +
+              team.name +
+              " ?"),
+      textOK: Text("Oui"),
+      textCancel: Text("Non"),
+      title: Text("Réinitialisation de la progression"),
+    );
     if (confirmed == true) {
       team.achievedMissions.clear();
       await widget.controller.saveDatas();
@@ -52,25 +54,30 @@ class _TeamListState extends State<TeamList> {
 
   void _goToStats(Team team) async {
     Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => TeamStats(controller: widget.controller, team: team)));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) =>
+            TeamStats(controller: widget.controller, team: team),
+      ),
+    );
   }
 
   void _removeTeam(Team team) async {
-    bool confirmed = await confirm(context,
-        content:
-            Text("Voulez vous vraiment supprimer l'équipe " + team.name + " ?"),
-        textOK: Text("Oui"),
-        textCancel: Text("Non"),
-        title: Text("Suppression de l'équipe"));
+    bool confirmed = await confirm(
+      context,
+      content:
+          Text("Voulez vous vraiment supprimer l'équipe " + team.name + " ?"),
+      textOK: Text("Oui"),
+      textCancel: Text("Non"),
+      title: Text("Suppression de l'équipe"),
+    );
     if (confirmed == true) {
       widget.controller.teams.remove(team);
       await widget.controller.saveDatas();
 
       if (widget.controller.teams.length == 0)
         Navigator.pop(context);
-      else 
+      else
         setState(() {});
     }
   }
@@ -78,9 +85,12 @@ class _TeamListState extends State<TeamList> {
   void _play(Team team) async {
     Navigator.pop(context);
     Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => PlayGame(controller: widget.controller, team: team)));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) =>
+            PlayGame(controller: widget.controller, team: team),
+      ),
+    );
 
     // setState(() {});
   }
@@ -107,8 +117,7 @@ class _TeamListState extends State<TeamList> {
           ),
         ];
       },
-      icon: Icon(Icons.more_vert,
-          color: Colors.white54),
+      icon: Icon(Icons.more_vert, color: Colors.white54),
       onSelected: (value) async {
         switch (value) {
           case 1:
@@ -124,7 +133,7 @@ class _TeamListState extends State<TeamList> {
             _removeTeam(team);
             break;
         }
-      }
+      },
     );
   }
 
@@ -132,11 +141,11 @@ class _TeamListState extends State<TeamList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(widget.controller.appName),
+        title: Text(widget.controller.appName),
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.only(top: defaultPadding/2),
+        padding: EdgeInsets.only(top: defaultPadding / 2),
         child: Column(
           children: [
             Expanded(
@@ -145,35 +154,46 @@ class _TeamListState extends State<TeamList> {
                 itemBuilder: (BuildContext ctxt, int index) {
                   final team = widget.controller.teams[index];
                   return Container(
-                    padding: EdgeInsets.fromLTRB(defaultPadding, defaultPadding/2, defaultPadding, defaultPadding/2),
+                    padding: EdgeInsets.fromLTRB(defaultPadding,
+                        defaultPadding / 2, defaultPadding, defaultPadding / 2),
                     child: OutlinedButton(
-                      onPressed: (){
+                      onPressed: () {
                         _play(team);
                       },
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: Theme.of(context).backgroundColor.withOpacity(0.30),
+                        backgroundColor:
+                            Theme.of(context).backgroundColor.withOpacity(0.30),
                         padding: EdgeInsets.all(defaultPadding),
                         elevation: 10,
                         side: BorderSide(
                           width: 2,
                           color: primaryColor.withOpacity(0.70),
                         ),
-                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
-                            leading: Icon(Icons.ac_unit, color: primaryColor.withAlpha(0),),
-                            title : TeamName(team: team),
-                            trailing: buildTeamMenu(team),                            
+                            leading: Icon(
+                              Icons.ac_unit,
+                              color: primaryColor.withAlpha(0),
+                            ),
+                            title: TeamName(team: team),
+                            trailing: buildTeamMenu(team),
                           ),
                           TeamPlayers(team: team),
-                          Padding(padding: EdgeInsets.only(top: defaultPadding)),
+                          Padding(
+                            padding: EdgeInsets.only(top: defaultPadding),
+                          ),
                           TeamProgress(team: team)
                         ],
                       ),
-                    )
+                    ),
                   );
                 },
               ),

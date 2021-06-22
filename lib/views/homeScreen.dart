@@ -10,30 +10,34 @@ import 'components/customDrawer.dart';
 import 'playGame.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({ Key? key, required this.controller }) : super(key: key);
+  const HomeScreen({Key? key, required this.controller}) : super(key: key);
 
   final Controller controller;
-
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   void _goToTeamList() {
     Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => TeamList(controller: widget.controller,)));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => TeamList(
+          controller: widget.controller,
+        ),
+      ),
+    );
   }
-  
+
   void _addTeam() async {
     final newTeam = Team();
     final created = await Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => TeamCreation(team: newTeam)));
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => TeamCreation(team: newTeam),
+      ),
+    );
     if (created == true) {
       widget.controller.teams.add(newTeam);
       await widget.controller.saveDatas();
@@ -41,7 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
       await Navigator.push(
         context,
         new MaterialPageRoute(
-            builder: (BuildContext context) => PlayGame(controller: widget.controller, team: newTeam)));
+          builder: (BuildContext context) =>
+              PlayGame(controller: widget.controller, team: newTeam),
+        ),
+      );
 
       setState(() {}); //refresh UI
     }
@@ -49,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     String title = widget.controller.appName;
     String version = widget.controller.appVersion;
 
@@ -63,44 +69,50 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/homeScreenBackground.png"),
-            fit: BoxFit.fill
-          )
+            fit: BoxFit.fill,
+          ),
         ),
-        child : Container(
+        child: Container(
           child: Column(
             children: [
               DelayedAnimation(
                 delay: 1000,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80,),
-                  child: Image.asset("assets/images/homeScreenTitle.png")
-                )
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 80,
+                  ),
+                  child: Image.asset("assets/images/homeScreenTitle.png"),
+                ),
               ),
-              
               Container(
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      HomeScreenButton(text: "Nouvelle partie", onPressed: _addTeam),
-                      SizedBox(height: 60,),
-                      HomeScreenButton(text: "Charger une partie", onPressed: _goToTeamList, disabled: widget.controller.teams.length == 0),
-                    ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    HomeScreenButton(
+                        text: "Nouvelle partie", onPressed: _addTeam),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    HomeScreenButton(
+                        text: "Charger une partie",
+                        onPressed: _goToTeamList,
+                        disabled: widget.controller.teams.length == 0),
+                  ],
                 ),
               )
             ],
-          ) 
-        )
+          ),
+        ),
       ),
       bottomSheet: Container(
         width: double.infinity,
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("v " + version),
-            // Text(developper)
           ],
-        )
+        ),
       ),
     );
   }

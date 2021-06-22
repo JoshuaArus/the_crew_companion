@@ -30,11 +30,13 @@ class PlayGameState extends State<PlayGame> {
   }
 
   void _endCurrentMission(Mission mission) async {
-    bool confirmed = await confirm(context,
-        content: Text("Valider avec cette saisie ?"),
-        textOK: Text("Oui"),
-        textCancel: Text("Non"),
-        title: Text("Valider la mission"));
+    bool confirmed = await confirm(
+      context,
+      content: Text("Valider avec cette saisie ?"),
+      textOK: Text("Oui"),
+      textCancel: Text("Non"),
+      title: Text("Valider la mission"),
+    );
 
     if (confirmed == true) {
       mission.attempts = int.parse(attempts.text == "" ? "1" : attempts.text);
@@ -60,7 +62,8 @@ class PlayGameState extends State<PlayGame> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(defaultPadding, defaultPadding, defaultPadding, 100),
+        padding: EdgeInsets.fromLTRB(
+            defaultPadding, defaultPadding, defaultPadding, 100),
         child: Column(
           children: [
             MissionDescription(mission: currentMission),
@@ -80,17 +83,18 @@ class PlayGameState extends State<PlayGame> {
                           contentPadding: EdgeInsets.all(defaultPadding),
                           hintText: "1",
                           border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                            width: 1,
-                          )),
+                            borderSide: BorderSide(
+                              width: 1,
+                            ),
+                          ),
                         ),
                         textAlign: TextAlign.right,
                         controller: attempts,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly
-                        ]
-                      )
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -99,24 +103,26 @@ class PlayGameState extends State<PlayGame> {
                   children: [
                     Text("Utilisation du satellite : "),
                     Switch(
-                        activeColor: primaryColor,
-                        value: satUsed,
-                        onChanged: _setSwitch)
+                      activeColor: primaryColor,
+                      value: satUsed,
+                      onChanged: _setSwitch,
+                    ),
                   ],
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            _endCurrentMission(currentMission);
-          },
-          label: Text(
-            "Valider la mission",
-          ),
-          icon: Icon(Icons.check)),
+        onPressed: () {
+          _endCurrentMission(currentMission);
+        },
+        label: Text(
+          "Valider la mission",
+        ),
+        icon: Icon(Icons.check),
+      ),
     );
   }
 }

@@ -5,9 +5,8 @@ import 'package:the_crew_companion/views/about.dart';
 import '../../controller.dart';
 import '../missionList.dart';
 
-
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({ Key? key, required this.controller }) : super(key: key);
+  const CustomDrawer({Key? key, required this.controller}) : super(key: key);
 
   final Controller controller;
 
@@ -16,14 +15,11 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  
   void _goto(Widget page) {
-    Navigator.pop(context);// hide menu
+    Navigator.pop(context); // hide menu
 
-    Navigator.push(
-        context,
-        new MaterialPageRoute(
-            builder: (BuildContext context) => page));
+    Navigator.push(context,
+        new MaterialPageRoute(builder: (BuildContext context) => page));
   }
 
   void _goToMissionList() {
@@ -38,34 +34,30 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: ListView(
-          children: [
-            Container(
-              child: DrawerHeader(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Image(
-                  image: AssetImage("assets/images/astronautHelmet.png")
-                ),
-              )
-            ),
-            ListTile(
-              title: Text(
-                "Liste des missions",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              onTap: _goToMissionList,
-              leading: Icon(Icons.article_outlined),
-            ),
-            Padding(padding: EdgeInsets.only(top:10)),
-            ListTile(
-              title: Text(
-                "A propos",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              onTap: _goToAbout,
-              leading: Icon(Icons.lightbulb_outline),
-            ),
-          ],
-        )
-      );
+      children: [
+        Container(
+            child: DrawerHeader(
+          padding: EdgeInsets.all(defaultPadding),
+          child: Image(image: AssetImage("assets/images/astronautHelmet.png")),
+        )),
+        ListTile(
+          title: Text(
+            "Liste des missions",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          onTap: _goToMissionList,
+          leading: Icon(Icons.article_outlined),
+        ),
+        Padding(padding: EdgeInsets.only(top: 10)),
+        ListTile(
+          title: Text(
+            "A propos",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          onTap: _goToAbout,
+          leading: Icon(Icons.lightbulb_outline),
+        ),
+      ],
+    ));
   }
 }

@@ -8,7 +8,6 @@ import 'entities/team.dart';
 import 'story.dart';
 
 class Controller {
-  
   final storageKey = "com.joshuaarus.the_crew_companion";
 
   late PackageInfo infos;
@@ -17,7 +16,7 @@ class Controller {
   String get appName => infos.appName;
   String get appVersion => infos.version;
 
-  Future<void> init () async {
+  Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
   }
 
@@ -34,8 +33,10 @@ class Controller {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(storageKey) ?? "";
     if (data != "") {
-      this.teams = (jsonDecode(data) as List<dynamic>).map((t) => Team.fromJson(t)).toList();
+      this.teams = (jsonDecode(data) as List<dynamic>)
+          .map((t) => Team.fromJson(t))
+          .toList();
     }
     return true;
-  }  
+  }
 }

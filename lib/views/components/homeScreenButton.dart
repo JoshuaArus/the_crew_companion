@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
 
 class HomeScreenButton extends StatefulWidget {
-  const HomeScreenButton({ Key? key, required this.text, required this.onPressed, this.disabled = false}) : super(key: key);
+  const HomeScreenButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      this.disabled = false})
+      : super(key: key);
 
   final String text;
   final Function onPressed;
@@ -16,17 +21,20 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: defaultPadding*2, right: defaultPadding*2),
+      padding:
+          EdgeInsets.only(left: defaultPadding * 2, right: defaultPadding * 2),
       width: double.infinity,
       height: 50,
-      child : OutlinedButton(
-        onPressed: () { if (widget.disabled) return; widget.onPressed(); },
+      child: OutlinedButton(
+        onPressed: () {
+          if (widget.disabled) return;
+          widget.onPressed();
+        },
         child: Text(
           widget.text.toUpperCase(),
           style: Theme.of(context).textTheme.headline5!.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.white.withOpacity(widget.disabled ? 0.2 : 1)
-          ),
+              fontWeight: FontWeight.bold,
+              color: Colors.white.withOpacity(widget.disabled ? 0.2 : 1)),
           overflow: TextOverflow.ellipsis,
         ),
         style: OutlinedButton.styleFrom(
@@ -35,9 +43,9 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
             width: 2,
             color: primaryColor.withOpacity(0.70),
           ),
-          shape: StadiumBorder()
+          shape: StadiumBorder(),
         ),
-      )
+      ),
     );
   }
 }

@@ -11,7 +11,7 @@ class Story {
       1,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       1,
@@ -20,7 +20,7 @@ class Story {
       2,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       2,
@@ -29,7 +29,7 @@ class Story {
       2,
       0,
       false,
-      [AimOption.One, AimOption.Two]
+      [AimOption.One, AimOption.Two],
     ),
     Mission(
       3,
@@ -38,7 +38,7 @@ class Story {
       3,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       4,
@@ -47,7 +47,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       5,
@@ -56,7 +56,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Comms]
+      [AimOption.First, AimOption.Second, AimOption.Comms],
     ),
     Mission(
       6,
@@ -65,7 +65,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.Last]
+      [AimOption.Last],
     ),
     Mission(
       7,
@@ -74,7 +74,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Three]
+      [AimOption.One, AimOption.Two, AimOption.Three],
     ),
     Mission(
       8,
@@ -83,7 +83,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       9,
@@ -92,7 +92,7 @@ class Story {
       4,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       10,
@@ -101,7 +101,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.One, AimOption.Comms]
+      [AimOption.One, AimOption.Comms],
     ),
     Mission(
       11,
@@ -110,7 +110,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.Last]
+      [AimOption.Last],
     ),
     Mission(
       12,
@@ -119,7 +119,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       13,
@@ -128,7 +128,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms],
     ),
     Mission(
       14,
@@ -137,7 +137,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Three, AimOption.Four]
+      [AimOption.One, AimOption.Two, AimOption.Three, AimOption.Four],
     ),
     Mission(
       15,
@@ -146,7 +146,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       16,
@@ -155,7 +155,7 @@ class Story {
       2,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       17,
@@ -164,7 +164,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.Comms]
+      [AimOption.Comms],
     ),
     Mission(
       18,
@@ -173,7 +173,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.One, AimOption.Comms]
+      [AimOption.One, AimOption.Comms],
     ),
     Mission(
       19,
@@ -182,7 +182,7 @@ class Story {
       2,
       0,
       false,
-      [AimOption.Hidden]
+      [AimOption.Hidden],
     ),
     Mission(
       20,
@@ -191,7 +191,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Comms]
+      [AimOption.One, AimOption.Two, AimOption.Comms],
     ),
     Mission(
       21,
@@ -200,7 +200,7 @@ class Story {
       5,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Fourth]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Fourth],
     ),
     Mission(
       22,
@@ -209,7 +209,13 @@ class Story {
       5,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Three, AimOption.Four, AimOption.Five]
+      [
+        AimOption.One,
+        AimOption.Two,
+        AimOption.Three,
+        AimOption.Four,
+        AimOption.Five
+      ],
     ),
     Mission(
       23,
@@ -218,7 +224,7 @@ class Story {
       6,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       24,
@@ -227,7 +233,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Comms]
+      [AimOption.First, AimOption.Second, AimOption.Comms],
     ),
     Mission(
       25,
@@ -236,7 +242,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       26,
@@ -245,7 +251,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.Hidden]
+      [AimOption.Hidden],
     ),
     Mission(
       27,
@@ -254,7 +260,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.One, AimOption.Last, AimOption.Comms]
+      [AimOption.One, AimOption.Last, AimOption.Comms],
     ),
     Mission(
       28,
@@ -263,7 +269,7 @@ class Story {
       0,
       0,
       false,
-      [AimOption.Comms]
+      [AimOption.Comms],
     ),
     Mission(
       29,
@@ -272,7 +278,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms],
     ),
     Mission(
       30,
@@ -281,7 +287,7 @@ class Story {
       6,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Three]
+      [AimOption.One, AimOption.Two, AimOption.Three],
     ),
     Mission(
       31,
@@ -290,7 +296,7 @@ class Story {
       7,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       32,
@@ -299,7 +305,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       33,
@@ -308,7 +314,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       34,
@@ -317,7 +323,7 @@ class Story {
       7,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third],
     ),
     Mission(
       35,
@@ -326,7 +332,7 @@ class Story {
       7,
       0,
       false,
-      [AimOption.One, AimOption.Two]
+      [AimOption.One, AimOption.Two],
     ),
     Mission(
       36,
@@ -335,7 +341,7 @@ class Story {
       4,
       0,
       false,
-      [AimOption.Hidden]
+      [AimOption.Hidden],
     ),
     Mission(
       37,
@@ -344,7 +350,7 @@ class Story {
       8,
       0,
       false,
-      [AimOption.Comms]
+      [AimOption.Comms],
     ),
     Mission(
       38,
@@ -353,7 +359,7 @@ class Story {
       8,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms]
+      [AimOption.First, AimOption.Second, AimOption.Third, AimOption.Comms],
     ),
     Mission(
       39,
@@ -362,7 +368,7 @@ class Story {
       8,
       0,
       false,
-      [AimOption.One, AimOption.Two, AimOption.Three]
+      [AimOption.One, AimOption.Two, AimOption.Three],
     ),
     Mission(
       40,
@@ -371,7 +377,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       41,
@@ -380,7 +386,7 @@ class Story {
       9,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       42,
@@ -389,7 +395,7 @@ class Story {
       9,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       43,
@@ -398,7 +404,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       44,
@@ -407,7 +413,7 @@ class Story {
       9,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third],
     ),
     Mission(
       45,
@@ -416,7 +422,7 @@ class Story {
       0,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       46,
@@ -425,7 +431,7 @@ class Story {
       10,
       0,
       false,
-      []
+      [],
     ),
     Mission(
       47,
@@ -434,7 +440,7 @@ class Story {
       3,
       0,
       false,
-      [AimOption.Last]
+      [AimOption.Last],
     ),
     Mission(
       48,
@@ -443,15 +449,14 @@ class Story {
       10,
       0,
       false,
-      [AimOption.First, AimOption.Second, AimOption.Third]
+      [AimOption.First, AimOption.Second, AimOption.Third],
     ),
     Mission(
-      49,
-      "Mission 50",
-      "Le trajet retour s'avère plus compliqué qu'il n'y paraissait. Certains modules ont été endommagés de façon irréversible lors du voyage, et vous allez devoir combattre l'immense force d'attraction du Soleil. Avec vos réserves au plus bas, vous n'avez pas droit à l'erreur. Le trajet retour doit être calculé avec une précision d'orfèvre. Vous devez tout d'abord parvenir à profiter de l'effet de fronde gravitationnelle. Puis, les modules de l'astronef doivent être maintenus en bon état de fonctionnement pour entreprendre la manoeuvre d'approche de la Terre. Enfin, atterrir nécessitera tout autant d'attention que les manoeuvres que vous avez pu effectuer jusqu'ici. **Chacun consulte ses cartes. Un membre d'équipage ne doit remporter que les 4 premiers plis. Un autre membre ne doit remporter que le dernier pli. Le reste de l'équipage doit remporter tous les plis intermédiaires. Le commandant demande à chacun quelle tâche il préfère accomplir et vous décidez ensemble qui doit assurer chaque rôle. Ne révélez rien de vos cartes.**",
-      0,
-      0,
-      false,
-      [])
+        49,
+        "Mission 50",
+        "Le trajet retour s'avère plus compliqué qu'il n'y paraissait. Certains modules ont été endommagés de façon irréversible lors du voyage, et vous allez devoir combattre l'immense force d'attraction du Soleil. Avec vos réserves au plus bas, vous n'avez pas droit à l'erreur. Le trajet retour doit être calculé avec une précision d'orfèvre. Vous devez tout d'abord parvenir à profiter de l'effet de fronde gravitationnelle. Puis, les modules de l'astronef doivent être maintenus en bon état de fonctionnement pour entreprendre la manoeuvre d'approche de la Terre. Enfin, atterrir nécessitera tout autant d'attention que les manoeuvres que vous avez pu effectuer jusqu'ici. **Chacun consulte ses cartes. Un membre d'équipage ne doit remporter que les 4 premiers plis. Un autre membre ne doit remporter que le dernier pli. Le reste de l'équipage doit remporter tous les plis intermédiaires. Le commandant demande à chacun quelle tâche il préfère accomplir et vous décidez ensemble qui doit assurer chaque rôle. Ne révélez rien de vos cartes.**",
+        0,
+        0,
+        false, [])
   ];
 }

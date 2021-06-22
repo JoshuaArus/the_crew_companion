@@ -10,7 +10,6 @@ void main() async {
 }
 
 class TheCrewCompanionApp extends StatelessWidget {
-
   final Controller controller = Controller();
 
   // This widget is the root of your application.
@@ -20,17 +19,19 @@ class TheCrewCompanionApp extends StatelessWidget {
       title: "The Crew Companion",
       theme: CustomThemes.dark(),
       home: FutureBuilder(
-        future: Future.wait([
-          controller.init(),
-          controller.readDatas()
-        ]),
+        future: Future.wait(
+          [
+            controller.init(),
+            controller.readDatas(),
+          ],
+        ),
         builder: (context, snapshot) {
           if (snapshot.hasData)
             return HomeScreen(controller: controller);
           else
             return SplashScreen();
-        }
-      )
+        },
+      ),
     );
   }
 }
