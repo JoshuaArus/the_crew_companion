@@ -5,7 +5,10 @@
 
 name: Last build
 
-on: [push]
+on: 
+  push: 
+    branches: 
+    - /**
 
 jobs:
   analyze:
