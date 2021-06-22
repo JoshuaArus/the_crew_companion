@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/views/about.dart';
+import 'package:the_crew_companion/views/rulesScreen.dart';
 
 import '../../controller.dart';
 import '../missionList.dart';
@@ -30,6 +32,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
     _goto(About(controller: widget.controller));
   }
 
+  void _goToRules() {
+    _goto(Rules(controller: widget.controller));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -40,22 +46,44 @@ class _CustomDrawerState extends State<CustomDrawer> {
           padding: EdgeInsets.all(defaultPadding),
           child: Image(image: AssetImage("assets/images/astronautHelmet.png")),
         )),
-        ListTile(
-          title: Text(
-            "Liste des missions",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          onTap: _goToMissionList,
-          leading: Icon(Icons.article_outlined),
-        ),
-        Padding(padding: EdgeInsets.only(top: 10)),
-        ListTile(
-          title: Text(
-            "A propos",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          onTap: _goToAbout,
-          leading: Icon(Icons.lightbulb_outline),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ListTile(
+              title: Text(
+                "Les règles",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _goToRules,
+              leading: FaIcon(
+                FontAwesomeIcons.questionCircle,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListTile(
+              title: Text(
+                "Liste des missions",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _goToMissionList,
+              leading: FaIcon(
+                FontAwesomeIcons.bookOpen,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            ListTile(
+              title: Text(
+                "A propos",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              onTap: _goToAbout,
+              leading: Icon(Icons.lightbulb_outline),
+            ),
+          ],
         ),
       ],
     ));
