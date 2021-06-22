@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'constant.dart';
 
@@ -7,7 +8,12 @@ class CustomThemes {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: bgColor,
       canvasColor: secondaryColor,
-      textTheme: TextTheme(bodyText2: TextStyle(fontSize: 18)),
+      primaryTextTheme: GoogleFonts.poppinsTextTheme(
+        ThemeData.dark().textTheme,
+      ),
+      textTheme: GoogleFonts.poppinsTextTheme(
+        ThemeData.dark().textTheme,
+      ),
       cardColor: secondaryColor,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: primaryColor,
