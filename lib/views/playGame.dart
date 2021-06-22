@@ -118,9 +118,7 @@ class PlayGameState extends State<PlayGame> {
         onPressed: () {
           _endCurrentMission(currentMission);
         },
-        label: Text(
-          "Valider la mission",
-        ),
+        label: Text("Valider la mission"),
         icon: Icon(Icons.check),
       ),
     );

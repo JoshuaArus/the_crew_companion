@@ -35,7 +35,9 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     if (mission.attempts > 0) {
       children.addAll([
         Divider(),
-        Padding(padding: EdgeInsets.only(top: defaultPadding)),
+        SizedBox(
+          height: defaultPadding,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

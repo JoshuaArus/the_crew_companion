@@ -21,8 +21,7 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          EdgeInsets.only(left: defaultPadding * 2, right: defaultPadding * 2),
+      padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
       width: double.infinity,
       height: 50,
       child: OutlinedButton(

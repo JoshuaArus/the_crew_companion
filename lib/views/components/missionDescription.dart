@@ -19,7 +19,9 @@ class MissionDescription extends StatelessWidget {
           data: mission.description,
           styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceEvenly),
         ),
-        Padding(padding: EdgeInsets.only(bottom: defaultPadding / 2)),
+        SizedBox(
+          height: defaultPadding / 2,
+        ),
         Divider(),
         MissionAims(currentMission: mission)
       ],
