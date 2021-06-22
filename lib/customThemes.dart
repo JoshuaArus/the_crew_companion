@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'constant.dart';
 
 class CustomThemes {
+  static ThemeData current = dark;
+
   static final ThemeData dark = ThemeData.dark().copyWith(
     scaffoldBackgroundColor: bgColor,
     canvasColor: secondaryColor,
