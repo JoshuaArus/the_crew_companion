@@ -17,32 +17,12 @@ class TeamStats extends StatefulWidget {
 }
 
 class _TeamStatsState extends State<TeamStats> {
-  void editTeam() async {
-    final edited = await Navigator.push(
-      context,
-      new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreation(team: widget.team),
-      ),
-    );
-    if (edited == true) {
-      await widget.controller.saveDatas();
-      setState(() {});
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.team.name),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: editTeam,
-            icon: Icon(Icons.edit),
-            tooltip: "Editer l'équipe",
-          )
-        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(defaultPadding),
