@@ -32,6 +32,11 @@ class TeamCreation extends StatelessWidget {
       appBar: AppBar(
         title: Text("Création d'équipe"),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.close)),
       ),
       body: SingleChildScrollView(
         child: Column(
