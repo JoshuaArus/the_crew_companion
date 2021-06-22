@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/teamCreation.dart';
 import 'package:the_crew_companion/views/teamList.dart';
@@ -75,30 +76,39 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           child: Column(
             children: [
-              DelayedAnimation(
-                delay: 1000,
+              Expanded(
+                flex: 1,
                 child: Container(
+                  width: double.infinity,
                   padding: EdgeInsets.symmetric(
                     horizontal: 30,
-                    vertical: 80,
                   ),
-                  child: Image.asset("assets/images/homeScreenTitle.png"),
+                  child: DelayedAnimation(
+                    delay: 1000,
+                    child: Image.asset("assets/images/homeScreenTitle.png"),
+                  ),
                 ),
               ),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    HomeScreenButton(
-                        text: "Nouvelle partie", onPressed: _addTeam),
-                    SizedBox(
-                      height: 60,
-                    ),
-                    HomeScreenButton(
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      HomeScreenButton(
+                        text: "Nouvelle partie",
+                        onPressed: _addTeam,
+                      ),
+                      SizedBox(
+                        height: 60,
+                      ),
+                      HomeScreenButton(
                         text: "Charger une partie",
                         onPressed: _goToTeamList,
-                        disabled: widget.controller.teams.length == 0),
-                  ],
+                        disabled: widget.controller.teams.length == 0,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -110,7 +120,13 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("v " + version),
+            Text(
+              "v " + version,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
