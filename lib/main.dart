@@ -17,7 +17,7 @@ class TheCrewCompanionApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "The Crew Companion",
-      theme: CustomThemes.dark(),
+      theme: CustomThemes.dark,
       home: FutureBuilder(
         future: Future.wait(
           [
