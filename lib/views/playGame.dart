@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/customDrawer.dart';
 
 import '../controller.dart';
 import 'components/missionDescription.dart';
@@ -57,6 +58,7 @@ class PlayGameState extends State<PlayGame> {
         .copy;
 
     return Scaffold(
+      drawer: CustomDrawer(controller: widget.controller),
       appBar: AppBar(
         title: Text(currentMission.title),
         centerTitle: true,
