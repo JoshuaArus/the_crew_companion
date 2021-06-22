@@ -35,7 +35,7 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
             width: 2,
             color: primaryColor.withOpacity(0.70),
           ),
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30)))
+          shape: StadiumBorder()
         ),
       )
     );

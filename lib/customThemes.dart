@@ -19,7 +19,7 @@ class  CustomThemes {
         foregroundColor: Colors.white,
       ),
       cardTheme: CardTheme(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
+        shape: StadiumBorder(),
       )
     );
   }
