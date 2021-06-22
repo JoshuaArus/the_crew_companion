@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:the_crew_companion/customThemes.dart';
 
 enum AimOption {
   One,
@@ -80,7 +83,55 @@ extension AimOptionExtension on AimOption {
     }
   }
 
-  Widget getIcon(BuildContext context) {
-    return Text(this.displayValue);
+  Widget get icon {
+    switch (this) {
+      case AimOption.One:
+      case AimOption.Two:
+      case AimOption.Three:
+      case AimOption.Four:
+      case AimOption.Five:
+        return Text(
+          this.displayValue,
+          style: CustomThemes.dark.primaryTextTheme.headline6!.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        );
+      case AimOption.First:
+        return Row(children: generateChevrons(1));
+      case AimOption.Second:
+        return Row(children: generateChevrons(2));
+      case AimOption.Third:
+        return Row(children: generateChevrons(3));
+      case AimOption.Fourth:
+        return Row(children: generateChevrons(4));
+      case AimOption.Last:
+        return Image.asset(
+          "assets/images/omega.png",
+          color: CustomThemes.dark.primaryTextTheme.bodyText2!.color,
+        );
+      case AimOption.Comms:
+        return FaIcon(
+          FontAwesomeIcons.userAstronaut,
+          color: Colors.red[900],
+        );
+      case AimOption.Hidden:
+        return Transform.rotate(
+          angle: -45,
+          child: FaIcon(
+            FontAwesomeIcons.undoAlt,
+            color: CustomThemes.dark.primaryTextTheme.bodyText2!.color,
+          ),
+        );
+    }
+  }
+
+  List<Widget> generateChevrons(int nb) {
+    return List.filled(
+      nb,
+      FaIcon(
+        FontAwesomeIcons.chevronRight,
+        color: CustomThemes.dark.primaryTextTheme.bodyText2!.color,
+      ),
+    );
   }
 }

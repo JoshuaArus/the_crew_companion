@@ -28,8 +28,12 @@ class MissionAims extends StatelessWidget {
                   : "")
         ]..addAll(
             currentMission.aimOptions
-                .map((ao) =>
-                    GoalButton(text: ao.displayValue, tooltip: ao.tooltip))
+                .map(
+                  (ao) => GoalButton(
+                    child: ao.icon,
+                    tooltip: ao.tooltip,
+                  ),
+                )
                 .toList(),
           ),
       ),

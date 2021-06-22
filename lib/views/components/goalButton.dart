@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../constant.dart';
 
 class GoalButton extends StatelessWidget {
-  GoalButton({Key? key, required this.text, required this.tooltip})
+  GoalButton({Key? key, required this.child, required this.tooltip})
       : super(key: key);
 
-  final String text;
+  final Widget child;
   final String tooltip;
 
   @override
@@ -24,7 +24,7 @@ class GoalButton extends StatelessWidget {
         tooltip: tooltip,
         onPressed: null,
         icon: FittedBox(
-          child: Text(text, style: Theme.of(context).textTheme.headline6),
+          child: child,
         ),
       ),
     );

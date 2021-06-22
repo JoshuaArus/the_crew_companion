@@ -29,7 +29,9 @@ class AimButton extends StatelessWidget {
         icon: Center(
           child: Text(
             text,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headline6!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
       ),
