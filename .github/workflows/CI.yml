@@ -8,7 +8,7 @@ name: Last build
 on: 
   push: 
     branches: 
-    - '**' # all branches
+    - /**
 
 jobs:
   analyze:
