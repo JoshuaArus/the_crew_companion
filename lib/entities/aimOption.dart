@@ -97,13 +97,13 @@ extension AimOptionExtension on AimOption {
           ),
         );
       case AimOption.First:
-        return Row(children: generateChevrons(1));
+        return Row(children: _generateChevrons(1));
       case AimOption.Second:
-        return Row(children: generateChevrons(2));
+        return Row(children: _generateChevrons(2));
       case AimOption.Third:
-        return Row(children: generateChevrons(3));
+        return Row(children: _generateChevrons(3));
       case AimOption.Fourth:
-        return Row(children: generateChevrons(4));
+        return Row(children: _generateChevrons(4));
       case AimOption.Last:
         return Image.asset(
           "assets/images/omega.png",
@@ -125,7 +125,7 @@ extension AimOptionExtension on AimOption {
     }
   }
 
-  List<Widget> generateChevrons(int nb) {
+  List<Widget> _generateChevrons(int nb) {
     return List.filled(
       nb,
       FaIcon(
