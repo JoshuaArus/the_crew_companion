@@ -1,10 +1,12 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
+import 'package:the_crew_companion/views/teamStats.dart';
 
 import '../controller.dart';
 import 'components/missionDescription.dart';
@@ -62,6 +64,23 @@ class PlayGameState extends State<PlayGame> {
       appBar: AppBar(
         title: Text(currentMission.title),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TeamStats(
+                      controller: widget.controller, team: widget.team),
+                ),
+              );
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.calculator,
+            ),
+            tooltip: "Statistiques de l'équipe",
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(
