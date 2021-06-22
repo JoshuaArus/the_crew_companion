@@ -3,7 +3,6 @@ import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 import '../controller.dart';
 import '../entities/team.dart';
-import 'teamCreation.dart';
 
 class TeamStats extends StatefulWidget {
   const TeamStats({Key? key, required this.controller, required this.team})
