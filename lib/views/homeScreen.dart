@@ -4,6 +4,7 @@ import 'package:the_crew_companion/views/teamCreation.dart';
 import 'package:the_crew_companion/views/teamList.dart';
 
 import '../controller.dart';
+import 'components/delayedAnimation.dart';
 import 'components/homeScreenButton.dart';
 import 'components/customDrawer.dart';
 import 'playGame.dart';
@@ -62,18 +63,32 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/homeScreenBackground.png"),
-            fit: BoxFit.cover
+            fit: BoxFit.fill
           )
         ),
         child : Container(
-          padding: EdgeInsets.only(top: 250),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                HomeScreenButton(text: "Nouvelle partie", onPressed: _addTeam),
-                HomeScreenButton(text: "Charger une partie", onPressed: _goToTeamList, disabled: widget.controller.teams.length == 0),
-              ],
-          ),
+            children: [
+              DelayedAnimation(
+                delay: 1000,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80,),
+                  child: Image.asset("assets/images/homeScreenTitle.png")
+                )
+              ),
+              
+              Container(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      HomeScreenButton(text: "Nouvelle partie", onPressed: _addTeam),
+                      SizedBox(height: 60,),
+                      HomeScreenButton(text: "Charger une partie", onPressed: _goToTeamList, disabled: widget.controller.teams.length == 0),
+                    ],
+                ),
+              )
+            ],
+          ) 
         )
       ),
       bottomSheet: Container(
