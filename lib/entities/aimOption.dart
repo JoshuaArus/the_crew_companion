@@ -109,8 +109,8 @@ extension AimOptionExtension on AimOption {
           color: CustomThemes.current.primaryTextTheme.bodyText2!.color,
         );
       case AimOption.Comms:
-        return Image.asset(
-          "assets/images/logoBlank.png",
+        return FaIcon(
+          FontAwesomeIcons.userAstronaut,
           color: Colors.red[900],
         );
       case AimOption.Hidden:
