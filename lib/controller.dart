@@ -8,13 +8,13 @@ import 'entities/team.dart';
 import 'story.dart';
 
 class Controller {
-  final storageKey = "com.joshuaarus.the_crew_companion";
-
   late PackageInfo infos;
 
+  String get storageKey => infos.packageName;
   String get developper => "Joshua Arus";
   String get appName => infos.appName;
   String get appVersion => infos.version;
+  String get buildNumber => infos.buildNumber;
 
   Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
