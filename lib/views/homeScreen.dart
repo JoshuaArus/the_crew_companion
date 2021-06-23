@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
 import 'package:the_crew_companion/views/teamCreation.dart';
 import 'package:the_crew_companion/views/teamList.dart';
 
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: DelayedAnimation(
                     delay: 1000,
-                    child: Image.asset("assets/images/homeScreenTitle.png"),
+                    child: JumpingHomeScreenTitle(),
                   ),
                 ),
               ),
