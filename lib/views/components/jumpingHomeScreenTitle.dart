@@ -18,7 +18,7 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 75),
     );
 
     final curve = CurvedAnimation(
@@ -33,8 +33,6 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
   }
 
   void _onTap() {
-    controller.duration = Duration(milliseconds: 75);
-
     controller
         .forward()
         .then((value) => controller.reverse())
@@ -53,5 +51,10 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
         child: Image.asset("assets/images/homeScreenTitle.png"),
       ),
     );
+  }
+
+  dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
