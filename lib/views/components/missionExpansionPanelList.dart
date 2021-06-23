@@ -19,11 +19,9 @@ class MissionExpansionPanelList extends StatefulWidget {
 }
 
 class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
-  List<bool> isOpen = [];
-
   void _expand(int index, bool isExpanded) {
     setState(() {
-      isOpen[index] = !isExpanded;
+      widget.expandedMissionId = !isExpanded ? index : null;
     });
   }
 
@@ -79,9 +77,6 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
 
   @override
   Widget build(BuildContext context) {
-    if (isOpen.length == 0)
-      isOpen =
-          widget.missions.map((e) => widget.expandedMissionId == e.id).toList();
     return ExpansionPanelList(
       expansionCallback: _expand,
       dividerColor: primaryColor,
@@ -100,7 +95,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
                 children: buildChildrens(mission),
               ),
             ),
-            isExpanded: isOpen[mission.id],
+            isExpanded: mission.id == widget.expandedMissionId,
           );
         },
       ).toList(),
