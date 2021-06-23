@@ -5,8 +5,7 @@ import '../controller.dart';
 import '../entities/team.dart';
 
 class TeamStats extends StatefulWidget {
-  const TeamStats({Key? key, required this.controller, required this.team})
-      : super(key: key);
+  const TeamStats({required this.controller, required this.team});
 
   final Team team;
   final Controller controller;

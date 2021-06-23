@@ -6,7 +6,7 @@ import '../../constant.dart';
 import 'missionAims.dart';
 
 class MissionDescription extends StatelessWidget {
-  const MissionDescription({Key? key, required this.mission}) : super(key: key);
+  const MissionDescription({required this.mission});
 
   final Mission mission;
 

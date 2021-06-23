@@ -6,9 +6,7 @@ import 'missionDescription.dart';
 
 // ignore: must_be_immutable
 class MissionExpansionPanelList extends StatefulWidget {
-  MissionExpansionPanelList(
-      {Key? key, required this.missions, this.expandedMissionId})
-      : super(key: key);
+  MissionExpansionPanelList({required this.missions, this.expandedMissionId});
 
   final List<Mission> missions;
   int? expandedMissionId;

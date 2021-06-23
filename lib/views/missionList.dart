@@ -5,7 +5,7 @@ import '../controller.dart';
 import 'components/missionExpansionPanelList.dart';
 
 class MissionList extends StatefulWidget {
-  const MissionList({Key? key, required this.controller}) : super(key: key);
+  const MissionList({required this.controller});
 
   final Controller controller;
 

@@ -12,7 +12,7 @@ import 'components/customDrawer.dart';
 import 'playGame.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key, required this.controller}) : super(key: key);
+  const HomeScreen({required this.controller});
 
   final Controller controller;
 

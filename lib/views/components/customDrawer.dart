@@ -8,7 +8,7 @@ import '../../controller.dart';
 import '../missionList.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({Key? key, required this.controller}) : super(key: key);
+  const CustomDrawer({required this.controller});
 
   final Controller controller;
 

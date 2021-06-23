@@ -3,11 +3,7 @@ import 'package:the_crew_companion/constant.dart';
 
 class HomeScreenButton extends StatefulWidget {
   const HomeScreenButton(
-      {Key? key,
-      required this.text,
-      required this.onPressed,
-      this.disabled = false})
-      : super(key: key);
+      {required this.text, required this.onPressed, this.disabled = false});
 
   final String text;
   final Function onPressed;

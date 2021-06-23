@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../constant.dart';
 
 class InputField extends StatelessWidget {
-  const InputField({Key? key, required this.hint, required this.model})
-      : super(key: key);
+  const InputField({required this.hint, required this.model});
 
   final String hint;
   final TextEditingController model;

@@ -12,7 +12,7 @@ import 'teamCreation.dart';
 import 'teamStats.dart';
 
 class TeamList extends StatefulWidget {
-  TeamList({Key? key, required this.controller}) : super(key: key);
+  TeamList({required this.controller});
 
   final Controller controller;
 

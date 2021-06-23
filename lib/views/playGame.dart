@@ -12,8 +12,7 @@ import '../controller.dart';
 import 'components/missionDescription.dart';
 
 class PlayGame extends StatefulWidget {
-  const PlayGame({Key? key, required this.team, required this.controller})
-      : super(key: key);
+  const PlayGame({required this.team, required this.controller});
 
   final Team team;
   final Controller controller;

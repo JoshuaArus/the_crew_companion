@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../controller.dart';
 
 class About extends StatefulWidget {
-  const About({Key? key, required this.controller}) : super(key: key);
+  const About({required this.controller});
 
   final Controller controller;
 
