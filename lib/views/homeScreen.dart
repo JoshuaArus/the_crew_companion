@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
 import 'package:the_crew_companion/views/teamCreation.dart';
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-      setState(() {}); //refresh UI
+      setState(() {});
     }
   }
 
@@ -86,10 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: DelayedAnimation(
                     delay: 1000,
-                    child: GlowingProgressIndicator(
-                      child: JumpingHomeScreenTitle(),
-                      duration: Duration(milliseconds: 2500),
-                    ),
+                    child: JumpingHomeScreenTitle(),
                   ),
                 ),
               ),
