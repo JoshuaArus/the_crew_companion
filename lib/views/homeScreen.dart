@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/customDrawer.dart';
+import 'package:the_crew_companion/views/components/delayedAnimation.dart';
+import 'package:the_crew_companion/views/components/homeScreenButton.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
+import 'package:the_crew_companion/views/playGame.dart';
 import 'package:the_crew_companion/views/teamCreation.dart';
 import 'package:the_crew_companion/views/teamList.dart';
-
-import '../controller.dart';
-import 'components/delayedAnimation.dart';
-import 'components/homeScreenButton.dart';
-import 'components/customDrawer.dart';
-import 'playGame.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.controller});

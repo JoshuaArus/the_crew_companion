@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'aimOption.dart';
+import 'package:the_crew_companion/entities/aimOption.dart';
 
 class Mission {
   late int id;

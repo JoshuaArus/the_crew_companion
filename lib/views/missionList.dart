@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
-
-import '../controller.dart';
-import 'components/missionExpansionPanelList.dart';
+import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 
 class MissionList extends StatefulWidget {
   const MissionList({required this.controller});

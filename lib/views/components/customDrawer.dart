@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/views/about.dart';
+import 'package:the_crew_companion/views/missionList.dart';
 import 'package:the_crew_companion/views/rulesScreen.dart';
-
-import '../../controller.dart';
-import '../missionList.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({required this.controller});

@@ -6,10 +6,9 @@ import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
+import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/views/teamStats.dart';
-
-import '../controller.dart';
-import 'components/missionDescription.dart';
+import 'package:the_crew_companion/controller.dart';
 
 class PlayGame extends StatefulWidget {
   const PlayGame({required this.team, required this.controller});

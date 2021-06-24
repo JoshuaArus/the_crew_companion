@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../constant.dart';
+import 'package:the_crew_companion/constant.dart';
 
 class InputField extends StatelessWidget {
   const InputField({required this.hint, required this.model});

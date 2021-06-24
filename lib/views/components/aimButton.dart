@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../constant.dart';
+import 'package:the_crew_companion/constant.dart';
 
 class AimButton extends StatelessWidget {
   AimButton({
