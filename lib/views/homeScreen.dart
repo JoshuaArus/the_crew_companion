@@ -84,47 +84,47 @@ class _HomeScreenState extends State<HomeScreen> {
             growable: true,
           )..addAll(
               [
-                // Container(
-                //   child: Column(
-                //     children: [
-                //       Expanded(
-                //         flex: 1,
-                //         child: Container(
-                //           width: double.infinity,
-                //           padding: EdgeInsets.symmetric(
-                //             horizontal: 30,
-                //           ),
-                //           child: DelayedAnimation(
-                //             delay: 1000,
-                //             child: JumpingHomeScreenTitle(),
-                //           ),
-                //         ),
-                //       ),
-                //       Expanded(
-                //         flex: 1,
-                //         child: Container(
-                //           child: Column(
-                //             mainAxisAlignment: MainAxisAlignment.center,
-                //             children: [
-                //               HomeScreenButton(
-                //                 text: "Nouvelle partie",
-                //                 onPressed: _addTeam,
-                //               ),
-                //               SizedBox(
-                //                 height: 60,
-                //               ),
-                //               HomeScreenButton(
-                //                 text: "Charger une partie",
-                //                 onPressed: _goToTeamList,
-                //                 disabled: widget.controller.teams.length == 0,
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // ),
+                Container(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 30,
+                          ),
+                          child: DelayedAnimation(
+                            delay: 1000,
+                            child: JumpingHomeScreenTitle(),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              HomeScreenButton(
+                                text: "Nouvelle partie",
+                                onPressed: _addTeam,
+                              ),
+                              SizedBox(
+                                height: 60,
+                              ),
+                              HomeScreenButton(
+                                text: "Charger une partie",
+                                onPressed: _goToTeamList,
+                                disabled: widget.controller.teams.length == 0,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
         ),
