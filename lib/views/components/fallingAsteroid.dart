@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -18,9 +19,12 @@ class _FallingAsteroidState extends State<FallingAsteroid>
   var rng = Random();
   late double asteroidSize;
   late double rotation;
-  late double posX;
+  late double paddingLeft;
+  late double paddingRight;
   late double maxPosY;
   late int speed;
+
+  bool ready = false;
 
   late AnimationController controller;
   late Animation<Offset> offset;
@@ -46,57 +50,50 @@ class _FallingAsteroidState extends State<FallingAsteroid>
     ).animate(curve);
 
     controller.addListener(() {
-      setState(() {
-        print("setState");
-      });
+      setState(() {});
     });
 
-    _scroll();
+    Timer(Duration(milliseconds: rng.nextInt(2000)), () {
+      ready = true;
+      _scroll();
+    });
   }
 
   void _scroll() {
-    asteroidSize = rng.nextDouble() * 300; //px
+    asteroidSize = rng.nextDouble() * 50 + 30; // [30 - 80] px
     rotation = rng.nextDouble() * 360; // °
-    posX = rng.nextDouble(); //X starting position
-    speed = rng.nextInt(10000) + 2000; //milliseconds
+    paddingLeft = rng.nextDouble() * widget.parentWidth; //padding from left
+    paddingRight = max(
+      (widget.parentWidth - paddingLeft - asteroidSize),
+      0,
+    ); // padding from right
+    speed = rng.nextInt(10000) + 500; // [200 - 10200] milliseconds
 
     controller.duration = Duration(milliseconds: speed);
     controller.value = 0;
 
-    // controller.forward().then((value) {
-    //   print("Fin de l'animation");
-    //   // _scroll();
-    // });
+    controller.forward().then((value) {
+      _scroll();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // return Container(
-    //   color: Colors.red.withOpacity(0.1),
-    //   height: widget.parentHeight,
-    //   width: widget.parentWidth,
-    //   child: CustomPaint(size: Size(widget.parentWidth, widget.parentHeight)
-    //       // foregroundPainter: FallingAsteroidPainter(),
-    //       ),
-    // );
+    if (!ready) return Container();
 
     return Container(
-      color: Colors.red.withOpacity(0.1),
       width: widget.parentWidth,
       height: widget.parentHeight,
-      child: Container(
-        margin: EdgeInsets.only(left: posX),
-        // width: double.infinity,
-        // height: asteroidSize,
-        child: SlideTransition(
-          position: offset,
-          child: Transform.rotate(
-            angle: rotation,
-            child: Image.asset(
-              "assets/images/asteroid.png",
-              // height: height,
-              // width: width,
-            ),
+      padding: EdgeInsets.only(
+        left: paddingLeft,
+        right: paddingRight,
+      ),
+      child: SlideTransition(
+        position: offset,
+        child: Transform.rotate(
+          angle: rotation,
+          child: Image.asset(
+            "assets/images/asteroid.png",
           ),
         ),
       ),
@@ -109,16 +106,3 @@ class _FallingAsteroidState extends State<FallingAsteroid>
     super.dispose();
   }
 }
-
-// class FallingAsteroidPainter extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     Paint paint = new Paint();
-//     // canvas.drawima(Image.asset("assets/images/asteroid.png"), Offset(0, 0), paint);
-//   }
-
-//   @override
-//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-//     return true;
-//   }
-// }
