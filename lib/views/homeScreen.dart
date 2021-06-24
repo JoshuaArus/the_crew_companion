@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/homeScreenButton.dart';
@@ -68,50 +69,55 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/homeScreenBackground.png"),
+            image: AssetImage("assets/images/homeScreenBackground.jpg"),
             fit: BoxFit.fill,
           ),
         ),
-        child: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 30,
+        child: Stack(
+          children: [
+            FallingAsteroids(asteroidNumber: 5),
+            Container(
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                      ),
+                      child: DelayedAnimation(
+                        delay: 1000,
+                        child: JumpingHomeScreenTitle(),
+                      ),
+                    ),
                   ),
-                  child: DelayedAnimation(
-                    delay: 1000,
-                    child: JumpingHomeScreenTitle(),
-                  ),
-                ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          HomeScreenButton(
+                            text: "Nouvelle partie",
+                            onPressed: _addTeam,
+                          ),
+                          SizedBox(
+                            height: 60,
+                          ),
+                          HomeScreenButton(
+                            text: "Charger une partie",
+                            onPressed: _goToTeamList,
+                            disabled: widget.controller.teams.length == 0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      HomeScreenButton(
-                        text: "Nouvelle partie",
-                        onPressed: _addTeam,
-                      ),
-                      SizedBox(
-                        height: 60,
-                      ),
-                      HomeScreenButton(
-                        text: "Charger une partie",
-                        onPressed: _goToTeamList,
-                        disabled: widget.controller.teams.length == 0,
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       bottomSheet: Container(
