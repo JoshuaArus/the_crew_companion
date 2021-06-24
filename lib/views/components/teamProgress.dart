@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/team.dart';
-
-import '../../constant.dart';
+import 'package:the_crew_companion/constant.dart';
 
 class TeamProgress extends StatelessWidget {
   const TeamProgress({

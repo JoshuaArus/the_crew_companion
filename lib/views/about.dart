@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../controller.dart';
 
 class About extends StatefulWidget {
   const About({required this.controller});

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/views/homeScreen.dart';
 import 'package:the_crew_companion/views/splashScreen.dart';
-
-import 'controller.dart';
 
 void main() async {
   runApp(TheCrewCompanionApp());

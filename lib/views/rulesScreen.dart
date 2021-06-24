@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-
-import '../controller.dart';
+import 'package:the_crew_companion/controller.dart';
 
 class Rules extends StatelessWidget {
   const Rules({required this.controller});

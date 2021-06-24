@@ -1,15 +1,14 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/teamName.dart';
+import 'package:the_crew_companion/views/components/teamPlayers.dart';
+import 'package:the_crew_companion/views/components/teamProgress.dart';
 import 'package:the_crew_companion/views/playGame.dart';
-
-import '../constant.dart';
-import '../controller.dart';
-import '../entities/team.dart';
-import 'components/teamName.dart';
-import 'components/teamPlayers.dart';
-import 'components/teamProgress.dart';
-import 'teamCreation.dart';
-import 'teamStats.dart';
+import 'package:the_crew_companion/views/teamCreation.dart';
+import 'package:the_crew_companion/views/teamStats.dart';
 
 class TeamList extends StatefulWidget {
   TeamList({required this.controller});

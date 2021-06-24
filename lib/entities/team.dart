@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'mission.dart';
+import 'package:the_crew_companion/entities/mission.dart';
 
 class Team {
   late String name;

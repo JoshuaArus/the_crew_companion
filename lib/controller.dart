@@ -2,10 +2,9 @@ import 'dart:convert';
 
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'entities/mission.dart';
-import 'entities/team.dart';
-import 'story.dart';
+import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/story.dart';
 
 class Controller {
   late PackageInfo infos;

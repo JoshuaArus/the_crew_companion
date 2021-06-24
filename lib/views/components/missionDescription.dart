@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
-
-import '../../constant.dart';
-import 'missionAims.dart';
+import 'package:the_crew_companion/views/components/missionAims.dart';
 
 class MissionDescription extends StatelessWidget {
   const MissionDescription({required this.mission});

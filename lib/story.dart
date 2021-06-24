@@ -1,6 +1,5 @@
 import 'package:the_crew_companion/entities/aimOption.dart';
-
-import 'entities/mission.dart';
+import 'package:the_crew_companion/entities/mission.dart';
 
 class Story {
   static final List<Mission> missions = [

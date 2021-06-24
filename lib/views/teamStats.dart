@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
-import '../controller.dart';
-import '../entities/team.dart';
+import 'package:the_crew_companion/controller.dart';
 
 class TeamStats extends StatefulWidget {
   const TeamStats({required this.controller, required this.team});

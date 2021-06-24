@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
-
-import '../constant.dart';
-import 'components/inputField.dart';
+import 'package:the_crew_companion/views/components/inputField.dart';
 
 class TeamCreation extends StatelessWidget {
   final Team team;
