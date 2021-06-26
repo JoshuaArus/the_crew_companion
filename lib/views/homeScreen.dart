@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
@@ -58,13 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String title = widget.controller.appName;
     String version = widget.controller.appVersion;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(title),
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: primaryColor.withOpacity(0),
       ),
       drawer: CustomDrawer(controller: widget.controller),
       body: Container(
@@ -78,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             FallingAsteroids(asteroidNumber: 5),
             Container(
+              padding: EdgeInsets.only(
+                top: defaultPadding * 2,
+              ),
               child: Column(
                 children: [
                   Expanded(
