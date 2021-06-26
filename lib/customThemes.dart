@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_crew_companion/constant.dart';
 
-class CustomThemes {
+class CustomTheme {
   static ThemeData current = dark;
 
   static final ThemeData dark = ThemeData.dark().copyWith(
@@ -23,4 +23,9 @@ class CustomThemes {
       shape: StadiumBorder(),
     ),
   );
+}
+
+enum CustomThemes {
+  Dark,
+  Light,
 }
