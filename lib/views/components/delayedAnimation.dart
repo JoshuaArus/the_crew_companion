@@ -42,10 +42,11 @@ class _DelayedAnimationState extends State<DelayedAnimation>
   @override
   Widget build(BuildContext context) {
     return FadeTransition(
-        opacity: animationController,
-        child: SlideTransition(
-          child: widget.child,
-          position: offset,
-        ));
+      opacity: animationController,
+      child: SlideTransition(
+        child: widget.child,
+        position: offset,
+      ),
+    );
   }
 }

@@ -28,7 +28,9 @@ class _TeamStatsState extends State<TeamStats> {
             ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Text("Joueurs : " + widget.team.players.join(", ")),
+                  child: Text(
+                    "Joueurs : " + widget.team.players.join(", "),
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
@@ -40,7 +42,9 @@ class _TeamStatsState extends State<TeamStats> {
                 children: [
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text("Joueurs : " + widget.team.players.join(", ")),
+                    child: Text(
+                      "Joueurs : " + widget.team.players.join(", "),
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(defaultPadding),

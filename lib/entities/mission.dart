@@ -29,8 +29,13 @@ class Mission {
 
   factory Mission.fromJson(Map<String, dynamic> json) {
     List<dynamic> dyn = (jsonDecode(json["aimOptions"]) as List<dynamic>);
-    List<AimOption> aimOptions =
-        dyn.map((ao) => AimOptionFactory.fromString(ao.toString())).toList();
+    List<AimOption> aimOptions = dyn
+        .map(
+          (ao) => AimOptionFactory.fromString(
+            ao.toString(),
+          ),
+        )
+        .toList();
     return Mission.fromData(
       id: json["id"] as int,
       title: json["title"] as String,
@@ -49,6 +54,12 @@ class Mission {
         "aimCount": aimCount,
         "attempts": attempts,
         "satelliteUsed": satelliteUsed,
-        "aimOptions": jsonEncode(aimOptions.map((ao) => ao.toString()).toList())
+        "aimOptions": jsonEncode(
+          aimOptions
+              .map(
+                (ao) => ao.toString(),
+              )
+              .toList(),
+        ),
       };
 }

@@ -18,7 +18,9 @@ class AimButton extends StatelessWidget {
       width: 35,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 2),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
         color: primaryColor.withOpacity(0.7),
         shape: BoxShape.rectangle,
       ),
