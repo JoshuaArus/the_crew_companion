@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 
 class AimButton extends StatelessWidget {
@@ -23,7 +24,7 @@ class AimButton extends StatelessWidget {
         shape: BoxShape.rectangle,
       ),
       child: IconButton(
-        tooltip: text + " objectifs",
+        tooltip: text + " " + AppLocalizations.of(context)!.commonObjectives.toLowerCase(),
         onPressed: null,
         icon: Center(
           child: Text(

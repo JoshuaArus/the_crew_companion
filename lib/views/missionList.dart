@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
@@ -17,7 +18,7 @@ class _MissionListState extends State<MissionList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Liste des missions"),
+        title: Text(AppLocalizations.of(context)!.missionList),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

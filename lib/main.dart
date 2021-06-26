@@ -28,6 +28,7 @@ class TheCrewCompanionApp extends StatelessWidget {
           ],
         ),
         builder: (context, snapshot) {
+          controller.populateMissions(context);
           if (snapshot.hasData)
             return HomeScreen(controller: controller);
           else

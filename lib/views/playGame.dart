@@ -1,6 +1,7 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
@@ -33,10 +34,10 @@ class PlayGameState extends State<PlayGame> {
   void _endCurrentMission(Mission mission) async {
     bool confirmed = await confirm(
       context,
-      content: Text("Valider avec cette saisie ?"),
-      textOK: Text("Oui"),
-      textCancel: Text("Non"),
-      title: Text("Valider la mission"),
+      content: Text(AppLocalizations.of(context)!.commonValidateEntry),
+      textOK: Text(AppLocalizations.of(context)!.commonYes),
+      textCancel: Text(AppLocalizations.of(context)!.commonNo),
+      title: Text(AppLocalizations.of(context)!.gameValidateMission),
     );
 
     if (confirmed == true) {
@@ -76,7 +77,7 @@ class PlayGameState extends State<PlayGame> {
             icon: FaIcon(
               FontAwesomeIcons.calculator,
             ),
-            tooltip: "Statistiques de l'équipe",
+            tooltip: AppLocalizations.of(context)!.gameTeamStatistics,
           ),
         ],
       ),
@@ -94,7 +95,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Nombre de tentatives : "),
+                    Text(AppLocalizations.of(context)!.gameAttemptsCount + " : "),
                     Container(
                       width: 70,
                       child: TextField(
@@ -120,7 +121,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Utilisation du satellite : "),
+                    Text(AppLocalizations.of(context)!.gameSatelliteUsage + " : "),
                     Switch(
                       activeColor: primaryColor,
                       value: satUsed,
@@ -137,7 +138,7 @@ class PlayGameState extends State<PlayGame> {
         onPressed: () {
           _endCurrentMission(currentMission);
         },
-        label: Text("Valider la mission"),
+        label: Text(AppLocalizations.of(context)!.gameValidateMission),
         icon: Icon(Icons.check),
       ),
     );

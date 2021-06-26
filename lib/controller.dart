@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_crew_companion/entities/mission.dart';
@@ -20,7 +20,11 @@ class Controller {
   }
 
   List<Team> teams = [];
-  final List<Mission> missions = Story.missions;
+  List<Mission> missions = [];
+
+  void populateMissions(BuildContext context) {
+    this.missions = Story.getMissions(context);
+  }
 
   Future<void> saveDatas() async {
     final serializedTeams = jsonEncode(teams);

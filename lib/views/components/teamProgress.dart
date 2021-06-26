@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/constant.dart';
 
@@ -21,7 +22,7 @@ class TeamProgress extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "Prochaine mission : " +
+            AppLocalizations.of(context)!.missionNext + " : " +
               (team.achievedMissions.length + 1).toString(),
           style: Theme.of(context).textTheme.subtitle1,
         ),

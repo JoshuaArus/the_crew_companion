@@ -1,8 +1,10 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/utils/extendedString.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
@@ -36,13 +38,10 @@ class _TeamListState extends State<TeamList> {
   void _resetProgress(Team team) async {
     bool confirmed = await confirm(
       context,
-      content: Text(
-          "Voulez vous vraiment réinitialiser la progression de l'équipe " +
-              team.name +
-              " ?"),
-      textOK: Text("Oui"),
-      textCancel: Text("Non"),
-      title: Text("Réinitialisation de la progression"),
+      content: Text(AppLocalizations.of(context)!.teamReinitializeConfirmation.replaceParameters({'teamName': team.name})),
+      textOK: Text(AppLocalizations.of(context)!.commonYes),
+      textCancel: Text(AppLocalizations.of(context)!.commonNo),
+      title: Text(AppLocalizations.of(context)!.teamReinitializeProgression),
     );
     if (confirmed == true) {
       team.achievedMissions.clear();
@@ -64,11 +63,10 @@ class _TeamListState extends State<TeamList> {
   void _removeTeam(Team team) async {
     bool confirmed = await confirm(
       context,
-      content:
-          Text("Voulez vous vraiment supprimer l'équipe " + team.name + " ?"),
-      textOK: Text("Oui"),
-      textCancel: Text("Non"),
-      title: Text("Suppression de l'équipe"),
+      content: Text(AppLocalizations.of(context)!.teamDeleteConfirmation.replaceParameters({'teamName': team.name})),
+      textOK: Text(AppLocalizations.of(context)!.commonYes),
+      textCancel: Text(AppLocalizations.of(context)!.commonNo),
+      title: Text(AppLocalizations.of(context)!.teamDeletion),
     );
     if (confirmed == true) {
       widget.controller.teams.remove(team);
@@ -97,19 +95,19 @@ class _TeamListState extends State<TeamList> {
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            child: Text("Editer l'équipe"),
+            child: Text(AppLocalizations.of(context)!.teamEdit),
             value: 1,
           ),
           PopupMenuItem(
-            child: Text("Voir les statistiques l'équipe"),
+            child: Text(AppLocalizations.of(context)!.teamSeeStatistics),
             value: 2,
           ),
           PopupMenuItem(
-            child: Text("Réinitialiser la progression"),
+            child: Text(AppLocalizations.of(context)!.teamReinitializeProgression),
             value: 3,
           ),
           PopupMenuItem(
-            child: Text("Supprimer l'équipe"),
+            child: Text(AppLocalizations.of(context)!.teamDelete),
             value: 4,
           ),
         ];

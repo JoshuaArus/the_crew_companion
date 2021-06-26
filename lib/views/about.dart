@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
@@ -24,7 +25,7 @@ class _AboutState extends State<About> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("A propos"),
+        title: Text(AppLocalizations.of(context)!.aboutTitle),
         centerTitle: true,
       ),
       body: Container(
@@ -72,7 +73,7 @@ class _AboutState extends State<About> {
                         children: [
                           MarkdownBody(
                             data:
-                                "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",
+                              AppLocalizations.of(context)!.aboutPresentation,
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -83,10 +84,10 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Développé par " + developper),
+                          Text(AppLocalizations.of(context)!.aboutDevelopedBy + " " + developper),
                           MarkdownBody(
                             data:
-                                "Suivre le projet sur [github](https://github.com/JoshuaArus/the_crew_companion/)",
+                              AppLocalizations.of(context)!.aboutFollowProject,
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -97,7 +98,7 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Version " + version),
+                          Text(AppLocalizations.of(context)!.aboutVersion + " " + version),
                         ],
                       ),
                     ),
