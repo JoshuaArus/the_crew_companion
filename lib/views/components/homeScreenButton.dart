@@ -28,8 +28,9 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
         child: Text(
           widget.text.toUpperCase(),
           style: Theme.of(context).textTheme.headline5!.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.white.withOpacity(widget.disabled ? 0.2 : 1)),
+                fontWeight: FontWeight.bold,
+                color: Colors.white.withOpacity(widget.disabled ? 0.2 : 1),
+              ),
           overflow: TextOverflow.ellipsis,
         ),
         style: OutlinedButton.styleFrom(

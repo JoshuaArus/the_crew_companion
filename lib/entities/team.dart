@@ -23,11 +23,15 @@ class Team {
 
   factory Team.fromJson(Map<String, dynamic> json) {
     List<String> players = (jsonDecode(json['players']) as List<dynamic>)
-        .map((p) => p.toString())
+        .map(
+          (p) => p.toString(),
+        )
         .toList();
     List<AchievedMission> achievedMissions =
         (jsonDecode(json['achievedMissions']) as List<dynamic>)
-            .map((am) => AchievedMission.fromJson(am))
+            .map(
+              (am) => AchievedMission.fromJson(am),
+            )
             .toList();
     return Team.fromData(
         name: json['name'] as String,

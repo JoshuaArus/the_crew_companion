@@ -19,8 +19,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
   void _goto(Widget page) {
     Navigator.pop(context); // hide menu
 
-    Navigator.push(context,
-        new MaterialPageRoute(builder: (BuildContext context) => page));
+    Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (BuildContext context) => page),
+    );
   }
 
   void _goToMissionList() {
@@ -38,53 +40,57 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        child: ListView(
-      children: [
-        Container(
+      child: ListView(
+        children: [
+          Container(
             child: DrawerHeader(
-          padding: EdgeInsets.all(defaultPadding),
-          child: Image(image: AssetImage("assets/images/astronautHelmet.png")),
-        )),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ListTile(
-              title: Text(
-                "Les règles",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              onTap: _goToRules,
-              leading: FaIcon(
-                FontAwesomeIcons.questionCircle,
+              padding: EdgeInsets.all(defaultPadding),
+              child: Image(
+                image: AssetImage("assets/images/astronautHelmet.png"),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            ListTile(
-              title: Text(
-                "Liste des missions",
-                style: Theme.of(context).textTheme.headline6,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ListTile(
+                title: Text(
+                  "Les règles",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _goToRules,
+                leading: FaIcon(
+                  FontAwesomeIcons.questionCircle,
+                ),
               ),
-              onTap: _goToMissionList,
-              leading: FaIcon(
-                FontAwesomeIcons.bookOpen,
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ListTile(
-              title: Text(
-                "A propos",
-                style: Theme.of(context).textTheme.headline6,
+              ListTile(
+                title: Text(
+                  "Liste des missions",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _goToMissionList,
+                leading: FaIcon(
+                  FontAwesomeIcons.bookOpen,
+                ),
               ),
-              onTap: _goToAbout,
-              leading: Icon(Icons.lightbulb_outline),
-            ),
-          ],
-        ),
-      ],
-    ));
+              SizedBox(
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  "A propos",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                onTap: _goToAbout,
+                leading: Icon(Icons.lightbulb_outline),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

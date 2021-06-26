@@ -12,11 +12,16 @@ class TeamCreation extends StatelessWidget {
   Widget build(BuildContext context) {
     final teamName = TextEditingController(text: team.name);
 
-    final List<TextEditingController> playerControllers =
-        team.players.map((p) => TextEditingController(text: p)).toList();
+    final List<TextEditingController> playerControllers = team.players
+        .map(
+          (p) => TextEditingController(text: p),
+        )
+        .toList();
 
     while (playerControllers.length < 5)
-      playerControllers.add(TextEditingController());
+      playerControllers.add(
+        TextEditingController(),
+      );
 
     final List<Widget> playerFields = [];
     for (int i = 0; i < playerControllers.length; i++)
@@ -32,10 +37,11 @@ class TeamCreation extends StatelessWidget {
         title: Text("Création d'équipe"),
         centerTitle: true,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.close)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.close),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
