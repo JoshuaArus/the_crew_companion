@@ -25,12 +25,10 @@ class AimButton extends StatelessWidget {
       child: IconButton(
         tooltip: text + " objectifs",
         onPressed: null,
-        icon: Center(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.headline6!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+        icon: Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
