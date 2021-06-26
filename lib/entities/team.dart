@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/entities/achievedMission.dart';
 
 class Team {
   late String name;
   late DateTime creationDate;
   late List<String> players;
-  late List<Mission> achievedMissions;
+  late List<AchievedMission> achievedMissions;
 
   Team() {
     name = "";
@@ -25,9 +25,9 @@ class Team {
     List<String> players = (jsonDecode(json['players']) as List<dynamic>)
         .map((p) => p.toString())
         .toList();
-    List<Mission> achievedMissions =
+    List<AchievedMission> achievedMissions =
         (jsonDecode(json['achievedMissions']) as List<dynamic>)
-            .map((am) => Mission.fromJson(am))
+            .map((am) => AchievedMission.fromJson(am))
             .toList();
     return Team.fromData(
         name: json['name'] as String,
