@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/inputField.dart';
 
 class TeamCreation extends StatelessWidget {
@@ -22,14 +23,14 @@ class TeamCreation extends StatelessWidget {
     for (int i = 0; i < playerControllers.length; i++)
       playerFields.add(
         InputField(
-          hint: "Joueur " + (i + 1).toString(),
+          hint: AppLocalizations.instance!.translate('teamPlayer') + " " + (i + 1).toString(),
           model: playerControllers[i],
         ),
       );
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Création d'équipe"),
+        title: Text(AppLocalizations.instance!.translate('teamCreation')),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -40,7 +41,7 @@ class TeamCreation extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            InputField(hint: "Nom de l'équipe", model: teamName),
+            InputField(hint: AppLocalizations.instance!.translate('teamName'), model: teamName),
             Divider(),
           ]..addAll(playerFields),
         ),
@@ -57,16 +58,14 @@ class TeamCreation extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text("Pas assez de joueurs"),
-                  content: Text("Il faut au moins " +
-                      minPlayer.toString() +
-                      " pour triompher du jeu"),
+                  title: Text(AppLocalizations.instance!.translate('teamNotEnoughPlayers')),
+                  content: Text(AppLocalizations.instance!.translate('teamMinPlayers', {'minPlayer': minPlayer.toString()})),
                   actions: [
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text("OK"),
+                      child: Text(AppLocalizations.instance!.translate('commonOk').toUpperCase()),
                     )
                   ],
                 );
@@ -80,7 +79,7 @@ class TeamCreation extends StatelessWidget {
 
           Navigator.pop(context, true);
         },
-        tooltip: "Enregistrer l'équipe",
+        tooltip: AppLocalizations.instance!.translate('teamSave'),
         child: Icon(Icons.save),
       ),
     );

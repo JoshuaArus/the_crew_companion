@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
@@ -24,7 +25,7 @@ class _AboutState extends State<About> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("A propos"),
+        title: Text(AppLocalizations.instance!.translate('aboutTitle')),
         centerTitle: true,
       ),
       body: Container(
@@ -72,7 +73,7 @@ class _AboutState extends State<About> {
                         children: [
                           MarkdownBody(
                             data:
-                                "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",
+                              AppLocalizations.instance!.translate('aboutPresentation'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -83,10 +84,10 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Développé par " + developper),
+                          Text(AppLocalizations.instance!.translate('aboutDevelopedBy') + " " + developper),
                           MarkdownBody(
                             data:
-                                "Suivre le projet sur [github](https://github.com/JoshuaArus/the_crew_companion/)",
+                              AppLocalizations.instance!.translate('aboutFollowProject'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -97,7 +98,7 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Version " + version),
+                          Text(AppLocalizations.instance!.translate('aboutVersion') + " " + version),
                         ],
                       ),
                     ),

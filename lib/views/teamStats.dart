@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 import 'package:the_crew_companion/controller.dart';
 
@@ -28,11 +29,11 @@ class _TeamStatsState extends State<TeamStats> {
             ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Text("Joueurs : " + widget.team.players.join(", ")),
+                  child: Text(AppLocalizations.instance!.translate('teamPlayers') + " : " + widget.team.players.join(", ")),
                 ),
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Text("Aucune mission réalisée jusqu'à présent"),
+                  child: Text(AppLocalizations.instance!.translate('teamNoMission')),
                 ),
               ])
             : Column(
@@ -40,16 +41,14 @@ class _TeamStatsState extends State<TeamStats> {
                 children: [
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text("Joueurs : " + widget.team.players.join(", ")),
+                    child: Text(AppLocalizations.instance!.translate('teamPlayers') + " : " + widget.team.players.join(", ")),
                   ),
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text(
-                      "Missions réalisées : " +
-                          widget.team.achievedMissions.length.toString() +
-                          " / " +
-                          widget.controller.missions.length.toString(),
-                    ),
+                    child: Text(AppLocalizations.instance!.translate('teamMissionsAchievedOnTotal', {
+                      'missionAchievedCount': widget.team.achievedMissions.length.toString(),
+                      'missionTotalCount': widget.controller.missions.length.toString()
+                    })),
                   ),
                   MissionExpansionPanelList(
                     missions: widget.team.achievedMissions,
@@ -60,7 +59,7 @@ class _TeamStatsState extends State<TeamStats> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Nombre de tentatives totales : "),
+                        Text(AppLocalizations.instance!.translate('teamTotalAttemptsCount') + " : "),
                         Text(
                           widget.team.achievedMissions
                               .map((e) => e.attempts)

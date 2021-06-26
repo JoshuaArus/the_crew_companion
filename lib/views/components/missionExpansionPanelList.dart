@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 // ignore: must_be_immutable
@@ -36,7 +37,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Tentatives : "),
+            Text(AppLocalizations.instance!.translate('commonAttempts') + " : "),
             Text(
               mission.attempts.toString(),
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -46,7 +47,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Satellite : "),
+            Text(AppLocalizations.instance!.translate('commonSatellite') + " : "),
             Switch(
               thumbColor: MaterialStateProperty.resolveWith(getStateColor),
               trackColor: MaterialStateProperty.resolveWith(getStateFadedColor),

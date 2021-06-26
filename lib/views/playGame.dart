@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/views/teamStats.dart';
@@ -33,10 +34,10 @@ class PlayGameState extends State<PlayGame> {
   void _endCurrentMission(Mission mission) async {
     bool confirmed = await confirm(
       context,
-      content: Text("Valider avec cette saisie ?"),
-      textOK: Text("Oui"),
-      textCancel: Text("Non"),
-      title: Text("Valider la mission"),
+      content: Text(AppLocalizations.instance!.translate('commonValidateEntry')),
+      textOK: Text(AppLocalizations.instance!.translate('commonYes')),
+      textCancel: Text(AppLocalizations.instance!.translate('commonNo')),
+      title: Text(AppLocalizations.instance!.translate('gameValidateMission')),
     );
 
     if (confirmed == true) {
@@ -76,7 +77,7 @@ class PlayGameState extends State<PlayGame> {
             icon: FaIcon(
               FontAwesomeIcons.calculator,
             ),
-            tooltip: "Statistiques de l'équipe",
+            tooltip: AppLocalizations.instance!.translate('gameTeamStatistics'),
           ),
         ],
       ),
@@ -94,7 +95,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Nombre de tentatives : "),
+                    Text(AppLocalizations.instance!.translate('gameAttemptsCount') + " : "),
                     Container(
                       width: 70,
                       child: TextField(
@@ -120,7 +121,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Utilisation du satellite : "),
+                    Text(AppLocalizations.instance!.translate('gameSatelliteUsage') + " : "),
                     Switch(
                       activeColor: primaryColor,
                       value: satUsed,
@@ -137,7 +138,7 @@ class PlayGameState extends State<PlayGame> {
         onPressed: () {
           _endCurrentMission(currentMission);
         },
-        label: Text("Valider la mission"),
+        label: Text(AppLocalizations.instance!.translate('gameValidateMission')),
         icon: Icon(Icons.check),
       ),
     );

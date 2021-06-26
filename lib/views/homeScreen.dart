@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
@@ -99,14 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           HomeScreenButton(
-                            text: "Nouvelle partie",
+                            text: AppLocalizations.instance!.translate('homeNewGame'),
                             onPressed: _addTeam,
                           ),
                           SizedBox(
                             height: 60,
                           ),
                           HomeScreenButton(
-                            text: "Charger une partie",
+                            text: AppLocalizations.instance!.translate('homeLoadGame'),
                             onPressed: _goToTeamList,
                             disabled: widget.controller.teams.length == 0,
                           ),

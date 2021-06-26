@@ -20,7 +20,7 @@ class Controller {
   }
 
   List<Team> teams = [];
-  final List<Mission> missions = Story.missions;
+  List<Mission> missions = [];
 
   Future<void> saveDatas() async {
     final serializedTeams = jsonEncode(teams);
@@ -37,5 +37,9 @@ class Controller {
           .toList();
     }
     return true;
+  }
+
+  Future<void> populateMissions() async {
+    this.missions = Story.getMissions();
   }
 }
