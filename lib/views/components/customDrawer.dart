@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/views/about.dart';
+import 'package:the_crew_companion/views/components/containerGradient.dart';
 import 'package:the_crew_companion/views/missionList.dart';
 import 'package:the_crew_companion/views/rulesScreen.dart';
 
@@ -40,56 +41,58 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        children: [
-          Container(
-            child: DrawerHeader(
-              padding: EdgeInsets.all(defaultPadding),
-              child: Image(
-                image: AssetImage("assets/images/astronautHelmet.png"),
+      child: ContainerGradient(
+        child: ListView(
+          children: [
+            Container(
+              child: DrawerHeader(
+                padding: EdgeInsets.all(defaultPadding),
+                child: Image(
+                  image: AssetImage("assets/images/astronautHelmet.png"),
+                ),
               ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ListTile(
-                title: Text(
-                  "Les règles",
-                  style: Theme.of(context).textTheme.headline6,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ListTile(
+                  title: Text(
+                    "Les règles",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  onTap: _goToRules,
+                  leading: FaIcon(
+                    FontAwesomeIcons.questionCircle,
+                  ),
                 ),
-                onTap: _goToRules,
-                leading: FaIcon(
-                  FontAwesomeIcons.questionCircle,
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              ListTile(
-                title: Text(
-                  "Liste des missions",
-                  style: Theme.of(context).textTheme.headline6,
+                ListTile(
+                  title: Text(
+                    "Liste des missions",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  onTap: _goToMissionList,
+                  leading: FaIcon(
+                    FontAwesomeIcons.bookOpen,
+                  ),
                 ),
-                onTap: _goToMissionList,
-                leading: FaIcon(
-                  FontAwesomeIcons.bookOpen,
+                SizedBox(
+                  height: 10,
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              ListTile(
-                title: Text(
-                  "A propos",
-                  style: Theme.of(context).textTheme.headline6,
+                ListTile(
+                  title: Text(
+                    "A propos",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  onTap: _goToAbout,
+                  leading: Icon(Icons.lightbulb_outline),
                 ),
-                onTap: _goToAbout,
-                leading: Icon(Icons.lightbulb_outline),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
