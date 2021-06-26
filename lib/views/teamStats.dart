@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/utils/extendedString.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 import 'package:the_crew_companion/controller.dart';
 
@@ -46,11 +45,7 @@ class _TeamStatsState extends State<TeamStats> {
                   ),
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text(AppLocalizations.of(context)!.teamMissionsAchievedOnTotal
-                        .replaceParameters({
-                          'missionAchievedCount': widget.team.achievedMissions.length.toString(),
-                          'missionTotalCount': widget.controller.missions.length.toString()
-                        })),
+                    child: Text(AppLocalizations.of(context)!.teamMissionsAchievedOnTotal(widget.team.achievedMissions.length, widget.controller.missions.length)),
                   ),
                   MissionExpansionPanelList(
                     missions: widget.team.achievedMissions,

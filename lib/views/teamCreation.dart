@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/utils/extendedString.dart';
 import 'package:the_crew_companion/views/components/inputField.dart';
 
 class TeamCreation extends StatelessWidget {
@@ -60,7 +59,7 @@ class TeamCreation extends StatelessWidget {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: Text(AppLocalizations.of(context)!.teamNotEnoughPlayers),
-                  content: Text(AppLocalizations.of(context)!.teamMinPlayers.replaceParameters({'minPlayer': minPlayer.toString()})),
+                  content: Text(AppLocalizations.of(context)!.teamMinPlayers(minPlayer)),
                   actions: [
                     TextButton(
                       onPressed: () {

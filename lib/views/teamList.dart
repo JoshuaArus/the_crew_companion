@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/utils/extendedString.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
@@ -38,7 +37,7 @@ class _TeamListState extends State<TeamList> {
   void _resetProgress(Team team) async {
     bool confirmed = await confirm(
       context,
-      content: Text(AppLocalizations.of(context)!.teamReinitializeConfirmation.replaceParameters({'teamName': team.name})),
+      content: Text(AppLocalizations.of(context)!.teamReinitializeConfirmation(team.name)),
       textOK: Text(AppLocalizations.of(context)!.commonYes),
       textCancel: Text(AppLocalizations.of(context)!.commonNo),
       title: Text(AppLocalizations.of(context)!.teamReinitializeProgression),
@@ -63,7 +62,7 @@ class _TeamListState extends State<TeamList> {
   void _removeTeam(Team team) async {
     bool confirmed = await confirm(
       context,
-      content: Text(AppLocalizations.of(context)!.teamDeleteConfirmation.replaceParameters({'teamName': team.name})),
+      content: Text(AppLocalizations.of(context)!.teamDeleteConfirmation(team.name)),
       textOK: Text(AppLocalizations.of(context)!.commonYes),
       textCancel: Text(AppLocalizations.of(context)!.commonNo),
       title: Text(AppLocalizations.of(context)!.teamDeletion),

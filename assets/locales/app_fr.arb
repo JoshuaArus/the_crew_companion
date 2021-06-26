@@ -41,11 +41,26 @@
     "teamCreation": "Création d'équipe",
     "teamName": "Nom de l'équipe",
     "teamNotEnoughPlayers": "Pas assez de joueurs",
-    "teamMinPlayers": "Il faut au moins ${minPlayer} pour triompher du jeu",
+    "teamMinPlayers": "Il faut au moins {minPlayer} pour triompher du jeu",
+    "@teamMinPlayers": {
+      "placeholders": {
+        "minPlayer": {}
+      }
+    },
     "teamSave": "Enregistrer l'équipe",
-    "teamReinitializeConfirmation": "Voulez vous vraiment réinitialiser la progression de l'équipe ${teamName} ?",
+    "teamReinitializeConfirmation": "Voulez vous vraiment réinitialiser la progression de l'équipe {teamName} ?",
+    "@teamReinitializeConfirmation": {
+      "placeholders": {
+        "teamName": {}
+      }
+    },
     "teamReinitializeProgression": "Réinitialisation de la progression",
-    "teamDeleteConfirmation": "Voulez vous vraiment supprimer l'équipe ${teamName} ?",
+    "teamDeleteConfirmation": "Voulez vous vraiment supprimer l'équipe {teamName} ?",
+    "@teamDeleteConfirmation": {
+      "placeholders": {
+        "teamName": {}
+      }
+    },
     "teamDeletion": "Suppression de l'équipe",
     "teamDelete": "Supprimer l'équipe",
     "teamEdit": "Editer l'équipe",
@@ -53,6 +68,12 @@
     "teamTotalAttemptsCount": "Nombre de tentatives totales",
     "teamNoMission": "Aucune mission réalisée jusqu'à présent",
     "teamMissionsAchievedOnTotal": "Missions réalisées : ${missionAchievedCount} / ${missionTotalCount}",
+    "@teamMissionsAchievedOnTotal": {
+      "placeholders": {
+        "missionAchievedCount": {},
+        "missionTotalCount": {}
+      }
+    },
   
   "@STORY": {},
     "storyMission1Title": "Mission 1",
