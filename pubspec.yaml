@@ -31,6 +31,9 @@ dependencies:
   google_fonts: ^2.1.0
   font_awesome_flutter: ^9.1.0
   progress_indicators: ^1.0.0
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -89,3 +92,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  # Internationalization
+  # https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+  # Allow to generate localization files in the app_localizations.dart file.
+  generate: true
