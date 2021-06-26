@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:the_crew_companion/CustomThemes.dart';
+import 'package:the_crew_companion/customThemes.dart';
 
 enum AimOption {
   One,
