@@ -20,8 +20,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void _goToTeamList() {
-    Navigator.push(
+  void _goToTeamList() async {
+    bool? needRefresh = await Navigator.push(
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) => TeamList(
@@ -29,6 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+    if (needRefresh == true)
+      setState(() {
+        print("refresh");
+      });
   }
 
   void _addTeam() async {
