@@ -29,10 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-    if (needRefresh == true)
-      setState(() {
-        print("refresh");
-      });
+    if (needRefresh == true) setState(() {});
   }
 
   void _addTeam() async {
