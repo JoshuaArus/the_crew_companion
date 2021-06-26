@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/CustomThemes.dart';
 
 enum AimOption {
   One,
@@ -91,7 +91,7 @@ extension AimOptionExtension on AimOption {
       case AimOption.Five:
         return Text(
           this.displayValue,
-          style: CustomThemes.current.primaryTextTheme.headline6!.copyWith(
+          style: CustomTheme.current.primaryTextTheme.headline6!.copyWith(
             fontWeight: FontWeight.bold,
           ),
         );
@@ -106,7 +106,7 @@ extension AimOptionExtension on AimOption {
       case AimOption.Last:
         return Image.asset(
           "assets/images/omega.png",
-          color: CustomThemes.current.primaryTextTheme.bodyText2!.color,
+          color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
         );
       case AimOption.Comms:
         return FaIcon(
@@ -118,7 +118,7 @@ extension AimOptionExtension on AimOption {
           angle: -45,
           child: FaIcon(
             FontAwesomeIcons.undoAlt,
-            color: CustomThemes.current.primaryTextTheme.bodyText2!.color,
+            color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
           ),
         );
     }
@@ -129,7 +129,7 @@ extension AimOptionExtension on AimOption {
       nb,
       FaIcon(
         FontAwesomeIcons.chevronRight,
-        color: CustomThemes.current.primaryTextTheme.bodyText2!.color,
+        color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
       ),
     );
   }
