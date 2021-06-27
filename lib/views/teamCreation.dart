@@ -28,7 +28,8 @@ class TeamCreation extends StatelessWidget {
     for (int i = 0; i < playerControllers.length; i++)
       playerFields.add(
         InputField(
-          hint: AppLocalizations.instance!.translate('teamPlayer') + " " + (i + 1).toString(),
+          hint: AppLocalizations.instance!
+              .translate('teamPlayer', {'number': (i + 1).toString()}),
           model: playerControllers[i],
         ),
       );
@@ -47,7 +48,9 @@ class TeamCreation extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            InputField(hint: AppLocalizations.instance!.translate('teamName'), model: teamName),
+            InputField(
+                hint: AppLocalizations.instance!.translate('teamName'),
+                model: teamName),
             Divider(),
           ]..addAll(playerFields),
         ),
@@ -64,14 +67,18 @@ class TeamCreation extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: Text(AppLocalizations.instance!.translate('teamNotEnoughPlayers')),
-                  content: Text(AppLocalizations.instance!.translate('teamMinPlayers', {'minPlayer': minPlayer.toString()})),
+                  title: Text(AppLocalizations.instance!
+                      .translate('teamNotEnoughPlayers')),
+                  content: Text(AppLocalizations.instance!.translate(
+                      'teamMinPlayers', {'minPlayer': minPlayer.toString()})),
                   actions: [
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text(AppLocalizations.instance!.translate('commonOk').toUpperCase()),
+                      child: Text(AppLocalizations.instance!
+                          .translate('commonOk')
+                          .toUpperCase()),
                     )
                   ],
                 );
