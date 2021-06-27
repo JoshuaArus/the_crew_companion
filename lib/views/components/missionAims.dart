@@ -30,7 +30,7 @@ class MissionAims extends StatelessWidget {
             currentMission.aimOptions
                 .map(
                   (ao) => GoalButton(
-                    child: ao.icon,
+                    child: ao.buildIcon(context),
                     tooltip: ao.tooltip,
                   ),
                 )

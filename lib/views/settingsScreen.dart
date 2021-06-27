@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/themeNotifier.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Controller controller;
@@ -22,11 +24,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.initState();
 
     currentLanguage = "fr";
-    currentTheme = CustomThemes.Dark;
   }
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    currentTheme = themeNotifier.getTheme();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -83,7 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       isExpanded: true,
                       onChanged: (CustomThemes? newTheme) {
                         if (newTheme == null) return;
-                        widget.controller.setCurrentTheme(newTheme);
+                        themeNotifier.setTheme(newTheme);
                         setState(() {
                           currentTheme = newTheme;
                         });
