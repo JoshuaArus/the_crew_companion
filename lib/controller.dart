@@ -10,7 +10,6 @@ class Controller {
   late PackageInfo infos;
 
   String get storageKey => infos.packageName;
-  String get developper => "Joshua Arus";
   String get appName => infos.appName;
   String get appVersion => infos.version;
   String get buildNumber => infos.buildNumber;
@@ -20,7 +19,7 @@ class Controller {
   }
 
   List<Team> teams = [];
-  final List<Mission> missions = Story.missions;
+  final List<Mission> missions = [];
 
   Future<void> saveDatas() async {
     final serializedTeams = jsonEncode(teams);
@@ -39,5 +38,12 @@ class Controller {
           .toList();
     }
     return true;
+  }
+
+  Future<void> populateMissions() async {
+    if (this.missions.isNotEmpty) {
+      return;
+    }
+    this.missions.addAll(Story.getMissions());
   }
 }

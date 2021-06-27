@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class Rules extends StatelessWidget {
   const Rules({required this.controller});
@@ -11,7 +12,7 @@ class Rules extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Règles du jeu"),
+        title: Text(AppLocalizations.translate('gameRules')),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -19,7 +20,7 @@ class Rules extends StatelessWidget {
           child: Column(
             children: [
               MarkdownBody(
-                data: "# En construction",
+                data: AppLocalizations.translate('commonUnderConstruction'),
                 styleSheet: MarkdownStyleSheet(
                   textAlign: WrapAlignment.center,
                   p: TextStyle(

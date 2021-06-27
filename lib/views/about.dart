@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
@@ -20,11 +21,10 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     String version = widget.controller.appVersion;
-    String developper = widget.controller.developper;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("A propos"),
+        title: Text(AppLocalizations.translate('aboutTitle')),
         centerTitle: true,
       ),
       body: Container(
@@ -74,7 +74,7 @@ class _AboutState extends State<About> {
                         children: [
                           MarkdownBody(
                             data:
-                                "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",
+                                AppLocalizations.translate('aboutPresentation'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -85,10 +85,12 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Développé par " + developper),
                           MarkdownBody(
                             data:
-                                "Suivre le projet sur [github](https://github.com/JoshuaArus/the_crew_companion/)",
+                                AppLocalizations.translate('aboutDevelopedBy') +
+                                    " " +
+                                    AppLocalizations.translate(
+                                        'applicationDeveloper'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -99,7 +101,22 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text("Version " + version),
+                          MarkdownBody(
+                            data: AppLocalizations.translate(
+                                'aboutFollowProject'),
+                            styleSheet: MarkdownStyleSheet(
+                              textAlign: WrapAlignment.spaceEvenly,
+                              p: TextStyle(
+                                height: 2,
+                              ),
+                            ),
+                            onTapLink: (text, url, title) {
+                              launch(url!);
+                            },
+                          ),
+                          Text(AppLocalizations.translate('aboutVersion') +
+                              " " +
+                              version),
                         ],
                       ),
                     ),
