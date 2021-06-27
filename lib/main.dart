@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/views/homeScreen.dart';
@@ -15,13 +17,23 @@ class TheCrewCompanionApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "The Crew Companion",
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('fr'),
+      ],
+      onGenerateTitle: (context) =>
+          AppLocalizations.translate('applicationName'),
       theme: CustomTheme.current,
       home: FutureBuilder(
         future: Future.wait(
           [
             controller.init(),
             controller.readDatas(),
+            controller.populateMissions()
           ],
         ),
         builder: (context, snapshot) {

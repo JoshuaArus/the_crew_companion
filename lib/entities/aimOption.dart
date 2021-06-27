@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 enum AimOption {
   One,
@@ -56,29 +57,29 @@ extension AimOptionExtension on AimOption {
   String get tooltip {
     switch (this) {
       case AimOption.One:
-        return "Ordre 1";
+        return AppLocalizations.translate('commonOrder', {'order': "1"});
       case AimOption.Two:
-        return "Ordre 2";
+        return AppLocalizations.translate('commonOrder', {'order': "2"});
       case AimOption.Three:
-        return "Ordre 3";
+        return AppLocalizations.translate('commonOrder', {'order': "3"});
       case AimOption.Four:
-        return "Ordre 4";
+        return AppLocalizations.translate('commonOrder', {'order': "4"});
       case AimOption.Five:
-        return "Ordre 5";
+        return AppLocalizations.translate('commonOrder', {'order': "5"});
       case AimOption.First:
-        return "Priorité 1";
+        return AppLocalizations.translate('commonPriority', {'priority': "1"});
       case AimOption.Second:
-        return "Priorité 2";
+        return AppLocalizations.translate('commonPriority', {'priority': "2"});
       case AimOption.Third:
-        return "Priorité 3";
+        return AppLocalizations.translate('commonPriority', {'priority': "3"});
       case AimOption.Fourth:
-        return "Priorité 4";
+        return AppLocalizations.translate('commonPriority', {'priority': "4"});
       case AimOption.Last:
-        return "En dernier";
+        return AppLocalizations.translate('commonLast');
       case AimOption.Comms:
-        return "Communications perturbées";
+        return AppLocalizations.translate('commonDisruptedCommunications');
       case AimOption.Hidden:
-        return "Cartes faces cachées";
+        return AppLocalizations.translate('commonFaceDownCards');
     }
   }
 

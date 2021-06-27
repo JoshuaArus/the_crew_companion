@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:the_crew_companion/entities/aimOption.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class Mission {
   int id;
-  String title;
-  String description;
   int aimCount;
   int attempts;
   bool satelliteUsed;
@@ -15,18 +14,24 @@ class Mission {
 
   Mission({
     required this.id,
-    required this.title,
-    required this.description,
     required this.aimCount,
     required this.attempts,
     required this.satelliteUsed,
     required this.aimOptions,
   });
 
+  String get title {
+    return AppLocalizations.translate(
+        'storyMission' + (this.id + 1).toString() + 'Title');
+  }
+
+  String get description {
+    return AppLocalizations.translate(
+        'storyMission' + (this.id + 1).toString() + 'Description');
+  }
+
   Mission copyWith({
     int? id,
-    String? title,
-    String? description,
     int? aimCount,
     int? attempts,
     bool? satelliteUsed,
@@ -34,8 +39,6 @@ class Mission {
   }) {
     return Mission(
       id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
       aimCount: aimCount ?? this.aimCount,
       attempts: attempts ?? this.attempts,
       satelliteUsed: satelliteUsed ?? this.satelliteUsed,
@@ -58,8 +61,6 @@ class Mission {
   factory Mission.fromMap(Map<String, dynamic> map) {
     return Mission(
       id: map['id'],
-      title: map['title'],
-      description: map['description'],
       aimCount: map['aimCount'],
       attempts: map['attempts'],
       satelliteUsed: map['satelliteUsed'],
