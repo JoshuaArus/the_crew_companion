@@ -6,6 +6,8 @@ Application mobile non officielle permettant de remplacer le carnet du jeu [The 
 
 Projet d'auto formation au langage Flutter.
 
+Pour participer, jetez un oeil au fichier [contributing.md](https://github.com/JoshuaArus/the_crew_companion/.github/contributing.md)
+
 ![Screenshot_1624407743](https://user-images.githubusercontent.com/1456867/123016030-0115ea00-d3ca-11eb-80e7-5d4b607f35f0.png)
 ![Screenshot_1624407756](https://user-images.githubusercontent.com/1456867/123016043-0a06bb80-d3ca-11eb-9756-d65fdd5c5eae.png)
 ![Screenshot_1624407901](https://user-images.githubusercontent.com/1456867/123016078-20147c00-d3ca-11eb-8be7-629ff51148a5.png)
