@@ -18,7 +18,9 @@ class TeamProgress extends StatelessWidget {
       padding: EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
         color: primaryColor,
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
       ),
       child: Center(
         child: Text(

@@ -19,19 +19,19 @@ class AimButton extends StatelessWidget {
       width: 35,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 2),
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
         color: primaryColor.withOpacity(0.7),
         shape: BoxShape.rectangle,
       ),
       child: IconButton(
         tooltip: text + " " + AppLocalizations.instance!.translate('commonPriority').toLowerCase(),
         onPressed: null,
-        icon: Center(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.headline6!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+        icon: Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

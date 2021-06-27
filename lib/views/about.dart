@@ -63,7 +63,9 @@ class _AboutState extends State<About> {
                       margin: EdgeInsets.all(defaultPadding),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 2),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
                         color: secondaryColor.withOpacity(0.90),
                         shape: BoxShape.rectangle,
                       ),

@@ -72,14 +72,14 @@ class _TeamListState extends State<TeamList> {
       await widget.controller.saveDatas();
 
       if (widget.controller.teams.length == 0)
-        Navigator.pop(context);
+        Navigator.pop(context, true);
       else
         setState(() {});
     }
   }
 
   void _play(Team team) async {
-    Navigator.pop(context);
+    Navigator.pop(context, false);
     Navigator.push(
       context,
       new MaterialPageRoute(

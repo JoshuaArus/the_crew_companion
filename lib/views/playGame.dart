@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/entities/achievedMission.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
@@ -41,9 +42,13 @@ class PlayGameState extends State<PlayGame> {
     );
 
     if (confirmed == true) {
-      mission.attempts = int.parse(attempts.text == "" ? "1" : attempts.text);
-      mission.satelliteUsed = satUsed;
-      widget.team.achievedMissions.add(mission);
+      widget.team.achievedMissions.add(
+        AchievedMission(
+          mission.id,
+          int.parse(attempts.text == "" ? "1" : attempts.text),
+          satUsed,
+        ),
+      );
       await widget.controller.saveDatas();
       attempts.text = "";
       satUsed = false;

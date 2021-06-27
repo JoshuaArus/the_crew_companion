@@ -33,7 +33,9 @@ class Controller {
     final data = prefs.getString(storageKey) ?? "";
     if (data != "") {
       this.teams = (jsonDecode(data) as List<dynamic>)
-          .map((t) => Team.fromJson(t))
+          .map(
+            (t) => Team.fromJson(t),
+          )
           .toList();
     }
     return true;
