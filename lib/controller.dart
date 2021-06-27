@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/story.dart';
@@ -9,6 +11,7 @@ import 'package:the_crew_companion/story.dart';
 class Controller {
   late PackageInfo infos;
 
+  CustomThemes currentTheme = CustomThemes.Dark;
   String get storageKey => infos.packageName;
   String get developper => "Joshua Arus";
   String get appName => infos.appName;
@@ -39,5 +42,21 @@ class Controller {
           .toList();
     }
     return true;
+  }
+
+  void setCurrentTheme(CustomThemes newTheme) {
+    if (newTheme == currentTheme) return;
+
+    currentTheme = newTheme;
+    //TODO refresh UI
+  }
+
+  ThemeData getCurrentTheme() {
+    switch (currentTheme) {
+      case CustomThemes.Dark:
+        return CustomTheme.dark;
+      case CustomThemes.Light:
+        return CustomTheme.light;
+    }
   }
 }

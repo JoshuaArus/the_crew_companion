@@ -82,9 +82,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       value: currentTheme,
                       isExpanded: true,
                       onChanged: (CustomThemes? newTheme) {
-                        //TODO save theme, reload interface, etc...
+                        if (newTheme == null) return;
+                        widget.controller.setCurrentTheme(newTheme);
                         setState(() {
-                          currentTheme = newTheme ?? CustomThemes.Dark;
+                          currentTheme = newTheme;
                         });
                       },
                       items: [

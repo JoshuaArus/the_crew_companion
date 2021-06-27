@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/views/homeScreen.dart';
 import 'package:the_crew_companion/views/splashScreen.dart';
 
@@ -16,7 +15,7 @@ class TheCrewCompanionApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "The Crew Companion",
-      theme: CustomTheme.current,
+      theme: controller.getCurrentTheme(),
       home: FutureBuilder(
         future: Future.wait(
           [
