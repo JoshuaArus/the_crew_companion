@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/about.dart';
 import 'package:the_crew_companion/views/components/containerGradient.dart';
 import 'package:the_crew_companion/views/missionList.dart';
@@ -62,7 +63,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 ListTile(
                   title: Text(
-                    "Les règles",
+                    AppLocalizations.translate('menuRules'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToRules,
@@ -75,7 +76,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 ListTile(
                   title: Text(
-                    "Liste des missions",
+                    AppLocalizations.translate('menuMissionList'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToMissionList,
@@ -101,7 +102,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 ListTile(
                   title: Text(
-                    "A propos",
+                    AppLocalizations.translate('menuAbout'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToAbout,
