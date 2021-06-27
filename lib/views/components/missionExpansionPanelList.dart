@@ -37,7 +37,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(AppLocalizations.instance!.translate('commonAttempts') + " : "),
+            Text(AppLocalizations.instance.translate('commonAttempts') + " : "),
             Text(
               mission.attempts.toString(),
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -47,7 +47,8 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(AppLocalizations.instance!.translate('commonSatellite') + " : "),
+            Text(
+                AppLocalizations.instance.translate('commonSatellite') + " : "),
             Switch(
               thumbColor: MaterialStateProperty.resolveWith(getStateColor),
               trackColor: MaterialStateProperty.resolveWith(getStateFadedColor),

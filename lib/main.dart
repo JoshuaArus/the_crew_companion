@@ -25,8 +25,9 @@ class TheCrewCompanionApp extends StatelessWidget {
       supportedLocales: [
         const Locale('fr'),
       ],
-      onGenerateTitle: (context) => AppLocalizations.instance!.translate('applicationName'),
-      theme: CustomThemes.current,
+      onGenerateTitle: (context) =>
+          AppLocalizations.instance.translate('applicationName'),
+      theme: CustomTheme.current,
       home: FutureBuilder(
         future: Future.wait(
           [

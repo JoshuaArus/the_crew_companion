@@ -26,7 +26,9 @@ class AimButton extends StatelessWidget {
         shape: BoxShape.rectangle,
       ),
       child: IconButton(
-        tooltip: text + " " + AppLocalizations.instance!.translate('commonPriority').toLowerCase(),
+        tooltip: text +
+            " " +
+            AppLocalizations.instance.translate('commonPriority').toLowerCase(),
         onPressed: null,
         icon: Text(
           text,

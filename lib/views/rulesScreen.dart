@@ -12,7 +12,7 @@ class Rules extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.instance!.translate('gameRules')),
+        title: Text(AppLocalizations.instance.translate('gameRules')),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -20,7 +20,8 @@ class Rules extends StatelessWidget {
           child: Column(
             children: [
               MarkdownBody(
-                data: AppLocalizations.instance!.translate('commonUnderConstruction'),
+                data: AppLocalizations.instance
+                    .translate('commonUnderConstruction'),
                 styleSheet: MarkdownStyleSheet(
                   textAlign: WrapAlignment.center,
                   p: TextStyle(

@@ -25,7 +25,7 @@ class _AboutState extends State<About> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.instance!.translate('aboutTitle')),
+        title: Text(AppLocalizations.instance.translate('aboutTitle')),
         centerTitle: true,
       ),
       body: Container(
@@ -74,8 +74,8 @@ class _AboutState extends State<About> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MarkdownBody(
-                            data:
-                              AppLocalizations.instance!.translate('aboutPresentation'),
+                            data: AppLocalizations.instance
+                                .translate('aboutPresentation'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -86,10 +86,13 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text(AppLocalizations.instance!.translate('aboutDevelopedBy') + " " + developper),
+                          Text(AppLocalizations.instance
+                                  .translate('aboutDevelopedBy') +
+                              " " +
+                              developper),
                           MarkdownBody(
-                            data:
-                              AppLocalizations.instance!.translate('aboutFollowProject'),
+                            data: AppLocalizations.instance
+                                .translate('aboutFollowProject'),
                             styleSheet: MarkdownStyleSheet(
                               textAlign: WrapAlignment.spaceEvenly,
                               p: TextStyle(
@@ -100,7 +103,10 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text(AppLocalizations.instance!.translate('aboutVersion') + " " + version),
+                          Text(AppLocalizations.instance
+                                  .translate('aboutVersion') +
+                              " " +
+                              version),
                         ],
                       ),
                     ),

@@ -18,7 +18,7 @@ class _MissionListState extends State<MissionList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.instance!.translate('missionList')),
+        title: Text(AppLocalizations.instance.translate('missionList')),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

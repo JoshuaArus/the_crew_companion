@@ -11,13 +11,14 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static AppLocalizations? instance;
+  static late AppLocalizations instance;
 
   AppLocalizations._init(this.locale) {
     instance = this;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   Locale locale;
   Map<String, String> _localizedStrings = {};
@@ -32,12 +33,14 @@ class AppLocalizations {
     }
   }
 
-  Future<Map<String, String>> _loadLocalizedStrings(Locale localeToBeLoaded) async {
+  Future<Map<String, String>> _loadLocalizedStrings(
+      Locale localeToBeLoaded) async {
     String jsonString;
     Map<String, String> localizedStrings = {};
 
     try {
-      jsonString = await rootBundle.loadString('assets/locales/${localeToBeLoaded.languageCode}.json');
+      jsonString = await rootBundle
+          .loadString('assets/locales/${localeToBeLoaded.languageCode}.json');
     } catch (exception) {
       print(exception);
       return localizedStrings;
@@ -54,7 +57,9 @@ class AppLocalizations {
 
   String translate(String key, [Map<String, String> arguments = const {}]) {
     String translation = _localizedStrings[key] ?? "";
-    translation = translation.isEmpty ? _fallbackLocalizedStrings[key] ?? "" : translation;
+    translation = translation.isEmpty
+        ? _fallbackLocalizedStrings[key] ?? ""
+        : translation;
 
     if (arguments.length == 0) {
       return translation;
@@ -62,7 +67,8 @@ class AppLocalizations {
 
     arguments.forEach((argumentKey, value) {
       if (value.isEmpty) {
-        print('Value for "$argumentKey" is null in call of translate(\'$key\')');
+        print(
+            'Value for "$argumentKey" is null in call of translate(\'$key\')');
         value = '';
       }
       translation = translation.replaceAll("\$$argumentKey", value);
@@ -72,7 +78,8 @@ class AppLocalizations {
   }
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override

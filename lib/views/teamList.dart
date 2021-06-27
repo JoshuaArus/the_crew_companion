@@ -37,10 +37,12 @@ class _TeamListState extends State<TeamList> {
   void _resetProgress(Team team) async {
     bool confirmed = await confirm(
       context,
-      content: Text(AppLocalizations.instance!.translate('teamReinitializeConfirmation', {'teamName': team.name})),
-      textOK: Text(AppLocalizations.instance!.translate('commonYes')),
-      textCancel: Text(AppLocalizations.instance!.translate('commonNo')),
-      title: Text(AppLocalizations.instance!.translate('teamReinitializeProgression')),
+      content: Text(AppLocalizations.instance
+          .translate('teamReinitializeConfirmation', {'teamName': team.name})),
+      textOK: Text(AppLocalizations.instance.translate('commonYes')),
+      textCancel: Text(AppLocalizations.instance.translate('commonNo')),
+      title: Text(
+          AppLocalizations.instance.translate('teamReinitializeProgression')),
     );
     if (confirmed == true) {
       team.achievedMissions.clear();
@@ -62,10 +64,11 @@ class _TeamListState extends State<TeamList> {
   void _removeTeam(Team team) async {
     bool confirmed = await confirm(
       context,
-      content: Text(AppLocalizations.instance!.translate('teamDeleteConfirmation', {'teamName': team.name})),
-      textOK: Text(AppLocalizations.instance!.translate('commonYes')),
-      textCancel: Text(AppLocalizations.instance!.translate('commonNo')),
-      title: Text(AppLocalizations.instance!.translate('teamDeletion')),
+      content: Text(AppLocalizations.instance
+          .translate('teamDeleteConfirmation', {'teamName': team.name})),
+      textOK: Text(AppLocalizations.instance.translate('commonYes')),
+      textCancel: Text(AppLocalizations.instance.translate('commonNo')),
+      title: Text(AppLocalizations.instance.translate('teamDeletion')),
     );
     if (confirmed == true) {
       widget.controller.teams.remove(team);
@@ -94,19 +97,21 @@ class _TeamListState extends State<TeamList> {
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            child: Text(AppLocalizations.instance!.translate('teamEdit')),
+            child: Text(AppLocalizations.instance.translate('teamEdit')),
             value: 1,
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.instance!.translate('teamSeeStatistics')),
+            child:
+                Text(AppLocalizations.instance.translate('teamSeeStatistics')),
             value: 2,
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.instance!.translate('teamReinitializeProgression')),
+            child: Text(AppLocalizations.instance
+                .translate('teamReinitializeProgression')),
             value: 3,
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.instance!.translate('teamDelete')),
+            child: Text(AppLocalizations.instance.translate('teamDelete')),
             value: 4,
           ),
         ];

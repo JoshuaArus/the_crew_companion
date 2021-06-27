@@ -105,14 +105,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           HomeScreenButton(
-                            text: AppLocalizations.instance!.translate('homeNewGame'),
+                            text: AppLocalizations.instance
+                                .translate('homeNewGame'),
                             onPressed: _addTeam,
                           ),
                           SizedBox(
                             height: 60,
                           ),
                           HomeScreenButton(
-                            text: AppLocalizations.instance!.translate('homeLoadGame'),
+                            text: AppLocalizations.instance
+                                .translate('homeLoadGame'),
                             onPressed: _goToTeamList,
                             disabled: widget.controller.teams.length == 0,
                           ),

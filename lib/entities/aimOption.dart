@@ -57,39 +57,39 @@ extension AimOptionExtension on AimOption {
   String get tooltip {
     switch (this) {
       case AimOption.One:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonOrder', {'order': "1"});
       case AimOption.Two:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonOrder', {'order': "2"});
       case AimOption.Three:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonOrder', {'order': "3"});
       case AimOption.Four:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonOrder', {'order': "4"});
       case AimOption.Five:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonOrder', {'order': "5"});
       case AimOption.First:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonPriority', {'priority': "1"});
       case AimOption.Second:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonPriority', {'priority': "2"});
       case AimOption.Third:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonPriority', {'priority': "3"});
       case AimOption.Fourth:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonPriority', {'priority': "4"});
       case AimOption.Last:
-        return AppLocalizations.instance!.translate('commonLast');
+        return AppLocalizations.instance.translate('commonLast');
       case AimOption.Comms:
-        return AppLocalizations.instance!
+        return AppLocalizations.instance
             .translate('commonDisruptedCommunications');
       case AimOption.Hidden:
-        return AppLocalizations.instance!.translate('commonFaceDownCards');
+        return AppLocalizations.instance.translate('commonFaceDownCards');
     }
   }
 

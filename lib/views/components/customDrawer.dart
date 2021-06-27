@@ -63,7 +63,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 ListTile(
                   title: Text(
-                    AppLocalizations.instance!.translate('menuRules'),
+                    AppLocalizations.instance.translate('menuRules'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToRules,
@@ -76,7 +76,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 ListTile(
                   title: Text(
-                    AppLocalizations.instance!.translate('menuMissionList'),
+                    AppLocalizations.instance.translate('menuMissionList'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToMissionList,
@@ -102,7 +102,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 ListTile(
                   title: Text(
-                    AppLocalizations.instance!.translate('menuAbout'),
+                    AppLocalizations.instance.translate('menuAbout'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToAbout,
