@@ -24,7 +24,7 @@ class TeamProgress extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          AppLocalizations.instance.translate('missionNext') +
+          AppLocalizations.translate('missionNext') +
               " : " +
               (team.achievedMissions.length + 1).toString(),
           style: Theme.of(context).textTheme.subtitle1,

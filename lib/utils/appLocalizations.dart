@@ -21,8 +21,8 @@ class AppLocalizations {
       _AppLocalizationsDelegate();
 
   Locale locale;
-  Map<String, String> _localizedStrings = {};
-  Map<String, String> _fallbackLocalizedStrings = {};
+  static Map<String, String> _localizedStrings = {};
+  static Map<String, String> _fallbackLocalizedStrings = {};
 
   Future<void> load() async {
     _localizedStrings = await _loadLocalizedStrings(locale);
@@ -55,7 +55,8 @@ class AppLocalizations {
     return localizedStrings;
   }
 
-  String translate(String key, [Map<String, String> arguments = const {}]) {
+  static String translate(String key,
+      [Map<String, String> arguments = const {}]) {
     String translation = _localizedStrings[key] ?? "";
     translation = translation.isEmpty
         ? _fallbackLocalizedStrings[key] ?? ""

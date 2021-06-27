@@ -35,10 +35,10 @@ class PlayGameState extends State<PlayGame> {
   void _endCurrentMission(Mission mission) async {
     bool confirmed = await confirm(
       context,
-      content: Text(AppLocalizations.instance.translate('commonValidateEntry')),
-      textOK: Text(AppLocalizations.instance.translate('commonYes')),
-      textCancel: Text(AppLocalizations.instance.translate('commonNo')),
-      title: Text(AppLocalizations.instance.translate('gameValidateMission')),
+      content: Text(AppLocalizations.translate('commonValidateEntry')),
+      textOK: Text(AppLocalizations.translate('commonYes')),
+      textCancel: Text(AppLocalizations.translate('commonNo')),
+      title: Text(AppLocalizations.translate('gameValidateMission')),
     );
 
     if (confirmed == true) {
@@ -82,7 +82,7 @@ class PlayGameState extends State<PlayGame> {
             icon: FaIcon(
               FontAwesomeIcons.calculator,
             ),
-            tooltip: AppLocalizations.instance.translate('gameTeamStatistics'),
+            tooltip: AppLocalizations.translate('gameTeamStatistics'),
           ),
         ],
       ),
@@ -100,8 +100,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppLocalizations.instance
-                            .translate('gameAttemptsCount') +
+                    Text(AppLocalizations.translate('gameAttemptsCount') +
                         " : "),
                     Container(
                       width: 70,
@@ -128,8 +127,7 @@ class PlayGameState extends State<PlayGame> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppLocalizations.instance
-                            .translate('gameSatelliteUsage') +
+                    Text(AppLocalizations.translate('gameSatelliteUsage') +
                         " : "),
                     Switch(
                       activeColor: primaryColor,
@@ -147,7 +145,7 @@ class PlayGameState extends State<PlayGame> {
         onPressed: () {
           _endCurrentMission(currentMission);
         },
-        label: Text(AppLocalizations.instance.translate('gameValidateMission')),
+        label: Text(AppLocalizations.translate('gameValidateMission')),
         icon: Icon(Icons.check),
       ),
     );

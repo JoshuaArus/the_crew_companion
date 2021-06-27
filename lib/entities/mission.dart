@@ -14,13 +14,13 @@ class Mission {
       this.aimOptions);
 
   String get title {
-    return AppLocalizations.instance
-        .translate('storyMission' + (this.id + 1).toString() + 'Title');
+    return AppLocalizations.translate(
+        'storyMission' + (this.id + 1).toString() + 'Title');
   }
 
   String get description {
-    return AppLocalizations.instance
-        .translate('storyMission' + (this.id + 1).toString() + 'Description');
+    return AppLocalizations.translate(
+        'storyMission' + (this.id + 1).toString() + 'Description');
   }
 
   Mission get copy {

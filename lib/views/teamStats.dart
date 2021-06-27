@@ -49,15 +49,13 @@ class _TeamStatsState extends State<TeamStats> {
             ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Text(
-                      AppLocalizations.instance.translate('teamPlayers') +
-                          " : " +
-                          widget.team.players.join(", ")),
+                  child: Text(AppLocalizations.translate('teamPlayers') +
+                      " : " +
+                      widget.team.players.join(", ")),
                 ),
                 Container(
                   padding: EdgeInsets.all(defaultPadding),
-                  child: Text(
-                      AppLocalizations.instance.translate('teamNoMission')),
+                  child: Text(AppLocalizations.translate('teamNoMission')),
                 ),
               ])
             : Column(
@@ -65,15 +63,14 @@ class _TeamStatsState extends State<TeamStats> {
                 children: [
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text(
-                        AppLocalizations.instance.translate('teamPlayers') +
-                            " : " +
-                            widget.team.players.join(", ")),
+                    child: Text(AppLocalizations.translate('teamPlayers') +
+                        " : " +
+                        widget.team.players.join(", ")),
                   ),
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text(AppLocalizations.instance
-                        .translate('teamMissionsAchievedOnTotal', {
+                    child: Text(AppLocalizations.translate(
+                        'teamMissionsAchievedOnTotal', {
                       'missionAchievedCount':
                           widget.team.achievedMissions.length.toString(),
                       'missionTotalCount':
@@ -89,8 +86,8 @@ class _TeamStatsState extends State<TeamStats> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(AppLocalizations.instance
-                                .translate('teamTotalAttemptsCount') +
+                        Text(AppLocalizations.translate(
+                                'teamTotalAttemptsCount') +
                             " : "),
                         Text(
                           widget.team.achievedMissions
