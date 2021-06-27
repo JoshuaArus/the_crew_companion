@@ -3,9 +3,14 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Last build
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   analyze:

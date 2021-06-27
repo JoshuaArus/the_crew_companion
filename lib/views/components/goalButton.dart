@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../../constant.dart';
+import 'package:the_crew_companion/constant.dart';
 
 class GoalButton extends StatelessWidget {
-  GoalButton({
-    Key? key,
-    required this.text,
-    required this.tooltip
-  }) : super(key: key);
+  GoalButton({required this.child, required this.tooltip});
 
-  final String text;
+  final Widget child;
   final String tooltip;
 
   @override
@@ -18,22 +13,18 @@ class GoalButton extends StatelessWidget {
       height: 50,
       width: 50,
       decoration: BoxDecoration(
-        border: Border.all(
-          color : primaryColor,
-        ),
-        color: secondaryColor,
-        shape: BoxShape.circle
-      ),
+          border: Border.all(
+            color: primaryColor,
+          ),
+          color: secondaryColor,
+          shape: BoxShape.circle),
       child: IconButton(
         tooltip: tooltip,
         onPressed: null,
         icon: FittedBox(
-          child: Text(
-            text,
-            style: Theme.of(context).textTheme.headline6
-          )
+          child: child,
         ),
-      )
+      ),
     );
   }
 }

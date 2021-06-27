@@ -1,39 +1,41 @@
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
-
-import 'mission.dart';
+import 'package:flutter/foundation.dart';
+import 'package:the_crew_companion/entities/achievedMission.dart';
 
 class Team {
-  
   String name = "";
   DateTime creationDate = DateTime.now();
   List<String> players = [];
-  List<Mission> achievedMissions = [];
+  List<AchievedMission> achievedMissions = [];
 
   Team.empty();
 
-  Team(
-    this.name,
-    this.players,
-    this.achievedMissions,
-  );
+  Team({
+    required this.name,
+    required this.creationDate,
+    required this.players,
+    required this.achievedMissions,
+  });
 
   Team copyWith({
     String? name,
+    DateTime? creationDate,
     List<String>? players,
-    List<Mission>? achievedMissions,
+    List<AchievedMission>? achievedMissions,
   }) {
     return Team(
-      name ?? this.name,
-      players ?? this.players,
-      achievedMissions ?? this.achievedMissions,
+      name: name ?? this.name,
+      creationDate: creationDate ?? this.creationDate,
+      players: players ?? this.players,
+      achievedMissions: achievedMissions ?? this.achievedMissions,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
+      'creationDate': creationDate.millisecondsSinceEpoch,
       'players': players,
       'achievedMissions': achievedMissions.map((x) => x.toMap()).toList(),
     };
@@ -41,9 +43,11 @@ class Team {
 
   factory Team.fromMap(Map<String, dynamic> map) {
     return Team(
-      map['name'],
-      List<String>.from(map['players']),
-      List<Mission>.from(map['achievedMissions']?.map((x) => Mission.fromMap(x))),
+      name: map['name'],
+      creationDate: DateTime.fromMillisecondsSinceEpoch(map['creationDate']),
+      players: List<String>.from(map['players']),
+      achievedMissions: List<AchievedMission>.from(
+          map['achievedMissions']?.map((x) => AchievedMission.fromMap(x))),
     );
   }
 
@@ -52,19 +56,26 @@ class Team {
   factory Team.fromJson(String source) => Team.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Team(name: $name, players: $players, achievedMissions: $achievedMissions)';
+  String toString() {
+    return 'Team(name: $name, creationDate: $creationDate, players: $players, achievedMissions: $achievedMissions)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-  
+
     return other is Team &&
-      other.name == name &&
-      listEquals(other.players, players) &&
-      listEquals(other.achievedMissions, achievedMissions);
+        other.name == name &&
+        other.creationDate == creationDate &&
+        listEquals(other.players, players) &&
+        listEquals(other.achievedMissions, achievedMissions);
   }
 
   @override
-  int get hashCode => name.hashCode ^ players.hashCode ^ achievedMissions.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+        creationDate.hashCode ^
+        players.hashCode ^
+        achievedMissions.hashCode;
+  }
 }

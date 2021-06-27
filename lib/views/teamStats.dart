@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
-import '../controller.dart';
-import '../entities/team.dart';
-import 'teamCreation.dart';
+import 'package:the_crew_companion/controller.dart';
+import 'package:darq/darq.dart';
 
 class TeamStats extends StatefulWidget {
-  const TeamStats({ Key? key, required this.controller, required this.team }) : super(key: key);
+  const TeamStats({required this.controller, required this.team});
 
   final Team team;
   final Controller controller;
@@ -16,13 +17,22 @@ class TeamStats extends StatefulWidget {
 }
 
 class _TeamStatsState extends State<TeamStats> {
+  late List<Mission> achievedMissions;
 
-  void editTeam() async {
-    final edited = await Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) => TeamCreation(team: widget.team)));
-    if (edited == true) {
-      await widget.controller.saveDatas();
-      setState(() {});
-    }
+  @override
+  void initState() {
+    super.initState();
+
+    achievedMissions = widget.team.achievedMissions.select<Mission>(
+      (achievedMission, i) {
+        Mission mission = widget.controller.missions
+            .firstWhere((m) => m.id == achievedMission.id)
+            .copyWith();
+        mission.attempts = achievedMission.attempts;
+        mission.satelliteUsed = achievedMission.satelliteUsed;
+        return mission;
+      },
+    ).toList();
   }
 
   @override
@@ -31,60 +41,63 @@ class _TeamStatsState extends State<TeamStats> {
       appBar: AppBar(
         title: Text(widget.team.name),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: editTeam,
-            icon: Icon(Icons.edit),
-            tooltip: "Editer l'équipe",
-          )
-        ]
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(defaultPadding),
-        child : (widget.team.achievedMissions.length == 0)
-          ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Text("Joueurs : " + widget.team.players.join(", ")),
-              ),
-              Container(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Text("Aucune mission réalisée jusqu'à présent"),
-              ),
-            ]
-          )
-        : Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(defaultPadding),
-              child: Text("Joueurs : " + widget.team.players.join(", ")),
-            ),
-            Container(
-              padding: EdgeInsets.all(defaultPadding),
-              child: Text("Missions réalisées : " + widget.team.achievedMissions.length.toString() + " / " + widget.controller.missions.length.toString()),
-            ),
-            MissionExpansionPanelList(
-              missions: widget.team.achievedMissions,
-              expandedMissionId: widget.team.achievedMissions.last.id,
-            ),
-            Container(
-              padding: EdgeInsets.all(defaultPadding),
-              child : Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: (widget.team.achievedMissions.length == 0)
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Text(
+                    "Joueurs : " + widget.team.players.join(", "),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Text("Aucune mission réalisée jusqu'à présent"),
+                ),
+              ])
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Nombre de tentatives totales : "),
-                  Text(
-                    widget.team.achievedMissions.map((e) => e.attempts).reduce((value, element) => value = value + element).toString(),
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
+                  Container(
+                    padding: EdgeInsets.all(defaultPadding),
+                    child: Text(
+                      "Joueurs : " + widget.team.players.join(", "),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(defaultPadding),
+                    child: Text(
+                      "Missions réalisées : " +
+                          widget.team.achievedMissions.length.toString() +
+                          " / " +
+                          widget.controller.missions.length.toString(),
+                    ),
+                  ),
+                  MissionExpansionPanelList(
+                    missions: achievedMissions,
+                    expandedMissionId: widget.team.achievedMissions.last.id,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(defaultPadding),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Nombre de tentatives totales : "),
+                        Text(
+                          widget.team.achievedMissions
+                              .map((e) => e.attempts)
+                              .reduce(
+                                  (value, element) => value = value + element)
+                              .toString(),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ]
-        )
       ),
     );
   }

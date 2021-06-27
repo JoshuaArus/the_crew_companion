@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 
-import '../../constant.dart';
-import 'aimButton.dart';
-import 'goalButton.dart';
-import '../../entities/aimOption.dart';
+import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/entities/aimOption.dart';
+import 'package:the_crew_companion/views/components/aimButton.dart';
+import 'package:the_crew_companion/views/components/goalButton.dart';
 
 class MissionAims extends StatelessWidget {
   const MissionAims({
@@ -22,9 +22,21 @@ class MissionAims extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AimButton(text: currentMission.aimCount > 0 ? currentMission.aimCount.toString() : "")
-        ]..addAll(currentMission.aimOptions.map((ao) => GoalButton(text: ao.displayValue, tooltip: ao.tooltip)).toList()),
-      )
+          AimButton(
+              text: currentMission.aimCount > 0
+                  ? currentMission.aimCount.toString()
+                  : "")
+        ]..addAll(
+            currentMission.aimOptions
+                .map(
+                  (ao) => GoalButton(
+                    child: ao.icon,
+                    tooltip: ao.tooltip,
+                  ),
+                )
+                .toList(),
+          ),
+      ),
     );
   }
 }

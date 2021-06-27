@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:the_crew_companion/constant.dart';
 
-import 'constant.dart';
+class CustomTheme {
+  static ThemeData current = dark;
 
-class  CustomThemes {
+  static final ThemeData dark = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: bgColor,
+    canvasColor: secondaryColor,
+    primaryTextTheme: GoogleFonts.poppinsTextTheme(
+      ThemeData.dark().textTheme,
+    ),
+    textTheme: GoogleFonts.poppinsTextTheme(
+      ThemeData.dark().textTheme,
+    ),
+    cardColor: secondaryColor,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryColor,
+      foregroundColor: Colors.white,
+    ),
+    cardTheme: CardTheme(
+      shape: StadiumBorder(),
+    ),
+  );
+}
 
-  static ThemeData dark() {
-    return ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: bgColor,
-      canvasColor: secondaryColor,
-      textTheme: TextTheme(
-        bodyText2: TextStyle(
-          fontSize: 18
-        )
-      ),
-      cardColor: secondaryColor,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
-      ),
-      cardTheme: CardTheme(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
-      )
-    );
-  }
-
+enum CustomThemes {
+  Dark,
+  Light,
 }

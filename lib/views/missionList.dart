@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/constant.dart';
-
-import '../controller.dart';
-import 'components/missionExpansionPanelList.dart';
+import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 
 class MissionList extends StatefulWidget {
-  const MissionList({ Key? key, required this.controller }) : super(key: key);
+  const MissionList({required this.controller});
 
   final Controller controller;
 
@@ -26,9 +25,9 @@ class _MissionListState extends State<MissionList> {
           padding: EdgeInsets.all(defaultPadding),
           child: MissionExpansionPanelList(
             missions: widget.controller.missions,
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 }

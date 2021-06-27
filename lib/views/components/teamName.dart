@@ -13,14 +13,16 @@ class TeamName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-      team.name,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
-      style: Theme.of(context)
-          .textTheme
-          .headline4!
-          .copyWith(decoration: TextDecoration.underline),
-      )
+        team.name,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context).textTheme.headline4?.copyWith(
+              decoration: TextDecoration.underline,
+              fontSize: Theme.of(context).textTheme.headline4!.fontSize != null
+                  ? Theme.of(context).textTheme.headline4!.fontSize! * 0.8
+                  : 30,
+            ),
+      ),
     );
   }
 }
