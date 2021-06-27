@@ -1,15 +1,11 @@
 import 'package:the_crew_companion/entities/aimOption.dart';
 import 'package:the_crew_companion/entities/mission.dart';
-import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class Story {
-
   static List<Mission> getMissions() {
     return [
       Mission(
         0,
-        AppLocalizations.instance!.translate('storyMission1Title'),
-        AppLocalizations.instance!.translate('storyMission1Description'),
         1,
         0,
         false,
@@ -17,8 +13,6 @@ class Story {
       ),
       Mission(
         1,
-        AppLocalizations.instance!.translate('storyMission2Title'),
-        AppLocalizations.instance!.translate('storyMission2Description'),
         2,
         0,
         false,
@@ -26,8 +20,6 @@ class Story {
       ),
       Mission(
         2,
-        AppLocalizations.instance!.translate('storyMission3Title'),
-        AppLocalizations.instance!.translate('storyMission3Description'),
         2,
         0,
         false,
@@ -35,8 +27,6 @@ class Story {
       ),
       Mission(
         3,
-        AppLocalizations.instance!.translate('storyMission4Title'),
-        AppLocalizations.instance!.translate('storyMission4Description'),
         3,
         0,
         false,
@@ -44,8 +34,6 @@ class Story {
       ),
       Mission(
         4,
-        AppLocalizations.instance!.translate('storyMission5Title'),
-        AppLocalizations.instance!.translate('storyMission5Description'),
         0,
         0,
         false,
@@ -53,8 +41,6 @@ class Story {
       ),
       Mission(
         5,
-        AppLocalizations.instance!.translate('storyMission6Title'),
-        AppLocalizations.instance!.translate('storyMission6Description'),
         3,
         0,
         false,
@@ -62,8 +48,6 @@ class Story {
       ),
       Mission(
         6,
-        AppLocalizations.instance!.translate('storyMission7Title'),
-        AppLocalizations.instance!.translate('storyMission7Description'),
         3,
         0,
         false,
@@ -71,8 +55,6 @@ class Story {
       ),
       Mission(
         7,
-        AppLocalizations.instance!.translate('storyMission8Title'),
-        AppLocalizations.instance!.translate('storyMission8Description'),
         3,
         0,
         false,
@@ -80,8 +62,6 @@ class Story {
       ),
       Mission(
         8,
-        AppLocalizations.instance!.translate('storyMission9Title'),
-        AppLocalizations.instance!.translate('storyMission9Description'),
         0,
         0,
         false,
@@ -89,8 +69,6 @@ class Story {
       ),
       Mission(
         9,
-        AppLocalizations.instance!.translate('storyMission10Title'),
-        AppLocalizations.instance!.translate('storyMission10Description'),
         4,
         0,
         false,
@@ -98,8 +76,6 @@ class Story {
       ),
       Mission(
         10,
-        AppLocalizations.instance!.translate('storyMission11Title'),
-        AppLocalizations.instance!.translate('storyMission11Description'),
         4,
         0,
         false,
@@ -107,8 +83,6 @@ class Story {
       ),
       Mission(
         11,
-        AppLocalizations.instance!.translate('storyMission12Title'),
-        AppLocalizations.instance!.translate('storyMission12Description'),
         4,
         0,
         false,
@@ -116,8 +90,6 @@ class Story {
       ),
       Mission(
         12,
-        AppLocalizations.instance!.translate('storyMission13Title'),
-        AppLocalizations.instance!.translate('storyMission13Description'),
         0,
         0,
         false,
@@ -125,8 +97,6 @@ class Story {
       ),
       Mission(
         13,
-        AppLocalizations.instance!.translate('storyMission14Title'),
-        AppLocalizations.instance!.translate('storyMission14Description'),
         4,
         0,
         false,
@@ -134,8 +104,6 @@ class Story {
       ),
       Mission(
         14,
-        AppLocalizations.instance!.translate('storyMission15Title'),
-        AppLocalizations.instance!.translate('storyMission15Description'),
         4,
         0,
         false,
@@ -143,8 +111,6 @@ class Story {
       ),
       Mission(
         15,
-        AppLocalizations.instance!.translate('storyMission16Title'),
-        AppLocalizations.instance!.translate('storyMission16Description'),
         0,
         0,
         false,
@@ -152,8 +118,6 @@ class Story {
       ),
       Mission(
         16,
-        AppLocalizations.instance!.translate('storyMission17Title'),
-        AppLocalizations.instance!.translate('storyMission17Description'),
         2,
         0,
         false,
@@ -161,8 +125,6 @@ class Story {
       ),
       Mission(
         17,
-        AppLocalizations.instance!.translate('storyMission18Title'),
-        AppLocalizations.instance!.translate('storyMission18Description'),
         5,
         0,
         false,
@@ -170,8 +132,6 @@ class Story {
       ),
       Mission(
         18,
-        AppLocalizations.instance!.translate('storyMission19Title'),
-        AppLocalizations.instance!.translate('storyMission19Description'),
         5,
         0,
         false,
@@ -179,8 +139,6 @@ class Story {
       ),
       Mission(
         19,
-        AppLocalizations.instance!.translate('storyMission20Title'),
-        AppLocalizations.instance!.translate('storyMission20Description'),
         2,
         0,
         false,
@@ -188,8 +146,6 @@ class Story {
       ),
       Mission(
         20,
-        AppLocalizations.instance!.translate('storyMission21Title'),
-        AppLocalizations.instance!.translate('storyMission21Description'),
         5,
         0,
         false,
@@ -197,8 +153,6 @@ class Story {
       ),
       Mission(
         21,
-        AppLocalizations.instance!.translate('storyMission22Title'),
-        AppLocalizations.instance!.translate('storyMission22Description'),
         5,
         0,
         false,
@@ -206,8 +160,6 @@ class Story {
       ),
       Mission(
         22,
-        AppLocalizations.instance!.translate('storyMission23Title'),
-        AppLocalizations.instance!.translate('storyMission23Description'),
         5,
         0,
         false,
@@ -221,8 +173,6 @@ class Story {
       ),
       Mission(
         23,
-        AppLocalizations.instance!.translate('storyMission24Title'),
-        AppLocalizations.instance!.translate('storyMission24Description'),
         6,
         0,
         false,
@@ -230,8 +180,6 @@ class Story {
       ),
       Mission(
         24,
-        AppLocalizations.instance!.translate('storyMission25Title'),
-        AppLocalizations.instance!.translate('storyMission25Description'),
         6,
         0,
         false,
@@ -239,8 +187,6 @@ class Story {
       ),
       Mission(
         25,
-        AppLocalizations.instance!.translate('storyMission26Title'),
-        AppLocalizations.instance!.translate('storyMission26Description'),
         0,
         0,
         false,
@@ -248,8 +194,6 @@ class Story {
       ),
       Mission(
         26,
-        AppLocalizations.instance!.translate('storyMission27Title'),
-        AppLocalizations.instance!.translate('storyMission27Description'),
         3,
         0,
         false,
@@ -257,8 +201,6 @@ class Story {
       ),
       Mission(
         27,
-        AppLocalizations.instance!.translate('storyMission28Title'),
-        AppLocalizations.instance!.translate('storyMission28Description'),
         6,
         0,
         false,
@@ -266,8 +208,6 @@ class Story {
       ),
       Mission(
         28,
-        AppLocalizations.instance!.translate('storyMission29Title'),
-        AppLocalizations.instance!.translate('storyMission29Description'),
         0,
         0,
         false,
@@ -275,8 +215,6 @@ class Story {
       ),
       Mission(
         29,
-        AppLocalizations.instance!.translate('storyMission30Title'),
-        AppLocalizations.instance!.translate('storyMission30Description'),
         6,
         0,
         false,
@@ -284,8 +222,6 @@ class Story {
       ),
       Mission(
         30,
-        AppLocalizations.instance!.translate('storyMission31Title'),
-        AppLocalizations.instance!.translate('storyMission31Description'),
         6,
         0,
         false,
@@ -293,8 +229,6 @@ class Story {
       ),
       Mission(
         31,
-        AppLocalizations.instance!.translate('storyMission32Title'),
-        AppLocalizations.instance!.translate('storyMission32Description'),
         7,
         0,
         false,
@@ -302,8 +236,6 @@ class Story {
       ),
       Mission(
         32,
-        AppLocalizations.instance!.translate('storyMission33Title'),
-        AppLocalizations.instance!.translate('storyMission33Description'),
         0,
         0,
         false,
@@ -311,8 +243,6 @@ class Story {
       ),
       Mission(
         33,
-        AppLocalizations.instance!.translate('storyMission34Title'),
-        AppLocalizations.instance!.translate('storyMission34Description'),
         0,
         0,
         false,
@@ -320,8 +250,6 @@ class Story {
       ),
       Mission(
         34,
-        AppLocalizations.instance!.translate('storyMission35Title'),
-        AppLocalizations.instance!.translate('storyMission35Description'),
         7,
         0,
         false,
@@ -329,8 +257,6 @@ class Story {
       ),
       Mission(
         35,
-        AppLocalizations.instance!.translate('storyMission36Title'),
-        AppLocalizations.instance!.translate('storyMission36Description'),
         7,
         0,
         false,
@@ -338,8 +264,6 @@ class Story {
       ),
       Mission(
         36,
-        AppLocalizations.instance!.translate('storyMission37Title'),
-        AppLocalizations.instance!.translate('storyMission37Description'),
         4,
         0,
         false,
@@ -347,8 +271,6 @@ class Story {
       ),
       Mission(
         37,
-        AppLocalizations.instance!.translate('storyMission38Title'),
-        AppLocalizations.instance!.translate('storyMission38Description'),
         8,
         0,
         false,
@@ -356,8 +278,6 @@ class Story {
       ),
       Mission(
         38,
-        AppLocalizations.instance!.translate('storyMission39Title'),
-        AppLocalizations.instance!.translate('storyMission39Description'),
         8,
         0,
         false,
@@ -365,8 +285,6 @@ class Story {
       ),
       Mission(
         39,
-        AppLocalizations.instance!.translate('storyMission40Title'),
-        AppLocalizations.instance!.translate('storyMission40Description'),
         8,
         0,
         false,
@@ -374,8 +292,6 @@ class Story {
       ),
       Mission(
         40,
-        AppLocalizations.instance!.translate('storyMission41Title'),
-        AppLocalizations.instance!.translate('storyMission41Description'),
         0,
         0,
         false,
@@ -383,8 +299,6 @@ class Story {
       ),
       Mission(
         41,
-        AppLocalizations.instance!.translate('storyMission42Title'),
-        AppLocalizations.instance!.translate('storyMission42Description'),
         9,
         0,
         false,
@@ -392,8 +306,6 @@ class Story {
       ),
       Mission(
         42,
-        AppLocalizations.instance!.translate('storyMission43Title'),
-        AppLocalizations.instance!.translate('storyMission43Description'),
         9,
         0,
         false,
@@ -401,8 +313,6 @@ class Story {
       ),
       Mission(
         43,
-        AppLocalizations.instance!.translate('storyMission44Title'),
-        AppLocalizations.instance!.translate('storyMission44Description'),
         0,
         0,
         false,
@@ -410,8 +320,6 @@ class Story {
       ),
       Mission(
         44,
-        AppLocalizations.instance!.translate('storyMission45Title'),
-        AppLocalizations.instance!.translate('storyMission45Description'),
         9,
         0,
         false,
@@ -419,8 +327,6 @@ class Story {
       ),
       Mission(
         45,
-        AppLocalizations.instance!.translate('storyMission46Title'),
-        AppLocalizations.instance!.translate('storyMission46Description'),
         0,
         0,
         false,
@@ -428,8 +334,6 @@ class Story {
       ),
       Mission(
         46,
-        AppLocalizations.instance!.translate('storyMission47Title'),
-        AppLocalizations.instance!.translate('storyMission47Description'),
         10,
         0,
         false,
@@ -437,8 +341,6 @@ class Story {
       ),
       Mission(
         47,
-        AppLocalizations.instance!.translate('storyMission48Title'),
-        AppLocalizations.instance!.translate('storyMission48Description'),
         3,
         0,
         false,
@@ -446,21 +348,12 @@ class Story {
       ),
       Mission(
         48,
-        AppLocalizations.instance!.translate('storyMission49Title'),
-        AppLocalizations.instance!.translate('storyMission49Description'),
         10,
         0,
         false,
         [AimOption.First, AimOption.Second, AimOption.Third],
       ),
-      Mission(
-        49,
-        AppLocalizations.instance!.translate('storyMission50Title'),
-        AppLocalizations.instance!.translate('storyMission50Description'),
-        0,
-        0,
-        false, []
-      )
+      Mission(49, 0, 0, false, [])
     ];
   }
 }

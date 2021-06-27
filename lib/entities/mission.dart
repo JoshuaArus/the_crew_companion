@@ -1,18 +1,27 @@
 import 'dart:convert';
 
 import 'package:the_crew_companion/entities/aimOption.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class Mission {
   late int id;
-  late String title;
-  late String description;
   late int aimCount;
   late int attempts;
   late bool satelliteUsed;
   late List<AimOption> aimOptions;
 
-  Mission(this.id, this.title, this.description, this.aimCount, this.attempts,
-      this.satelliteUsed, this.aimOptions);
+  Mission(this.id, this.aimCount, this.attempts, this.satelliteUsed,
+      this.aimOptions);
+
+  String get title {
+    return AppLocalizations.instance!
+        .translate('storyMission' + (this.id + 1).toString() + 'Title');
+  }
+
+  String get description {
+    return AppLocalizations.instance!
+        .translate('storyMission' + (this.id + 1).toString() + 'Description');
+  }
 
   Mission get copy {
     return Mission.fromJson(jsonDecode(jsonEncode(this)));
@@ -20,8 +29,6 @@ class Mission {
 
   Mission.fromData(
       {required this.id,
-      required this.title,
-      required this.description,
       required this.aimCount,
       required this.attempts,
       required this.satelliteUsed,
@@ -38,8 +45,6 @@ class Mission {
         .toList();
     return Mission.fromData(
       id: json["id"] as int,
-      title: json["title"] as String,
-      description: json["description"] as String,
       aimCount: json["aimCount"] as int,
       attempts: json["attempts"] as int,
       satelliteUsed: json["satelliteUsed"] as bool,
