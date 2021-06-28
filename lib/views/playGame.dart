@@ -44,9 +44,9 @@ class PlayGameState extends State<PlayGame> {
     if (confirmed == true) {
       widget.team.achievedMissions.add(
         AchievedMission(
-          mission.id,
-          int.parse(attempts.text == "" ? "1" : attempts.text),
-          satUsed,
+          id: mission.id,
+          attempts: int.parse(attempts.text == "" ? "1" : attempts.text),
+          satelliteUsed: satUsed,
         ),
       );
       await widget.controller.saveDatas();
@@ -61,7 +61,7 @@ class PlayGameState extends State<PlayGame> {
     Mission currentMission = widget.controller.missions
         .firstWhere(
             (element) => element.id == widget.team.achievedMissions.length)
-        .copy;
+        .copyWith();
 
     return Scaffold(
       drawer: CustomDrawer(controller: widget.controller),
