@@ -21,15 +21,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   double dropdownButtonWidth = 100;
 
   @override
-  void initState() {
-    super.initState();
-
-    currentLanguage = AppLocalizations.getCurrentLanguage();
-    currentTheme = CustomThemes.Dark;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    currentLanguage = AppLocalizations.getCurrentLanguage();
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     currentTheme = themeNotifier.getTheme();
     return Scaffold(
