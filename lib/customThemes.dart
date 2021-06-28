@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:the_crew_companion/constant.dart';
@@ -14,7 +15,9 @@ class CustomThemesFactory {
   }
 }
 
-extension CustomThemesExtenion on CustomThemes {
+extension CustomThemesExtension on CustomThemes {
+  String get value => describeEnum(this);
+
   CustomThemes get copy {
     return CustomThemesFactory.fromString(this.toString());
   }

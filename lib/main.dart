@@ -30,9 +30,7 @@ class TheCrewCompanionApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [
-        const Locale('fr'),
-      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       onGenerateTitle: (context) =>
           AppLocalizations.translate('applicationName'),
       home: FutureBuilder(

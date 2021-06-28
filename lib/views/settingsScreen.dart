@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/themeNotifier.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -20,20 +21,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   double dropdownButtonWidth = 100;
 
   @override
-  void initState() {
-    super.initState();
-
-    currentLanguage = "fr";
-  }
-
-  @override
   Widget build(BuildContext context) {
+    currentLanguage = AppLocalizations.getCurrentLanguage();
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     currentTheme = themeNotifier.getTheme();
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Paramètres",
+          AppLocalizations.translate('settingsTitle'),
         ),
         centerTitle: true,
       ),
@@ -46,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Langue",
+                    AppLocalizations.translate('settingsLanguage'),
                   ),
                   Container(
                     width: dropdownButtonWidth,
@@ -56,17 +51,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onChanged: (String? newLanguage) {
                         //TODO save language, reload translations, etc...
                         setState(() {
-                          currentLanguage = newLanguage ?? "fr";
+                          currentLanguage = newLanguage ??
+                              AppLocalizations.fallbackLocale.languageCode;
                         });
                       },
                       items: [
                         DropdownMenuItem<String>(
-                          value: "en",
-                          child: Text("Anglais"),
+                          value: LanguageCodes.en.value,
+                          child: Text(LanguageCodes.en.displayValue),
                         ),
                         DropdownMenuItem<String>(
-                          value: "fr",
-                          child: Text("Français"),
+                          value: LanguageCodes.fr.value,
+                          child: Text(LanguageCodes.fr.displayValue),
                         ),
                       ],
                     ),
@@ -77,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Thème",
+                    AppLocalizations.translate('settingsTheme'),
                   ),
                   Container(
                     width: dropdownButtonWidth,
@@ -94,11 +90,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       items: [
                         DropdownMenuItem<CustomThemes>(
                           value: CustomThemes.Dark,
-                          child: Text("Dark"),
+                          child: Text(CustomThemes.Dark.value),
                         ),
                         DropdownMenuItem<CustomThemes>(
                           value: CustomThemes.Light,
-                          child: Text("Light"),
+                          child: Text(CustomThemes.Light.value),
                         ),
                       ],
                     ),
