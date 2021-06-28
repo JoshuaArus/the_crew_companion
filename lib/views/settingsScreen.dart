@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/themeNotifier.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Controller controller;
@@ -28,6 +30,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    currentTheme = themeNotifier.getTheme();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -84,9 +88,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       value: currentTheme,
                       isExpanded: true,
                       onChanged: (CustomThemes? newTheme) {
-                        //TODO save theme, reload interface, etc...
+                        if (newTheme == null) return;
+                        themeNotifier.setTheme(newTheme);
                         setState(() {
-                          currentTheme = newTheme ?? CustomThemes.Dark;
+                          currentTheme = newTheme;
                         });
                       },
                       items: [

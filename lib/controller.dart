@@ -10,7 +10,6 @@ class Controller {
   late PackageInfo infos;
 
   String get storageKey => infos.packageName;
-  String get developper => "Joshua Arus";
   String get appName => infos.appName;
   String get appVersion => infos.version;
   String get buildNumber => infos.buildNumber;

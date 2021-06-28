@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:the_crew_companion/customThemes.dart';
+import 'package:provider/provider.dart';
+import 'package:the_crew_companion/themeNotifier.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 enum AimOption {
@@ -83,7 +84,9 @@ extension AimOptionExtension on AimOption {
     }
   }
 
-  Widget get icon {
+  Widget buildIcon(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    ThemeData currentTheme = themeNotifier.getThemeData();
     switch (this) {
       case AimOption.One:
       case AimOption.Two:
@@ -92,22 +95,22 @@ extension AimOptionExtension on AimOption {
       case AimOption.Five:
         return Text(
           this.displayValue,
-          style: CustomTheme.current.primaryTextTheme.headline6!.copyWith(
+          style: currentTheme.primaryTextTheme.headline6!.copyWith(
             fontWeight: FontWeight.bold,
           ),
         );
       case AimOption.First:
-        return Row(children: _generateChevrons(1));
+        return Row(children: _generateChevrons(currentTheme, 1));
       case AimOption.Second:
-        return Row(children: _generateChevrons(2));
+        return Row(children: _generateChevrons(currentTheme, 2));
       case AimOption.Third:
-        return Row(children: _generateChevrons(3));
+        return Row(children: _generateChevrons(currentTheme, 3));
       case AimOption.Fourth:
-        return Row(children: _generateChevrons(4));
+        return Row(children: _generateChevrons(currentTheme, 4));
       case AimOption.Last:
         return Image.asset(
           "assets/images/omega.png",
-          color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
+          color: currentTheme.primaryTextTheme.bodyText2!.color,
         );
       case AimOption.Comms:
         return FaIcon(
@@ -119,18 +122,18 @@ extension AimOptionExtension on AimOption {
           angle: -45,
           child: FaIcon(
             FontAwesomeIcons.undoAlt,
-            color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
+            color: currentTheme.primaryTextTheme.bodyText2!.color,
           ),
         );
     }
   }
 
-  List<Widget> _generateChevrons(int nb) {
+  List<Widget> _generateChevrons(ThemeData currentTheme, int nb) {
     return List.filled(
       nb,
       FaIcon(
         FontAwesomeIcons.chevronRight,
-        color: CustomTheme.current.primaryTextTheme.bodyText2!.color,
+        color: currentTheme.primaryTextTheme.bodyText2!.color,
       ),
     );
   }

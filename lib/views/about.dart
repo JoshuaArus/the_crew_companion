@@ -21,7 +21,6 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     String version = widget.controller.appVersion;
-    String developper = widget.controller.developper;
 
     return Scaffold(
       appBar: AppBar(
@@ -86,9 +85,22 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          Text(AppLocalizations.translate('aboutDevelopedBy') +
-                              " " +
-                              developper),
+                          MarkdownBody(
+                            data:
+                                AppLocalizations.translate('aboutDevelopedBy') +
+                                    " " +
+                                    AppLocalizations.translate(
+                                        'applicationDeveloper'),
+                            styleSheet: MarkdownStyleSheet(
+                              textAlign: WrapAlignment.spaceEvenly,
+                              p: TextStyle(
+                                height: 2,
+                              ),
+                            ),
+                            onTapLink: (text, url, title) {
+                              launch(url!);
+                            },
+                          ),
                           MarkdownBody(
                             data: AppLocalizations.translate(
                                 'aboutFollowProject'),

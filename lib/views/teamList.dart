@@ -21,6 +21,7 @@ class TeamList extends StatefulWidget {
 }
 
 class _TeamListState extends State<TeamList> {
+
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
       context,

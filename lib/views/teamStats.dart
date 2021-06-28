@@ -28,7 +28,7 @@ class _TeamStatsState extends State<TeamStats> {
       (achievedMission, i) {
         Mission mission = widget.controller.missions
             .firstWhere((m) => m.id == achievedMission.id)
-            .copy;
+            .copyWith();
         mission.attempts = achievedMission.attempts;
         mission.satelliteUsed = achievedMission.satelliteUsed;
         return mission;

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _addTeam() async {
-    final newTeam = Team();
+    final newTeam = Team.empty();
     final created = await Navigator.push(
       context,
       new MaterialPageRoute(
