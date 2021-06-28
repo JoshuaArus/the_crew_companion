@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 class AppLocalizations {
-  AppLocalizations(this.locale);
+  AppLocalizations(Locale locale) {
+    _locale = locale;
+  }
 
   static final Locale fallbackLocale = Locale(LanguageCodes.fr.value);
 
@@ -19,24 +20,22 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static late AppLocalizations instance;
-
-  AppLocalizations._init(this.locale) {
-    instance = this;
+  AppLocalizations._init(Locale locale) {
+    _locale = locale;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  Locale locale;
+  static late Locale _locale;
   static Map<String, String> _localizedStrings = {};
   static Map<String, String> _fallbackLocalizedStrings = {};
 
   Future<void> load() async {
-    _localizedStrings = await _loadLocalizedStrings(locale);
+    _localizedStrings = await _loadLocalizedStrings(_locale);
     _fallbackLocalizedStrings = {};
 
-    if (locale != fallbackLocale) {
+    if (_locale != fallbackLocale) {
       _fallbackLocalizedStrings = await _loadLocalizedStrings(fallbackLocale);
     }
   }
@@ -87,11 +86,7 @@ class AppLocalizations {
   }
 
   static String getCurrentLanguage() {
-    return new Locale(Intl.getCurrentLocale())
-        .languageCode
-        .toLowerCase()
-        .split('_')
-        .first;
+    return _locale.languageCode.toLowerCase().split('_').first;
   }
 }
 
