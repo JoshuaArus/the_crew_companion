@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatefulWidget {
   const About({required this.controller});
@@ -72,18 +71,9 @@ class _AboutState extends State<About> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          MarkdownBody(
+                          CustomMarkdownBody(
                             data:
                                 AppLocalizations.translate('aboutPresentation'),
-                            styleSheet: MarkdownStyleSheet(
-                              textAlign: WrapAlignment.spaceEvenly,
-                              p: TextStyle(
-                                height: 2,
-                              ),
-                            ),
-                            onTapLink: (text, url, title) {
-                              launch(url!);
-                            },
                           ),
                           MarkdownBody(
                             data:
@@ -101,18 +91,9 @@ class _AboutState extends State<About> {
                               launch(url!);
                             },
                           ),
-                          MarkdownBody(
+                          CustomMarkdownBody(
                             data: AppLocalizations.translate(
                                 'aboutFollowProject'),
-                            styleSheet: MarkdownStyleSheet(
-                              textAlign: WrapAlignment.spaceEvenly,
-                              p: TextStyle(
-                                height: 2,
-                              ),
-                            ),
-                            onTapLink: (text, url, title) {
-                              launch(url!);
-                            },
                           ),
                           Text(AppLocalizations.translate('aboutVersion') +
                               " " +
