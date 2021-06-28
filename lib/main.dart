@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/themeNotifier.dart';
 import 'package:the_crew_companion/views/homeScreen.dart';
 import 'package:the_crew_companion/views/splashScreen.dart';
 
-void main() async {
-  runApp(TheCrewCompanionApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(),
+      child: TheCrewCompanionApp(),
+    ),
+  );
 }
 
 class TheCrewCompanionApp extends StatelessWidget {
@@ -16,7 +22,9 @@ class TheCrewCompanionApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     return MaterialApp(
+      theme: themeNotifier.getThemeData(),
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -27,7 +35,6 @@ class TheCrewCompanionApp extends StatelessWidget {
       ],
       onGenerateTitle: (context) =>
           AppLocalizations.translate('applicationName'),
-      theme: CustomTheme.current,
       home: FutureBuilder(
         future: Future.wait(
           [
