@@ -18,6 +18,7 @@
 
   "menuRules": "Les règles",
   "menuMissionList": "Liste des missions",
+  "menuSettings": "Paramètres",
   "menuAbout": "A propos",
 
   "homeNewGame": "Nouvelle partie",
@@ -150,6 +151,12 @@
   "storyMission49Description": "Lorsque vous reprenez enfin connaissance, la situation semble s'être stabilisée. Vous êtes tout juste parvenus à assurer le minimum vital avant de succomber de fatigue. Vous déterminez votre position actuelle et pouvez à peine y croire : vous êtes en orbite autour de Vénus ! Le trou de ver est un lien direct entre la neuvième planète et Vénus, la deuxième planète. Cela explique la chaleur extrême, car Vénus est significativement plus proche du Soleil que la Terre. Il vous faut un moment pour réaliser ce que cela signifie : vous allez pouvoir rentrer chez vous ! Vérifiez les dix modules principaux en mettant l'accent sur le système de survie, les moteurs et les communications. Cap sur la Terre !",
   "storyMission50Title": "Mission 50",
   "storyMission50Description": "Le trajet retour s'avère plus compliqué qu'il n'y paraissait. Certains modules ont été endommagés de façon irréversible lors du voyage, et vous allez devoir combattre l'immense force d'attraction du Soleil. Avec vos réserves au plus bas, vous n'avez pas droit à l'erreur. Le trajet retour doit être calculé avec une précision d'orfèvre. Vous devez tout d'abord parvenir à profiter de l'effet de fronde gravitationnelle. Puis, les modules de l'astronef doivent être maintenus en bon état de fonctionnement pour entreprendre la manoeuvre d'approche de la Terre. Enfin, atterrir nécessitera tout autant d'attention que les manoeuvres que vous avez pu effectuer jusqu'ici. **Chacun consulte ses cartes. Un membre d'équipage ne doit remporter que les 4 premiers plis. Un autre membre ne doit remporter que le dernier pli. Le reste de l'équipage doit remporter tous les plis intermédiaires. Le commandant demande à chacun quelle tâche il préfère accomplir et vous décidez ensemble qui doit assurer chaque rôle. Ne révélez rien de vos cartes.**",
+
+  "settingsTitle": "Paramètres",
+  "settingsLanguage": "Langue",
+  "settingsTheme": "Thème",
+  "settingsLanguageEn": "Anglais",
+  "settingsLanguageFr": "Français",
 
   "aboutTitle": "A propos",
   "aboutPresentation": "Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.",

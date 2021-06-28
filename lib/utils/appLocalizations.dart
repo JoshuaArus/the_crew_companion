@@ -1,11 +1,19 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class AppLocalizations {
   AppLocalizations(this.locale);
-  final Locale fallbackLocale = Locale('fr');
+
+  static final Locale fallbackLocale = Locale(LanguageCodes.fr.value);
+
+  static final List<Locale> supportedLocales = [
+    Locale(LanguageCodes.fr.value),
+    Locale(LanguageCodes.en.value)
+  ];
 
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
@@ -77,6 +85,14 @@ class AppLocalizations {
 
     return translation;
   }
+
+  static String getCurrentLanguage() {
+    return new Locale(Intl.getCurrentLocale())
+        .languageCode
+        .toLowerCase()
+        .split('_')
+        .first;
+  }
 }
 
 class _AppLocalizationsDelegate
@@ -97,4 +113,26 @@ class _AppLocalizationsDelegate
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
+}
+
+enum LanguageCodes {
+  fr,
+  en,
+}
+
+extension LanguagesCodeExtension on LanguageCodes {
+  String get value => describeEnum(this);
+
+  String get displayValue {
+    switch (this) {
+      case LanguageCodes.fr:
+        return AppLocalizations.translate('settingsLanguageFr');
+
+      case LanguageCodes.en:
+        return AppLocalizations.translate('settingsLanguageEn');
+
+      default:
+        return this.value;
+    }
+  }
 }

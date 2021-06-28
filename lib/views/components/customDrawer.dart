@@ -89,7 +89,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 ListTile(
                   title: Text(
-                    "Paramètres",
+                    AppLocalizations.translate('menuSettings'),
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   onTap: _goToSettings,
