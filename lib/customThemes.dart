@@ -8,10 +8,6 @@ enum CustomThemes {
   Light,
 }
 
-extension CustomThemesExtension on CustomThemes {
-  String get value => describeEnum(this);
-}
-
 class CustomThemesFactory {
   static CustomThemes fromString(String val) {
     return CustomThemes.values
@@ -19,7 +15,9 @@ class CustomThemesFactory {
   }
 }
 
-extension CustomThemesExtenion on CustomThemes {
+extension CustomThemesExtension on CustomThemes {
+  String get value => describeEnum(this);
+
   CustomThemes get copy {
     return CustomThemesFactory.fromString(this.toString());
   }
