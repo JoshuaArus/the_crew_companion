@@ -17,6 +17,11 @@ class About extends StatefulWidget {
 }
 
 class _AboutState extends State<About> {
+  List<String> contributors = [
+    "[Joshua Arus](https://github.com/JoshuaArus)",
+    "[Maxime Rauch](https://github.com/schnapse)",
+  ];
+
   @override
   Widget build(BuildContext context) {
     String version = widget.controller.appVersion;
@@ -75,21 +80,11 @@ class _AboutState extends State<About> {
                             data:
                                 AppLocalizations.translate('aboutPresentation'),
                           ),
-                          MarkdownBody(
+                          CustomMarkdownBody(
                             data:
                                 AppLocalizations.translate('aboutDevelopedBy') +
-                                    " " +
-                                    AppLocalizations.translate(
-                                        'applicationDeveloper'),
-                            styleSheet: MarkdownStyleSheet(
-                              textAlign: WrapAlignment.spaceEvenly,
-                              p: TextStyle(
-                                height: 2,
-                              ),
-                            ),
-                            onTapLink: (text, url, title) {
-                              launch(url!);
-                            },
+                                    " : " +
+                                    contributors.join(" - "),
                           ),
                           CustomMarkdownBody(
                             data: AppLocalizations.translate(
