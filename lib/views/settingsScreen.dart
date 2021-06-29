@@ -63,7 +63,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         .map(
                           (language) => DropdownMenuItem<String>(
                             value: language.value,
-                            child: Text(language.value),
+                            child: Text(language.displayValue),
                           ),
                         )
                         .toList(),
