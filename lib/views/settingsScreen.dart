@@ -53,16 +53,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             AppLocalizations.fallbackLocale.languageCode;
                       });
                     },
-                      items: [
-                        DropdownMenuItem<String>(
-                          value: LanguageCodes.en.value,
-                          child: Text(LanguageCodes.en.displayValue),
+                    items: LanguageCodes.values
+                        .map(
+                          (language) => DropdownMenuItem<String>(
+                            value: language.value,
+                            child: Text(language.value),
                           ),
-                        DropdownMenuItem<String>(
-                          value: LanguageCodes.fr.value,
-                          child: Text(LanguageCodes.fr.displayValue),
+                        )
+                        .toList(),
                   ),
-                      ],
                 ),
               ),
               ListTile(
@@ -81,16 +80,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         currentTheme = newTheme;
                       });
                     },
-                      items: [
-                        DropdownMenuItem<CustomThemes>(
-                          value: CustomThemes.Dark,
-                          child: Text(CustomThemes.Dark.value),
+                    items: CustomThemes.values
+                        .map(
+                          (theme) => DropdownMenuItem<CustomThemes>(
+                            value: theme,
+                            child: Text(theme.value),
                           ),
-                        DropdownMenuItem<CustomThemes>(
-                          value: CustomThemes.Light,
-                          child: Text(CustomThemes.Light.value),
+                        )
+                        .toList(),
                   ),
-                      ],
                 ),
               ),
             ],
