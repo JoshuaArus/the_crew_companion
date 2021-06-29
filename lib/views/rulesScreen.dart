@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 
 class Rules extends StatelessWidget {
   const Rules({required this.controller});
@@ -19,14 +19,8 @@ class Rules extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              MarkdownBody(
+              CustomMarkdownBody(
                 data: AppLocalizations.translate('commonUnderConstruction'),
-                styleSheet: MarkdownStyleSheet(
-                  textAlign: WrapAlignment.center,
-                  p: TextStyle(
-                    height: 2,
-                  ),
-                ),
               ),
             ],
           ),
