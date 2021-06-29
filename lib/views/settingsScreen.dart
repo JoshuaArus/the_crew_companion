@@ -37,69 +37,61 @@ class _SettingsScreenState extends State<SettingsScreen> {
           padding: EdgeInsets.all(defaultPadding),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.translate('settingsLanguage'),
-                  ),
-                  Container(
-                    width: dropdownButtonWidth,
-                    child: DropdownButton<String>(
-                      value: currentLanguage,
-                      isExpanded: true,
-                      onChanged: (String? newLanguage) {
-                        //TODO save language, reload translations, etc...
-                        setState(() {
-                          currentLanguage = newLanguage ??
-                              AppLocalizations.fallbackLocale.languageCode;
-                        });
-                      },
+              ListTile(
+                title: Text(
+                  AppLocalizations.translate('settingsLanguage'),
+                ),
+                trailing: Container(
+                  width: dropdownButtonWidth,
+                  child: DropdownButton<String>(
+                    value: currentLanguage,
+                    isExpanded: true,
+                    onChanged: (String? newLanguage) {
+                      //TODO save language, reload translations, etc...
+                      setState(() {
+                        currentLanguage = newLanguage ??
+                            AppLocalizations.fallbackLocale.languageCode;
+                      });
+                    },
                       items: [
                         DropdownMenuItem<String>(
                           value: LanguageCodes.en.value,
                           child: Text(LanguageCodes.en.displayValue),
-                        ),
+                          ),
                         DropdownMenuItem<String>(
                           value: LanguageCodes.fr.value,
                           child: Text(LanguageCodes.fr.displayValue),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.translate('settingsTheme'),
                   ),
-                  Container(
-                    width: dropdownButtonWidth,
-                    child: DropdownButton<CustomThemes>(
-                      value: currentTheme,
-                      isExpanded: true,
-                      onChanged: (CustomThemes? newTheme) {
-                        if (newTheme == null) return;
-                        themeNotifier.setTheme(newTheme);
-                        setState(() {
-                          currentTheme = newTheme;
-                        });
-                      },
+                      ],
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  AppLocalizations.translate('settingsTheme'),
+                ),
+                trailing: Container(
+                  width: dropdownButtonWidth,
+                  child: DropdownButton<CustomThemes>(
+                    value: currentTheme,
+                    isExpanded: true,
+                    onChanged: (CustomThemes? newTheme) {
+                      if (newTheme == null) return;
+                      themeNotifier.setTheme(newTheme);
+                      setState(() {
+                        currentTheme = newTheme;
+                      });
+                    },
                       items: [
                         DropdownMenuItem<CustomThemes>(
                           value: CustomThemes.Dark,
                           child: Text(CustomThemes.Dark.value),
-                        ),
+                          ),
                         DropdownMenuItem<CustomThemes>(
                           value: CustomThemes.Light,
                           child: Text(CustomThemes.Light.value),
-                        ),
+                  ),
                       ],
-                    ),
-                  )
-                ],
+                ),
               ),
             ],
           ),
