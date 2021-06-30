@@ -4,70 +4,50 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AppLocalizations {
-  AppLocalizations(Locale locale) {
-    _locale = locale;
-  }
+class AppLocalizations extends ChangeNotifier {
+  static Locale? _locale;
+  static Map<String, String> _localizedStrings = {};
 
-  static final Locale fallbackLocale = Locale(LanguageCodes.fr.value);
+  static final List<Locale> supportedLocales = LanguageCodes.values
+      .map((languageCode) => Locale(languageCode.value))
+      .toList();
 
-  static final List<Locale> supportedLocales = [
-    Locale(LanguageCodes.fr.value),
-    Locale(LanguageCodes.en.value)
-  ];
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
+  AppLocalizations();
+
   AppLocalizations._init(Locale locale) {
     _locale = locale;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
-
-  static late Locale _locale;
-  static Map<String, String> _localizedStrings = {};
-  static Map<String, String> _fallbackLocalizedStrings = {};
-
-  Future<void> load() async {
-    _localizedStrings = await _loadLocalizedStrings(_locale);
-    _fallbackLocalizedStrings = {};
-
-    if (_locale != fallbackLocale) {
-      _fallbackLocalizedStrings = await _loadLocalizedStrings(fallbackLocale);
-    }
+  Locale? getLocale() {
+    return _locale;
   }
 
-  Future<Map<String, String>> _loadLocalizedStrings(
-      Locale localeToBeLoaded) async {
-    String jsonString;
-    Map<String, String> localizedStrings = {};
+  setLocale(Locale newLocale) async {
+    await delegate.load(newLocale);
+    notifyListeners();
+  }
 
-    try {
-      jsonString = await rootBundle
-          .loadString('assets/locales/${localeToBeLoaded.languageCode}.json');
-    } catch (exception) {
-      print(exception);
-      return localizedStrings;
-    }
+  Future<void> load() async {
+    String jsonString = await rootBundle
+        .loadString('assets/locales/${_locale!.languageCode}.json');
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
-    localizedStrings = jsonMap.map((key, value) {
+    _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
     });
-
-    return localizedStrings;
   }
 
   static String translate(String key,
       [Map<String, String> arguments = const {}]) {
-    String translation = _localizedStrings[key] ?? "";
-    translation = translation.isEmpty
-        ? _fallbackLocalizedStrings[key] ?? ""
-        : translation;
+    String translation = _localizedStrings[key] ?? key;
 
     if (arguments.length == 0) {
       return translation;
@@ -84,10 +64,6 @@ class AppLocalizations {
 
     return translation;
   }
-
-  static String getCurrentLanguage() {
-    return _locale.languageCode.toLowerCase().split('_').first;
-  }
 }
 
 class _AppLocalizationsDelegate
@@ -96,7 +72,11 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    return true;
+    var isSupported = LanguageCodes.values
+        .map((languageCode) => languageCode.value)
+        .contains(
+            locale.languageCode.toLowerCase().split('_').first.toLowerCase());
+    return isSupported;
   }
 
   @override
@@ -111,8 +91,8 @@ class _AppLocalizationsDelegate
 }
 
 enum LanguageCodes {
-  fr,
   en,
+  fr,
 }
 
 extension LanguagesCodeExtension on LanguageCodes {

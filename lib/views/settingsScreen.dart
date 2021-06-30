@@ -22,9 +22,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    currentLanguage = AppLocalizations.getCurrentLanguage();
+    final appLocalizations = Provider.of<AppLocalizations>(context);
+    currentLanguage = appLocalizations.getLocale()!.languageCode;
+
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     currentTheme = themeNotifier.getTheme();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -47,17 +50,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     value: currentLanguage,
                     isExpanded: true,
                     onChanged: (String? newLanguage) {
-                      //TODO save language, reload translations, etc...
-                      setState(() {
-                        currentLanguage = newLanguage ??
-                            AppLocalizations.fallbackLocale.languageCode;
-                      });
+                      if (newLanguage == null) return;
+                      appLocalizations.setLocale(Locale(newLanguage));
+                      setState(
+                        () {
+                          currentLanguage = newLanguage;
+                        },
+                      );
                     },
                     items: LanguageCodes.values
                         .map(
                           (language) => DropdownMenuItem<String>(
                             value: language.value,
-                            child: Text(language.value),
+                            child: Text(language.displayValue),
                           ),
                         )
                         .toList(),
@@ -76,9 +81,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onChanged: (CustomThemes? newTheme) {
                       if (newTheme == null) return;
                       themeNotifier.setTheme(newTheme);
-                      setState(() {
-                        currentTheme = newTheme;
-                      });
+                      setState(
+                        () {
+                          currentTheme = newTheme;
+                        },
+                      );
                     },
                     items: CustomThemes.values
                         .map(

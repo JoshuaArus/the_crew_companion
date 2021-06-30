@@ -8,12 +8,10 @@ import 'package:the_crew_companion/views/homeScreen.dart';
 import 'package:the_crew_companion/views/splashScreen.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider<ThemeNotifier>(
-      create: (_) => ThemeNotifier(),
-      child: TheCrewCompanionApp(),
-    ),
-  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => AppLocalizations()),
+    ChangeNotifierProvider(create: (context) => ThemeNotifier()),
+  ], child: TheCrewCompanionApp()));
 }
 
 class TheCrewCompanionApp extends StatelessWidget {
@@ -23,14 +21,18 @@ class TheCrewCompanionApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final appLocalizations = Provider.of<AppLocalizations>(context);
+
     return MaterialApp(
       theme: themeNotifier.getThemeData(),
+      locale: appLocalizations.getLocale(),
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: AppLocalizations
+          .supportedLocales, // first element of supportedLocales as a fallback
       onGenerateTitle: (context) =>
           AppLocalizations.translate('applicationName'),
       home: FutureBuilder(
