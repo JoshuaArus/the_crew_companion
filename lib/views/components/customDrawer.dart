@@ -41,7 +41,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   void _goToRules() {
-    _goto(Rules(controller: widget.controller));
+    _goto(RulesScreen(controller: widget.controller));
   }
 
   @override

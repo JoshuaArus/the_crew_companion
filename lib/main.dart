@@ -40,6 +40,7 @@ class TheCrewCompanionApp extends StatelessWidget {
           [
             controller.init(),
             controller.readDatas(),
+            controller.populateRules(),
             controller.populateMissions()
           ],
         ),
