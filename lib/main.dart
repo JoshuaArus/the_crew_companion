@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:the_crew_companion/languageNotifier.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/themeNotifier.dart';
@@ -10,7 +9,7 @@ import 'package:the_crew_companion/views/splashScreen.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => LanguageNotifier()),
+    ChangeNotifierProvider(create: (context) => AppLocalizations()),
     ChangeNotifierProvider(create: (context) => ThemeNotifier()),
   ], child: TheCrewCompanionApp()));
 }
@@ -22,10 +21,11 @@ class TheCrewCompanionApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
+    final appLocalizations = Provider.of<AppLocalizations>(context);
 
     return MaterialApp(
       theme: themeNotifier.getThemeData(),
-      locale: AppLocalizations.currentLocale,
+      locale: appLocalizations.getLocale(),
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AppLocalizations {
-  static Locale? currentLocale;
+class AppLocalizations extends ChangeNotifier {
+  static Locale? _locale;
   static Map<String, String> _localizedStrings = {};
 
   static final List<Locale> supportedLocales = LanguageCodes.values
@@ -19,13 +19,24 @@ class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
+  AppLocalizations();
+
   AppLocalizations._init(Locale locale) {
-    currentLocale = locale;
+    _locale = locale;
+  }
+
+  Locale? getLocale() {
+    return _locale;
+  }
+
+  setLocale(Locale newLocale) async {
+    await delegate.load(newLocale);
+    notifyListeners();
   }
 
   Future<void> load() async {
     String jsonString = await rootBundle
-        .loadString('assets/locales/${currentLocale!.languageCode}.json');
+        .loadString('assets/locales/${_locale!.languageCode}.json');
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
