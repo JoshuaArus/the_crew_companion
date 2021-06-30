@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:the_crew_companion/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/customThemes.dart';
-import 'package:the_crew_companion/languageNotifier.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/themeNotifier.dart';
 
@@ -23,8 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final languageNotifier = Provider.of<LanguageNotifier>(context);
-    currentLanguage = AppLocalizations.currentLocale!.languageCode;
+    final appLocalizations = Provider.of<AppLocalizations>(context);
+    currentLanguage = appLocalizations.getLocale()!.languageCode;
 
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     currentTheme = themeNotifier.getTheme();
@@ -52,7 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     isExpanded: true,
                     onChanged: (String? newLanguage) {
                       if (newLanguage == null) return;
-                      languageNotifier.setLocale(Locale(newLanguage));
+                      appLocalizations.setLocale(Locale(newLanguage));
                       setState(
                         () {
                           currentLanguage = newLanguage;
