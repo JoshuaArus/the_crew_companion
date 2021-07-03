@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
@@ -7,17 +7,17 @@ import 'package:the_crew_companion/views/components/missionExpansionPanelList.da
 import 'package:the_crew_companion/controller.dart';
 import 'package:darq/darq.dart';
 
-class TeamStats extends StatefulWidget {
-  const TeamStats({required this.controller, required this.team});
+class TeamStatsScreen extends StatefulWidget {
+  const TeamStatsScreen({required this.controller, required this.team});
 
   final Team team;
   final Controller controller;
 
   @override
-  _TeamStatsState createState() => _TeamStatsState();
+  _TeamStatsScreenState createState() => _TeamStatsScreenState();
 }
 
-class _TeamStatsState extends State<TeamStats> {
+class _TeamStatsScreenState extends State<TeamStatsScreen> {
   late List<Mission> achievedMissions;
 
   @override

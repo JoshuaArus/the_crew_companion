@@ -1,32 +1,31 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
-import 'package:the_crew_companion/views/playGame.dart';
-import 'package:the_crew_companion/views/teamCreation.dart';
-import 'package:the_crew_companion/views/teamStats.dart';
+import 'package:the_crew_companion/views/screens/playGameScreen.dart';
+import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
+import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
-class TeamList extends StatefulWidget {
-  TeamList({required this.controller});
+class TeamListScreen extends StatefulWidget {
+  TeamListScreen({required this.controller});
 
   final Controller controller;
 
   @override
-  _TeamListState createState() => _TeamListState();
+  _TeamListScreenState createState() => _TeamListScreenState();
 }
 
-class _TeamListState extends State<TeamList> {
-
+class _TeamListScreenState extends State<TeamListScreen> {
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreation(team: team),
+        builder: (BuildContext context) => TeamCreationScreen(team: team),
       ),
     );
     if (edited == true) {
@@ -56,7 +55,7 @@ class _TeamListState extends State<TeamList> {
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) =>
-            TeamStats(controller: widget.controller, team: team),
+            TeamStatsScreen(controller: widget.controller, team: team),
       ),
     );
   }
@@ -87,7 +86,7 @@ class _TeamListState extends State<TeamList> {
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) =>
-            PlayGame(controller: widget.controller, team: team),
+            PlayGameScreen(controller: widget.controller, team: team),
       ),
     );
   }

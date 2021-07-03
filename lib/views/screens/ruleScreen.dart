@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/ruleSection.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';

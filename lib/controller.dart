@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/rule.dart';
-import 'package:the_crew_companion/story.dart';
+import 'package:the_crew_companion/services/missionService.dart';
+import 'package:the_crew_companion/services/ruleService.dart';
 
 class Controller {
   late PackageInfo infos;
@@ -47,13 +47,13 @@ class Controller {
     if (this.rules.isNotEmpty) {
       return;
     }
-    this.rules.addAll(Rule.getChapters());
+    this.rules.addAll(RuleService.getChapters());
   }
 
   Future<void> populateMissions() async {
     if (this.missions.isNotEmpty) {
       return;
     }
-    this.missions.addAll(Story.getMissions());
+    this.missions.addAll(MissionService.getMissions());
   }
 }

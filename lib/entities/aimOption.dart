@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:the_crew_companion/themeNotifier.dart';
+import 'package:the_crew_companion/utils/themeNotifier.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 enum AimOption {

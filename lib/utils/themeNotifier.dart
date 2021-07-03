@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/customThemes.dart';
+import 'package:the_crew_companion/utils/customThemes.dart';
 
 class ThemeNotifier extends ChangeNotifier {
   CustomThemes _theme;
