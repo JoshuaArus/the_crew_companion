@@ -30,37 +30,43 @@ class _RulesScreenState extends State<RulesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.translate('gameRules')),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-            child: Container(
+      appBar: AppBar(
+        title: Text(AppLocalizations.translate('gameRules')),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           padding: EdgeInsets.all(defaultPadding),
-          child: Column(
-            children: widget.controller.rules
-                .map((ruleChapter) => Card(
-                    margin: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.zero,
-                    ),
-                    child: Container(
-                        decoration: BoxDecoration(
+          child: FutureBuilder(
+            future: widget.controller.populateRules(),
+            builder: (context, snapshot) {
+              return Column(
+                children: widget.controller.rules
+                    .map((ruleChapter) => Container(
+                          decoration: BoxDecoration(
+                            color: secondaryColor,
                             border: Border(
-                                bottom: BorderSide(
-                                    width: 1.0, color: primaryColor))),
-                        child: ListTile(
-                          title: Text(
-                            AppLocalizations.translate(ruleChapter.title),
-                            overflow: TextOverflow.ellipsis,
+                              bottom:
+                                  BorderSide(width: 1.0, color: primaryColor),
+                            ),
                           ),
-                          trailing: FaIcon(
-                            FontAwesomeIcons.chevronRight,
+                          child: ListTile(
+                            title: Text(
+                              AppLocalizations.translate(ruleChapter.title),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            trailing: FaIcon(
+                              FontAwesomeIcons.chevronRight,
+                            ),
+                            onTap: () => _goToRule(ruleChapter),
                           ),
-                          onTap: () => _goToRule(ruleChapter),
-                        ))))
-                .toList(),
+                        ))
+                    .toList(),
+              );
+            },
           ),
-        )));
+        ),
+      ),
+    );
   }
 }
