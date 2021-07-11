@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/entities/team.dart';
@@ -8,9 +8,9 @@ import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/homeScreenButton.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
-import 'package:the_crew_companion/views/playGame.dart';
-import 'package:the_crew_companion/views/teamCreation.dart';
-import 'package:the_crew_companion/views/teamList.dart';
+import 'package:the_crew_companion/views/screens/playGameScreen.dart';
+import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
+import 'package:the_crew_companion/views/screens/teamListScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.controller});
@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
     bool? needRefresh = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamList(
+        builder: (BuildContext context) => TeamListScreen(
           controller: widget.controller,
         ),
       ),
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final created = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreation(team: newTeam),
+        builder: (BuildContext context) => TeamCreationScreen(team: newTeam),
       ),
     );
     if (created == true) {
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
         context,
         new MaterialPageRoute(
           builder: (BuildContext context) =>
-              PlayGame(controller: widget.controller, team: newTeam),
+              PlayGameScreen(controller: widget.controller, team: newTeam),
         ),
       );
 

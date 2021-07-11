@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/themeNotifier.dart';
-import 'package:the_crew_companion/views/homeScreen.dart';
-import 'package:the_crew_companion/views/splashScreen.dart';
+import 'package:the_crew_companion/utils/themeNotifier.dart';
+import 'package:the_crew_companion/views/screens/homeScreen.dart';
+import 'package:the_crew_companion/views/screens/splashScreen.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -40,6 +40,7 @@ class TheCrewCompanionApp extends StatelessWidget {
           [
             controller.init(),
             controller.readDatas(),
+            controller.populateRules(),
             controller.populateMissions()
           ],
         ),

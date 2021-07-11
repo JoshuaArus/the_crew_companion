@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/story.dart';
+import 'package:the_crew_companion/services/missionService.dart';
+import 'package:the_crew_companion/services/ruleService.dart';
 
 class Controller {
   late PackageInfo infos;
@@ -20,6 +22,7 @@ class Controller {
 
   List<Team> teams = [];
   final List<Mission> missions = [];
+  final List<RuleChapter> rules = [];
 
   Future<void> saveDatas() async {
     final serializedTeams = jsonEncode(teams);
@@ -40,10 +43,17 @@ class Controller {
     return true;
   }
 
+  Future<void> populateRules() async {
+    if (this.rules.isNotEmpty) {
+      return;
+    }
+    this.rules.addAll(RuleService.getChapters());
+  }
+
   Future<void> populateMissions() async {
     if (this.missions.isNotEmpty) {
       return;
     }
-    this.missions.addAll(Story.getMissions());
+    this.missions.addAll(MissionService.getMissions());
   }
 }

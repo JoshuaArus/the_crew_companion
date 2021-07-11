@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
-import 'package:the_crew_companion/views/about.dart';
 import 'package:the_crew_companion/views/components/containerGradient.dart';
-import 'package:the_crew_companion/views/missionList.dart';
-import 'package:the_crew_companion/views/rulesScreen.dart';
-import 'package:the_crew_companion/views/settingsScreen.dart';
+import 'package:the_crew_companion/views/components/missionList.dart';
+import 'package:the_crew_companion/views/screens/aboutScreen.dart';
+import 'package:the_crew_companion/views/screens/rulesScreen.dart';
+import 'package:the_crew_companion/views/screens/settingsScreen.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({required this.controller});
@@ -37,11 +37,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   void _goToAbout() {
-    _goto(About(controller: widget.controller));
+    _goto(AboutScreen(controller: widget.controller));
   }
 
   void _goToRules() {
-    _goto(Rules(controller: widget.controller));
+    _goto(RulesScreen(controller: widget.controller));
   }
 
   @override

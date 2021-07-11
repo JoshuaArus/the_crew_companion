@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class TeamProgress extends StatelessWidget {

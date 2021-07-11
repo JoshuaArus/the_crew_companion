@@ -30,10 +30,19 @@ class CustomMarkdownBody extends MarkdownBody {
           key: key,
           data: data,
           selectable: selectable,
-          styleSheet: styleSheet,
+          styleSheet: styleSheet ??
+              MarkdownStyleSheet(
+                textAlign: WrapAlignment.spaceEvenly,
+                p: TextStyle(
+                  height: 2,
+                ),
+              ),
           styleSheetTheme: styleSheetTheme,
           syntaxHighlighter: syntaxHighlighter,
-          onTapLink: onTapLink,
+          onTapLink: onTapLink ??
+              (String text, String? url, String title) {
+                launch(url!);
+              },
           onTapText: onTapText,
           imageDirectory: imageDirectory,
           blockSyntaxes: blockSyntaxes,
@@ -45,18 +54,5 @@ class CustomMarkdownBody extends MarkdownBody {
           listItemCrossAxisAlignment: listItemCrossAxisAlignment,
           bulletBuilder: bulletBuilder,
           fitContent: fitContent,
-        ) {
-    styleSheet = styleSheet ??
-        MarkdownStyleSheet(
-          textAlign: WrapAlignment.spaceEvenly,
-          p: TextStyle(
-            height: 2,
-          ),
         );
-
-    onTapLink = onTapLink ??
-        (String text, String? url, String title) {
-          launch(url!);
-        };
-  }
 }
