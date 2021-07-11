@@ -1,7 +1,7 @@
 import 'package:the_crew_companion/entities/aimOption.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 
-class Story {
+class MissionService {
   static List<Mission> getMissions() {
     return [
       Mission(

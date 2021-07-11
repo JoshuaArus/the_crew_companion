@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
@@ -7,16 +7,16 @@ import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
 
-class About extends StatefulWidget {
-  const About({required this.controller});
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({required this.controller});
 
   final Controller controller;
 
   @override
-  _AboutState createState() => _AboutState();
+  _AboutScreenState createState() => _AboutScreenState();
 }
 
-class _AboutState extends State<About> {
+class _AboutScreenState extends State<AboutScreen> {
   List<String> contributors = [
     "[Joshua Arus](https://github.com/JoshuaArus)",
     "[Maxime Rauch](https://github.com/schnapse)",

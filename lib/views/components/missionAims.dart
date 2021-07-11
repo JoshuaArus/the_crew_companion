@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/aimOption.dart';
 import 'package:the_crew_companion/views/components/aimButton.dart';
 import 'package:the_crew_companion/views/components/goalButton.dart';

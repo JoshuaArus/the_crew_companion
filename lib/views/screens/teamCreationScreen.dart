@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/constant.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/inputField.dart';
 
-class TeamCreation extends StatelessWidget {
+class TeamCreationScreen extends StatelessWidget {
   final Team team;
 
-  TeamCreation({required this.team});
+  TeamCreationScreen({required this.team});
 
   @override
   Widget build(BuildContext context) {
