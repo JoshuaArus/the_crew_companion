@@ -19,7 +19,7 @@ jobs:
           TAG=${GITHUB_REF#refs/*/}
           echo "::set-output name=tag::${TAG}"
           echo "::set-output name=buildNumber::${TAG//.}"
-          echo "::set-output name=releaseName::v${TAG}-Alpha"
+          echo "::set-output name=releaseName::v${TAG}-Beta"
 
       - name: Release infos
         run: |
