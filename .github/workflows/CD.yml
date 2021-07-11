@@ -41,8 +41,8 @@ jobs:
       - name: Build APK
         run: flutter build apk --split-per-abi --release
 
-      - name: Build APPBUNDLE
-        run: flutter build appbundle --release
+      # - name: Build APPBUNDLE
+      #   run: flutter build appbundle --release
 
       - name: Create Github Release
         uses: ncipollo/release-action@v1
