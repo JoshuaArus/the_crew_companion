@@ -19,7 +19,9 @@ class AppLocalizations extends ChangeNotifier {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  AppLocalizations();
+  AppLocalizations(Locale locale) {
+    AppLocalizations._init(locale);
+  }
 
   AppLocalizations._init(Locale locale) {
     _locale = locale;
