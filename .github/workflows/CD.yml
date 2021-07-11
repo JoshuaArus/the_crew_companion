@@ -1,0 +1,55 @@
+# This is a basic workflow to help you get started with Actions
+name: CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    tags:
+      - "*.*.*" # on every version tag will build a new android artifact.
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Compute name
+        id: releaseName
+        run: echo "::set-output name=tag::v${GITHUB_REF#refs/*/}-Alpha"
+
+      - name: Release name
+        run: echo ${{ steps.releaseName.outputs.tag }}
+
+      - name: Compute Changelog
+        uses: ScottBrenner/generate-changelog-action@v1.3.3
+        id: Changelog
+
+      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - uses: subosito/flutter-action@v1
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Build APK
+        run: flutter build apk --split-per-abi --release
+
+      - name: Build APPBUNDLE
+        run: flutter build appbundle --release
+
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+          prerelease: true
+          name: ${{ steps.releaseName.outputs.tag }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
+          token: ${{ secrets.JOSHUAARUS_GITHUB_TOKEN }}
