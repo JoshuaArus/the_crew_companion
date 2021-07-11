@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/ruleSection.dart';
@@ -33,8 +32,6 @@ class _RuleScreenState extends State<RuleScreen> {
           margin: EdgeInsets.only(bottom: defaultPadding),
           child: CustomMarkdownBody(
             data: AppLocalizations.translate(ruleSectionParagraph),
-            styleSheet:
-                MarkdownStyleSheet(textAlign: WrapAlignment.spaceEvenly),
           ),
         ),
       ),
