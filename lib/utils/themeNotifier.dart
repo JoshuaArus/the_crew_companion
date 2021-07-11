@@ -6,15 +6,15 @@ class ThemeNotifier extends ChangeNotifier {
 
   ThemeNotifier({CustomThemes theme = CustomThemes.Dark}) : this._theme = theme;
 
-  getTheme() {
+  CustomThemes getTheme() {
     return _theme.copy; //copy to avoid ref override
   }
 
-  getThemeData() {
+  ThemeData getThemeData() {
     return _theme.getThemeData();
   }
 
-  setTheme(CustomThemes newTheme) async {
+  void setTheme(CustomThemes newTheme) async {
     _theme = newTheme;
     notifyListeners();
   }

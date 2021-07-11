@@ -24,13 +24,13 @@ class Controller {
   final List<Mission> missions = [];
   final List<RuleChapter> rules = [];
 
-  Future<void> saveDatas() async {
+  Future<void> saveTeams() async {
     final serializedTeams = jsonEncode(teams);
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(storageKey, serializedTeams);
   }
 
-  Future<bool> readDatas() async {
+  Future<bool> readTeams() async {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(storageKey) ?? "";
     if (data != "") {
