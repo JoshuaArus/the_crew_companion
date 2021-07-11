@@ -39,9 +39,6 @@ class TheCrewCompanionApp extends StatelessWidget {
         future: Future.wait(
           [
             controller.init(),
-            controller.readDatas(),
-            controller.populateRules(),
-            controller.populateMissions()
           ],
         ),
         builder: (context, snapshot) {

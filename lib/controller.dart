@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_crew_companion/entities/mission.dart';
@@ -11,13 +11,23 @@ import 'package:the_crew_companion/services/ruleService.dart';
 class Controller {
   late PackageInfo infos;
 
-  String get storageKey => infos.packageName;
   String get appName => infos.appName;
   String get appVersion => infos.version;
   String get buildNumber => infos.buildNumber;
 
+  String get storageKey {
+    return defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS
+        ? infos.packageName
+        : infos.appName;
+  }
+
   Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
+
+    readDatas();
+    populateMissions();
+    populateRules();
   }
 
   List<Team> teams = [];
