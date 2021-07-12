@@ -18,6 +18,7 @@ class Controller {
 
   String get storageKey => infos.packageName;
   String get settingsKey => storageKey + "_settings";
+  String get teamsKey => storageKey + "_teams";
   String get appName => infos.appName;
   String get appVersion => infos.version;
   String get buildNumber => infos.buildNumber;
@@ -69,12 +70,12 @@ class Controller {
   Future<void> saveTeams() async {
     final serializedTeams = jsonEncode(teams);
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(storageKey, serializedTeams);
+    prefs.setString(teamsKey, serializedTeams);
   }
 
   Future<bool> readTeams() async {
     final prefs = await SharedPreferences.getInstance();
-    final data = prefs.getString(storageKey) ?? "";
+    final data = prefs.getString(teamsKey) ?? "";
     if (data != "") {
       this.teams = (jsonDecode(data) as List<dynamic>)
           .map(
