@@ -49,7 +49,7 @@ class _PlayGameScreenState extends State<PlayGameScreen> {
           satelliteUsed: satUsed,
         ),
       );
-      await widget.controller.saveDatas();
+      await widget.controller.saveTeams();
       attempts.text = "";
       satUsed = false;
       setState(() {});

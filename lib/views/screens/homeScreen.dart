@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     if (created == true) {
       widget.controller.teams.add(newTeam);
-      await widget.controller.saveDatas();
+      await widget.controller.saveTeams();
 
       await Navigator.push(
         context,

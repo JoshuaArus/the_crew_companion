@@ -9,6 +9,10 @@ enum CustomThemes {
 }
 
 class CustomThemesFactory {
+  static bool exist(String val) {
+    return CustomThemes.values.any((element) => element.toString() == val);
+  }
+
   static CustomThemes fromString(String val) {
     return CustomThemes.values
         .firstWhere((element) => element.toString() == val);

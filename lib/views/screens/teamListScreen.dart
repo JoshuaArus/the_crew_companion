@@ -29,7 +29,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
       ),
     );
     if (edited == true) {
-      await widget.controller.saveDatas();
+      await widget.controller.saveTeams();
       setState(() {}); //refresh UI
     }
   }
@@ -45,7 +45,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
     );
     if (confirmed == true) {
       team.achievedMissions.clear();
-      await widget.controller.saveDatas();
+      await widget.controller.saveTeams();
       setState(() {});
     }
   }
@@ -71,7 +71,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
     );
     if (confirmed == true) {
       widget.controller.teams.remove(team);
-      await widget.controller.saveDatas();
+      await widget.controller.saveTeams();
 
       if (widget.controller.teams.length == 0)
         Navigator.pop(context, true);
