@@ -8,16 +8,49 @@ import 'package:the_crew_companion/views/screens/homeScreen.dart';
 import 'package:the_crew_companion/views/screens/splashScreen.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => AppLocalizations()),
-    ChangeNotifierProvider(create: (context) => ThemeNotifier()),
-  ], child: TheCrewCompanionApp()));
+  runApp(TheCrewCompanionApp());
 }
 
 class TheCrewCompanionApp extends StatelessWidget {
   final Controller controller = Controller();
 
   // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Future.wait(
+        [
+          controller.init(),
+        ],
+      ),
+      builder: (ctx, snpsht) {
+        if (snpsht.hasData) {
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(
+                create: (context) => AppLocalizations(controller.defaultLocale),
+              ),
+              ChangeNotifierProvider(
+                create: (context) =>
+                    ThemeNotifier(theme: controller.defaultTheme),
+              ),
+            ],
+            child: MainWindows(controller: controller),
+          );
+        } else
+          return SplashScreen();
+      },
+    );
+  }
+}
+
+class MainWindows extends StatelessWidget {
+  const MainWindows({
+    required this.controller,
+  });
+
+  final Controller controller;
+
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
@@ -38,7 +71,9 @@ class TheCrewCompanionApp extends StatelessWidget {
       home: FutureBuilder(
         future: Future.wait(
           [
-            controller.init(),
+            controller.populateRules(),
+            controller.populateMissions(),
+            controller.saveSettings(context),
           ],
         ),
         builder: (context, snapshot) {
