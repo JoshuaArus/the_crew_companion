@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,7 @@ import 'package:the_crew_companion/utils/themeNotifier.dart';
 class Controller {
   late PackageInfo infos;
 
-  String get storageKey => infos.packageName;
+  String get storageKey => "com.joshuaarus.the_crew_companion";
   String get settingsKey => storageKey + "_settings";
   String get teamsKey => storageKey + "_teams";
   String get appName => infos.appName;
@@ -28,6 +27,13 @@ class Controller {
 
   Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
+
+    await Future.wait(
+      [
+        readSettings(),
+        readTeams(),
+      ],
+    );
   }
 
   List<Team> teams = [];

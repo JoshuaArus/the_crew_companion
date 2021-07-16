@@ -21,8 +21,6 @@ class TheCrewCompanionApp extends StatelessWidget {
       future: Future.wait(
         [
           controller.init(),
-          controller.readSettings(),
-          controller.readTeams(),
         ],
       ),
       builder: (ctx, snpsht) {
