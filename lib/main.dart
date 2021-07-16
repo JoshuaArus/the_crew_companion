@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:the_crew_companion/services/missionService.dart';
+import 'package:the_crew_companion/services/ruleService.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/themeNotifier.dart';
@@ -12,7 +14,10 @@ void main() {
 }
 
 class TheCrewCompanionApp extends StatelessWidget {
-  final Controller controller = Controller();
+  final Controller controller = Controller(
+    ruleService: RuleService(),
+    missionService: MissionService(),
+  );
 
   // This widget is the root of your application.
   @override
