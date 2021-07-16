@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -16,13 +15,7 @@ import 'package:the_crew_companion/utils/themeNotifier.dart';
 class Controller {
   late PackageInfo infos;
 
-  String get storageKey {
-    return defaultTargetPlatform == TargetPlatform.android ||
-            defaultTargetPlatform == TargetPlatform.iOS
-        ? infos.packageName
-        : infos.appName;
-  }
-
+  String get storageKey => "com.joshuaarus.the_crew_companion";
   String get settingsKey => storageKey + "_settings";
   String get teamsKey => storageKey + "_teams";
   String get appName => infos.appName;
