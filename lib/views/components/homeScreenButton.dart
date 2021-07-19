@@ -19,6 +19,9 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
       width: double.infinity,
+      constraints: BoxConstraints(
+        maxWidth: 500,
+      ),
       height: 50,
       child: OutlinedButton(
         onPressed: () {

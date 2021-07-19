@@ -58,6 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget buildFixedDrawer(BuildContext context) {
+    return MediaQuery.of(context).orientation == Orientation.portrait
+        ? Container()
+        : CustomDrawer(
+            controller: widget.controller,
+            shouldPop: false,
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
     String version = widget.controller.appVersion;
@@ -68,63 +77,78 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         backgroundColor: primaryColor.withOpacity(0),
       ),
-      drawer: CustomDrawer(controller: widget.controller),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/homeScreenBackground.jpg"),
-            fit: BoxFit.fill,
-          ),
-        ),
-        child: Stack(
-          children: [
-            FallingAsteroids(asteroidNumber: 5),
-            Container(
-              padding: EdgeInsets.only(
-                top: defaultPadding * 2,
+      drawer: MediaQuery.of(context).orientation == Orientation.landscape
+          ? null
+          : Drawer(
+              child: CustomDrawer(
+                controller: widget.controller,
               ),
-              child: Column(
+            ),
+      body: Row(
+        children: [
+          buildFixedDrawer(context),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/homeScreenBackground.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Stack(
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                      ),
-                      child: DelayedAnimation(
-                        delay: 1000,
-                        child: JumpingHomeScreenTitle(),
-                      ),
+                  FallingAsteroids(asteroidNumber: 5),
+                  Container(
+                    padding: EdgeInsets.only(
+                      top: defaultPadding * 2,
+                    ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                            ),
+                            child: DelayedAnimation(
+                              delay: 1000,
+                              child: JumpingHomeScreenTitle(),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                HomeScreenButton(
+                                  text:
+                                      AppLocalizations.translate('homeNewGame'),
+                                  onPressed: _addTeam,
+                                ),
+                                SizedBox(
+                                  height: 60,
+                                ),
+                                HomeScreenButton(
+                                  text: AppLocalizations.translate(
+                                      'homeLoadGame'),
+                                  onPressed: _goToTeamList,
+                                  disabled: widget.controller.teams.length == 0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          HomeScreenButton(
-                            text: AppLocalizations.translate('homeNewGame'),
-                            onPressed: _addTeam,
-                          ),
-                          SizedBox(
-                            height: 60,
-                          ),
-                          HomeScreenButton(
-                            text: AppLocalizations.translate('homeLoadGame'),
-                            onPressed: _goToTeamList,
-                            disabled: widget.controller.teams.length == 0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomSheet: Container(
         width: double.infinity,
