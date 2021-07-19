@@ -26,21 +26,22 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   confirm_dialog: ^1.0.0
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.3
   darq: ^1.1.1
   flutter_markdown: ^0.6.2
   font_awesome_flutter: ^9.1.0
   google_fonts: ^2.1.0
   intl: ^0.17.0
-  package_info_plus: ^1.0.3
+  package_info_plus: ^1.0.4
   progress_indicators: ^1.0.0
   provider: ^5.0.0
   shared_preferences: ^2.0.6
-  url_launcher: ^6.0.6
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  dapackages: ^1.6.0
   flutter_launcher_icons: ^0.9.0
   lint: ^1.5.3
 
