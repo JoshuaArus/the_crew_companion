@@ -26,7 +26,7 @@ class _PlayGameScreenState extends State<PlayGameScreen> {
   TextEditingController attempts = TextEditingController(text: "");
   bool satUsed = false;
 
-  void _setSwitch(value) {
+  void _setSwitch(bool value) {
     setState(() {
       satUsed = value;
     });

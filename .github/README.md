@@ -1,6 +1,8 @@
 # The Crew Companion
 
 [![Last Build](https://github.com/JoshuaArus/the_crew_companion/actions/workflows/CI.yml/badge.svg)](https://github.com/JoshuaArus/the_crew_companion/actions/workflows/CI.yml)
+[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
+
 
 Application mobile non officielle permettant de remplacer le carnet du jeu [The Crew](https://boardgamegeek.com/boardgame/284083/crew-quest-planet-nine) et de suivre les parties réalisées.
 
