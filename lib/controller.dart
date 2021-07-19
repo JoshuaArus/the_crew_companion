@@ -16,7 +16,9 @@ class Controller {
   late PackageInfo infos;
 
   String get storageKey => "com.joshuaarus.the_crew_companion";
+  // ignore: prefer_interpolation_to_compose_strings
   String get settingsKey => storageKey + "_settings";
+  // ignore: prefer_interpolation_to_compose_strings
   String get teamsKey => storageKey + "_teams";
   String get appName => infos.appName;
   String get appVersion => infos.version;
@@ -42,12 +44,12 @@ class Controller {
 
   Future<void> saveSettings(BuildContext context) async {
     final appLocalizations = Provider.of<AppLocalizations>(context);
-    String currentLanguage = appLocalizations.getLocale()!.languageCode;
+    final String currentLanguage = appLocalizations.getLocale()!.languageCode;
 
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-    String currentTheme = themeNotifier.getTheme().toString();
+    final String currentTheme = themeNotifier.getTheme().toString();
 
-    String serializedSettings = json.encode({
+    final String serializedSettings = json.encode({
       "language": currentLanguage,
       "theme": currentTheme,
     });
@@ -60,10 +62,10 @@ class Controller {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(settingsKey) ?? "";
     if (data != "") {
-      Map<String, dynamic> serializedSettings =
-          (jsonDecode(data) as Map<String, dynamic>);
-      String language = serializedSettings["language"];
-      String theme = serializedSettings["theme"];
+      final Map<String, dynamic> serializedSettings =
+          jsonDecode(data) as Map<String, dynamic>;
+      final String language = serializedSettings["language"].toString();
+      final String theme = serializedSettings["theme"].toString();
 
       if (CustomThemesFactory.exist(theme)) {
         defaultTheme = CustomThemesFactory.fromString(theme);
@@ -83,9 +85,9 @@ class Controller {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(teamsKey) ?? "";
     if (data != "") {
-      this.teams = (jsonDecode(data) as List<dynamic>)
+      teams = (jsonDecode(data) as List<dynamic>)
           .map(
-            (t) => Team.fromJson(t),
+            (dynamic t) => Team.fromJson(t.toString()),
           )
           .toList();
     }
@@ -93,16 +95,16 @@ class Controller {
   }
 
   Future<void> populateRules() async {
-    if (this.rules.isNotEmpty) {
+    if (rules.isNotEmpty) {
       return;
     }
-    this.rules.addAll(RuleService.getChapters());
+    rules.addAll(RuleService.getChapters());
   }
 
   Future<void> populateMissions() async {
-    if (this.missions.isNotEmpty) {
+    if (missions.isNotEmpty) {
       return;
     }
-    this.missions.addAll(MissionService.getMissions());
+    missions.addAll(MissionService.getMissions());
   }
 }

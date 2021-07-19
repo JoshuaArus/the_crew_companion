@@ -62,14 +62,14 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     return children;
   }
 
-  Color? getStateColor(states) {
+  Color? getStateColor(Set<MaterialState> states) {
     const Set<MaterialState> activeStates = {MaterialState.selected};
     return states.any((element) => activeStates.contains(element))
         ? primaryColor
         : null;
   }
 
-  Color? getStateFadedColor(states) {
+  Color? getStateFadedColor(Set<MaterialState> states) {
     return getStateColor(states)?.withOpacity(0.5);
   }
 

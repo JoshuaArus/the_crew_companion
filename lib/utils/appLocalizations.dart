@@ -40,7 +40,8 @@ class AppLocalizations extends ChangeNotifier {
     String jsonString = await rootBundle
         .loadString('assets/locales/${_locale!.languageCode}.json');
 
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    Map<String, dynamic> jsonMap =
+        json.decode(jsonString) as Map<String, dynamic>;
 
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
