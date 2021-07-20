@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:the_crew_companion/controller.dart';
@@ -24,10 +25,17 @@ void main() {
       (_) => MissionService().getMissions(),
     );
 
-    final controller = Controller(
-      ruleService: mockRuleService,
-      missionService: mockMissionService,
+    GetIt.instance.registerSingleton<RuleService>(
+      mockRuleService,
+      signalsReady: true,
     );
+
+    GetIt.instance.registerSingleton<MissionService>(
+      mockMissionService,
+      signalsReady: true,
+    );
+
+    final controller = Controller();
 
     test('init() : initialize data from shared preferences', () async {
       var storageKey = "com.joshuaarus.the_crew_companion";
