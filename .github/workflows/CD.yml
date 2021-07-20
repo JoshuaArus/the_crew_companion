@@ -42,6 +42,9 @@ jobs:
       - name: Install dependencies
         run: dart pub get
 
+      - name: Unit tests
+        run: flutter test -r expanded
+
       - name: Build APK
         run: flutter build apk --build-name ${{ steps.release.outputs.tag }} --build-number ${{ steps.release.outputs.buildNumber }} --split-per-abi --release
 
