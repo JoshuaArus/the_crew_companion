@@ -27,6 +27,21 @@ class Controller {
   CustomThemes defaultTheme = CustomThemes.Dark;
   Locale defaultLocale = AppLocalizations.supportedLocales.first;
 
+  late RuleService _ruleService;
+  late MissionService _missionService;
+
+  List<Team> teams = [];
+  final List<Mission> missions = [];
+  final List<RuleChapter> rules = [];
+
+  Controller({
+    required RuleService ruleService,
+    required MissionService missionService,
+  }) {
+    _ruleService = ruleService;
+    _missionService = missionService;
+  }
+
   Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
 
@@ -37,10 +52,6 @@ class Controller {
       ],
     );
   }
-
-  List<Team> teams = [];
-  final List<Mission> missions = [];
-  final List<RuleChapter> rules = [];
 
   Future<void> saveSettings(BuildContext context) async {
     final appLocalizations = Provider.of<AppLocalizations>(context);
@@ -98,13 +109,13 @@ class Controller {
     if (rules.isNotEmpty) {
       return;
     }
-    rules.addAll(RuleService.getChapters());
+    this.rules.addAll(_ruleService.getChapters());
   }
 
   Future<void> populateMissions() async {
     if (missions.isNotEmpty) {
       return;
     }
-    missions.addAll(MissionService.getMissions());
+    this.missions.addAll(_missionService.getMissions());
   }
 }

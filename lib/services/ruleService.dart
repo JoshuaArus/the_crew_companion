@@ -2,7 +2,7 @@ import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/ruleSection.dart';
 
 class RuleService {
-  static List<RuleChapter> getChapters() {
+  List<RuleChapter> getChapters() {
     return [
       RuleChapter(
         title: 'ruleChapterIntroductionTitle',

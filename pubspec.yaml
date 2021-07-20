@@ -44,6 +44,8 @@ dev_dependencies:
   dapackages: ^1.6.0
   flutter_launcher_icons: ^0.9.0
   lint: ^1.5.3
+  mockito: ^5.0.11
+  build_runner: ^2.0.6
 
 flutter_icons:
   android: true
