@@ -1,3 +1,4 @@
+//ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';

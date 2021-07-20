@@ -8,6 +8,8 @@ Afin de garder une base de code saine et commune, il est recommandé de travaill
 
 [Dart Data Class Generator](https://marketplace.visualstudio.com/items?itemName=BendixMa.dart-data-class-generator) pour la génération des classes à partir de leurs attributs
 
+[Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist) pour la mise à jour du fichier pubspec.yaml de façon automatique et ordonnée
+
 Une fois les extensions installées, il y'a quelques configurations à faire.
 
 ## settings.json

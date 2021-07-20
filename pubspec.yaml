@@ -23,16 +23,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   confirm_dialog: ^1.0.0
-  shared_preferences: ^2.0.6
-  flutter_markdown: ^0.6.2
-  package_info_plus: ^1.0.3
-  url_launcher: ^6.0.6
-  google_fonts: ^2.1.0
-  font_awesome_flutter: ^9.1.0
-  progress_indicators: ^1.0.0
+  cupertino_icons: ^1.0.3
   darq: ^1.1.1
+  flutter_markdown: ^0.6.2
+  font_awesome_flutter: ^9.1.0
+  google_fonts: ^2.1.0
+  intl: ^0.17.0
+  package_info_plus: ^1.0.4
+  progress_indicators: ^1.0.0
   provider: ^5.0.0
+  shared_preferences: ^2.0.6
+  url_launcher: ^6.0.9
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -46,7 +50,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  dapackages: ^1.6.0
   flutter_launcher_icons: ^0.9.0
+  lint: ^1.5.3
 
 flutter_icons:
   android: true
@@ -56,7 +62,6 @@ flutter_icons:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -71,13 +76,10 @@ flutter:
   assets:
     - assets/images/
     - assets/locales/
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
