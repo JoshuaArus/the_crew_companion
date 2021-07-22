@@ -4,12 +4,11 @@ import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
-// ignore: must_be_immutable
 class MissionExpansionPanelList extends StatefulWidget {
   MissionExpansionPanelList({required this.missions, this.expandedMissionId});
 
   final List<Mission> missions;
-  int? expandedMissionId;
+  final int? expandedMissionId;
 
   @override
   _MissionExpansionPanelListState createState() =>
@@ -17,9 +16,17 @@ class MissionExpansionPanelList extends StatefulWidget {
 }
 
 class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
+  int? expandedMissionId;
+
+  @override
+  void initState() {
+    super.initState();
+    expandedMissionId = widget.expandedMissionId;
+  }
+
   void _expand(int index, bool isExpanded) {
     setState(() {
-      widget.expandedMissionId = !isExpanded ? index : null;
+      expandedMissionId = !isExpanded ? widget.missions[index].id : null;
     });
   }
 
@@ -93,7 +100,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
                 children: buildChildrens(mission),
               ),
             ),
-            isExpanded: mission.id == widget.expandedMissionId,
+            isExpanded: mission.id == expandedMissionId,
           );
         },
       ).toList(),
