@@ -61,15 +61,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          DrawerHeader(
+            padding: EdgeInsets.all(defaultPadding),
+            child: Image(
+              image: AssetImage("assets/images/astronautHelmet.png"),
+            ),
+          ),
           Expanded(
             child: ListView(
               children: [
-                DrawerHeader(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Image(
-                    image: AssetImage("assets/images/astronautHelmet.png"),
-                  ),
-                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
