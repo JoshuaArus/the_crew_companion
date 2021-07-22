@@ -64,39 +64,44 @@ class _AboutScreenState extends State<AboutScreen> {
                     ),
                     Expanded(
                       flex: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(defaultPadding * 2),
-                        margin: EdgeInsets.all(defaultPadding),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                      child: SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.all(defaultPadding * 2),
+                          margin: EdgeInsets.all(defaultPadding),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                            color: secondaryColor.withOpacity(0.90),
+                            shape: BoxShape.rectangle,
                           ),
-                          color: secondaryColor.withOpacity(0.90),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomMarkdownBody(
-                              data: AppLocalizations.translate(
-                                  'aboutPresentation'),
-                            ),
-                            CustomMarkdownBody(
-                              data: AppLocalizations.translate(
-                                      'aboutDevelopedBy') +
-                                  " : " +
-                                  contributors.join(" - "),
-                            ),
-                            CustomMarkdownBody(
-                              data: AppLocalizations.translate(
-                                  'aboutFollowProject'),
-                            ),
-                            Text(AppLocalizations.translate('aboutVersion') +
-                                " " +
-                                version),
-                          ],
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomMarkdownBody(
+                                data: AppLocalizations.translate(
+                                    'aboutPresentation'),
+                              ),
+                              CustomMarkdownBody(
+                                data: AppLocalizations.translate(
+                                        'aboutDevelopedBy') +
+                                    " : " +
+                                    contributors.join(" - "),
+                              ),
+                              CustomMarkdownBody(
+                                data: AppLocalizations.translate(
+                                    'aboutFollowProject'),
+                              ),
+                              Text(AppLocalizations.translate('aboutVersion') +
+                                  " " +
+                                  version),
+                            ],
+                          ),
                         ),
                       ),
                     ),
