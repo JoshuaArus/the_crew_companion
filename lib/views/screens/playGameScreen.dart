@@ -10,6 +10,7 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
 class PlayGameScreen extends StatefulWidget {
@@ -63,90 +64,99 @@ class _PlayGameScreenState extends State<PlayGameScreen> {
             (element) => element.id == widget.team.achievedMissions.length)
         .copyWith();
 
-    return Scaffold(
-      drawer: CustomDrawer(controller: widget.controller),
-      appBar: AppBar(
-        title: Text(currentMission.title),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TeamStatsScreen(
-                      controller: widget.controller, team: widget.team),
+    return LandscapableScreen(
+      controller: widget.controller,
+      child: Scaffold(
+        drawer: MediaQuery.of(context).orientation == Orientation.landscape
+            ? null
+            : Drawer(
+                child: CustomDrawer(
+                  controller: widget.controller,
                 ),
-              );
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.calculator,
-            ),
-            tooltip: AppLocalizations.translate('gameTeamStatistics'),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
-            defaultPadding, defaultPadding, defaultPadding, 100),
-        child: Column(
-          children: [
-            MissionDescription(mission: currentMission),
-            Divider(
-              height: 50,
-            ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(AppLocalizations.translate('gameAttemptsCount') +
-                        " : "),
-                    Container(
-                      width: 70,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(defaultPadding),
-                          hintText: "1",
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        textAlign: TextAlign.right,
-                        controller: attempts,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(AppLocalizations.translate('gameSatelliteUsage') +
-                        " : "),
-                    Switch(
-                      activeColor: primaryColor,
-                      value: satUsed,
-                      onChanged: _setSwitch,
-                    ),
-                  ],
-                ),
-              ],
+              ),
+        appBar: AppBar(
+          title: Text(currentMission.title),
+          centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TeamStatsScreen(
+                        controller: widget.controller, team: widget.team),
+                  ),
+                );
+              },
+              icon: FaIcon(
+                FontAwesomeIcons.calculator,
+              ),
+              tooltip: AppLocalizations.translate('gameTeamStatistics'),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _endCurrentMission(currentMission);
-        },
-        label: Text(AppLocalizations.translate('gameValidateMission')),
-        icon: Icon(Icons.check),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(
+              defaultPadding, defaultPadding, defaultPadding, 100),
+          child: Column(
+            children: [
+              MissionDescription(mission: currentMission),
+              Divider(
+                height: 50,
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppLocalizations.translate('gameAttemptsCount') +
+                          " : "),
+                      Container(
+                        width: 70,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(defaultPadding),
+                            hintText: "1",
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          textAlign: TextAlign.right,
+                          controller: attempts,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppLocalizations.translate('gameSatelliteUsage') +
+                          " : "),
+                      Switch(
+                        activeColor: primaryColor,
+                        value: satUsed,
+                        onChanged: _setSwitch,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            _endCurrentMission(currentMission);
+          },
+          label: Text(AppLocalizations.translate('gameValidateMission')),
+          icon: Icon(Icons.check),
+        ),
       ),
     );
   }

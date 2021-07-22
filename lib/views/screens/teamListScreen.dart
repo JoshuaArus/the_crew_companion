@@ -7,6 +7,7 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/playGameScreen.dart';
 import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
@@ -25,7 +26,8 @@ class _TeamListScreenState extends State<TeamListScreen> {
     final edited = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreationScreen(team: team),
+        builder: (BuildContext context) =>
+            TeamCreationScreen(controller: widget.controller, team: team),
       ),
     );
     if (edited == true) {
@@ -136,62 +138,69 @@ class _TeamListScreenState extends State<TeamListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.controller.appName),
-        centerTitle: true,
-      ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),
-        child: Column(
-          children: [
-            Expanded(
-              child: new ListView.builder(
-                itemCount: widget.controller.teams.length,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  final team = widget.controller.teams[index];
-                  return Container(
-                    padding: EdgeInsets.fromLTRB(defaultPadding,
-                        defaultPadding / 2, defaultPadding, defaultPadding / 2),
-                    child: OutlinedButton(
-                      onPressed: () {
-                        _play(team);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor:
-                            Theme.of(context).backgroundColor.withOpacity(0.30),
-                        padding: EdgeInsets.all(defaultPadding),
-                        elevation: 10,
-                        side: BorderSide(
-                          width: 2,
-                          color: primaryColor.withOpacity(0.70),
-                        ),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+    return LandscapableScreen(
+      controller: widget.controller,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.controller.appName),
+          centerTitle: true,
+        ),
+        body: Container(
+          padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),
+          child: Column(
+            children: [
+              Expanded(
+                child: new ListView.builder(
+                  itemCount: widget.controller.teams.length,
+                  itemBuilder: (BuildContext ctxt, int index) {
+                    final team = widget.controller.teams[index];
+                    return Container(
+                      padding: EdgeInsets.fromLTRB(
+                          defaultPadding,
+                          defaultPadding / 2,
+                          defaultPadding,
+                          defaultPadding / 2),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          _play(team);
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: Theme.of(context)
+                              .backgroundColor
+                              .withOpacity(0.30),
+                          padding: EdgeInsets.all(defaultPadding),
+                          elevation: 10,
+                          side: BorderSide(
+                            width: 2,
+                            color: primaryColor.withOpacity(0.70),
+                          ),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
                         ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              title: TeamName(team: team),
+                              trailing: buildTeamMenu(team),
+                            ),
+                            TeamPlayers(team: team),
+                            Padding(
+                              padding: EdgeInsets.only(top: defaultPadding),
+                            ),
+                            TeamProgress(team: team)
+                          ],
+                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListTile(
-                            title: TeamName(team: team),
-                            trailing: buildTeamMenu(team),
-                          ),
-                          TeamPlayers(team: team),
-                          Padding(
-                            padding: EdgeInsets.only(top: defaultPadding),
-                          ),
-                          TeamProgress(team: team)
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

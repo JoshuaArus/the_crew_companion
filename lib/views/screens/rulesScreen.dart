@@ -4,6 +4,7 @@ import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/ruleScreen.dart';
 
 class RulesScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _RulesScreenState extends State<RulesScreen> {
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) => RuleScreen(
+          controller: widget.controller,
           rule: rule,
         ),
       ),
@@ -29,41 +31,44 @@ class _RulesScreenState extends State<RulesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.translate('gameRules')),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.all(defaultPadding),
-          child: FutureBuilder(
-            future: widget.controller.populateRules(),
-            builder: (context, snapshot) {
-              return Column(
-                children: widget.controller.rules
-                    .map((ruleChapter) => Container(
-                          decoration: BoxDecoration(
-                            color: secondaryColor,
-                            border: Border(
-                              bottom:
-                                  BorderSide(width: 1.0, color: primaryColor),
+    return LandscapableScreen(
+      controller: widget.controller,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.translate('gameRules')),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(defaultPadding),
+            child: FutureBuilder(
+              future: widget.controller.populateRules(),
+              builder: (context, snapshot) {
+                return Column(
+                  children: widget.controller.rules
+                      .map((ruleChapter) => Container(
+                            decoration: BoxDecoration(
+                              color: secondaryColor,
+                              border: Border(
+                                bottom:
+                                    BorderSide(width: 1.0, color: primaryColor),
+                              ),
                             ),
-                          ),
-                          child: ListTile(
-                            title: Text(
-                              AppLocalizations.translate(ruleChapter.title),
-                              overflow: TextOverflow.ellipsis,
+                            child: ListTile(
+                              title: Text(
+                                AppLocalizations.translate(ruleChapter.title),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              trailing: FaIcon(
+                                FontAwesomeIcons.chevronRight,
+                              ),
+                              onTap: () => _goToRule(ruleChapter),
                             ),
-                            trailing: FaIcon(
-                              FontAwesomeIcons.chevronRight,
-                            ),
-                            onTap: () => _goToRule(ruleChapter),
-                          ),
-                        ))
-                    .toList(),
-              );
-            },
+                          ))
+                      .toList(),
+                );
+              },
+            ),
           ),
         ),
       ),

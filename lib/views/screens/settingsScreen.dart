@@ -5,6 +5,7 @@ import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/customThemes.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/utils/themeNotifier.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Controller controller;
@@ -28,15 +29,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     currentTheme = themeNotifier.getTheme();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppLocalizations.translate('settingsTitle'),
+    return LandscapableScreen(
+      controller: widget.controller,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            AppLocalizations.translate('settingsTitle'),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Container(
+        body: Container(
           padding: EdgeInsets.all(defaultPadding),
           child: Column(
             children: [
