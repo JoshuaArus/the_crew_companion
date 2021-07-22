@@ -78,7 +78,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       children: [
                         ListTile(
                           title: Text(
-                            "Accueil",
+                            AppLocalizations.translate('menuHome'),
                             style: Theme.of(context).textTheme.headline6,
                           ),
                           onTap: _goToHome,
