@@ -52,8 +52,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    String version = widget.controller.appVersion;
-
     return ContainerGradient(
       constraints: BoxConstraints(
         maxWidth: 300,
@@ -144,7 +142,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             color: secondaryColor,
             child: Center(
               child: Text(
-                "v " + version,
+                "v " + widget.controller.appVersion,
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
