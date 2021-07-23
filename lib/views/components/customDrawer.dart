@@ -73,72 +73,67 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            AppLocalizations.translate('menuHome'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          onTap: _goToHome,
-                          leading: FaIcon(
-                            FontAwesomeIcons.home,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          title: Text(
-                            AppLocalizations.translate('menuRules'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          onTap: _goToRules,
-                          leading: FaIcon(
-                            FontAwesomeIcons.questionCircle,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          title: Text(
-                            AppLocalizations.translate('menuMissionList'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          onTap: _goToMissionList,
-                          leading: FaIcon(
-                            FontAwesomeIcons.bookOpen,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          title: Text(
-                            AppLocalizations.translate('menuSettings'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          onTap: _goToSettings,
-                          leading: Icon(
-                            Icons.settings,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          title: Text(
-                            AppLocalizations.translate('menuAbout'),
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                          onTap: _goToAbout,
-                          leading: Icon(
-                            Icons.lightbulb_outline,
-                          ),
-                        ),
-                      ],
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuHome'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToHome,
+                      leading: FaIcon(
+                        FontAwesomeIcons.home,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuRules'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToRules,
+                      leading: FaIcon(
+                        FontAwesomeIcons.questionCircle,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuMissionList'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToMissionList,
+                      leading: FaIcon(
+                        FontAwesomeIcons.bookOpen,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuSettings'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToSettings,
+                      leading: Icon(
+                        Icons.settings,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuAbout'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToAbout,
+                      leading: Icon(
+                        Icons.lightbulb_outline,
+                      ),
                     ),
                   ],
                 ),
