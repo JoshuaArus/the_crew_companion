@@ -40,7 +40,9 @@ class _FallingAsteroidState extends State<FallingAsteroid>
       vsync: this,
     );
 
-    rotationController = AnimationController(vsync: this);
+    rotationController = AnimationController(
+      vsync: this,
+    );
 
     final curve = CurvedAnimation(
       parent: fallingController,
