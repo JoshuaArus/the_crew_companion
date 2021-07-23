@@ -13,16 +13,15 @@ import 'package:the_crew_companion/views/screens/playGameScreen.dart';
 import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamListScreen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({required this.controller});
-
-  final Controller controller;
+class HomeScreen extends LandscapableScreen {
+  const HomeScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
   void _goToTeamList() async {
     bool? needRefresh = await Navigator.push(
       context,
@@ -65,78 +64,75 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return LandscapableScreen(
-      controller: widget.controller,
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: primaryColor.withOpacity(0),
-        ),
-        drawer: MediaQuery.of(context).orientation == Orientation.landscape
-            ? null
-            : Drawer(
-                child: CustomDrawer(
-                  controller: widget.controller,
-                ),
+  Widget buildBody(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: primaryColor.withOpacity(0),
+      ),
+      drawer: MediaQuery.of(context).orientation == Orientation.landscape
+          ? null
+          : Drawer(
+              child: CustomDrawer(
+                controller: widget.controller,
               ),
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/homeScreenBackground.jpg"),
-              fit: BoxFit.fill,
             ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/homeScreenBackground.jpg"),
+            fit: BoxFit.fill,
           ),
-          child: Stack(
-            children: [
-              FallingAsteroids(asteroidNumber: 5),
-              Container(
-                padding: EdgeInsets.only(
-                  top: defaultPadding * 2,
-                ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 30,
-                        ),
-                        child: DelayedAnimation(
-                          delay: 1000,
-                          child: JumpingHomeScreenTitle(),
-                        ),
+        ),
+        child: Stack(
+          children: [
+            FallingAsteroids(asteroidNumber: 5),
+            Container(
+              padding: EdgeInsets.only(
+                top: defaultPadding * 2,
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                      ),
+                      child: DelayedAnimation(
+                        delay: 1000,
+                        child: JumpingHomeScreenTitle(),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            HomeScreenButton(
-                              text: AppLocalizations.translate('homeNewGame'),
-                              onPressed: _addTeam,
-                            ),
-                            SizedBox(
-                              height: 60,
-                            ),
-                            HomeScreenButton(
-                              text: AppLocalizations.translate('homeLoadGame'),
-                              onPressed: _goToTeamList,
-                              disabled: widget.controller.teams.length == 0,
-                            ),
-                          ],
-                        ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          HomeScreenButton(
+                            text: AppLocalizations.translate('homeNewGame'),
+                            onPressed: _addTeam,
+                          ),
+                          SizedBox(
+                            height: 60,
+                          ),
+                          HomeScreenButton(
+                            text: AppLocalizations.translate('homeLoadGame'),
+                            onPressed: _goToTeamList,
+                            disabled: widget.controller.teams.length == 0,
+                          ),
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

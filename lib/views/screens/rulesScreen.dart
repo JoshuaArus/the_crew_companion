@@ -7,16 +7,16 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/ruleScreen.dart';
 
-class RulesScreen extends StatefulWidget {
-  const RulesScreen({required this.controller});
-
-  final Controller controller;
+class RulesScreen extends LandscapableScreen {
+  const RulesScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _RulesScreenState createState() => _RulesScreenState();
 }
 
-class _RulesScreenState extends State<RulesScreen> {
+class _RulesScreenState extends State<RulesScreen>
+    with LandscapableScreenState {
   void _goToRule(RuleChapter rule) {
     Navigator.push(
       context,
@@ -30,45 +30,42 @@ class _RulesScreenState extends State<RulesScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return LandscapableScreen(
-      controller: widget.controller,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.translate('gameRules')),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(defaultPadding),
-            child: FutureBuilder(
-              future: widget.controller.populateRules(),
-              builder: (context, snapshot) {
-                return Column(
-                  children: widget.controller.rules
-                      .map((ruleChapter) => Container(
-                            decoration: BoxDecoration(
-                              color: secondaryColor,
-                              border: Border(
-                                bottom:
-                                    BorderSide(width: 1.0, color: primaryColor),
-                              ),
+  Widget buildBody(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.translate('gameRules')),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(defaultPadding),
+          child: FutureBuilder(
+            future: widget.controller.populateRules(),
+            builder: (context, snapshot) {
+              return Column(
+                children: widget.controller.rules
+                    .map((ruleChapter) => Container(
+                          decoration: BoxDecoration(
+                            color: secondaryColor,
+                            border: Border(
+                              bottom:
+                                  BorderSide(width: 1.0, color: primaryColor),
                             ),
-                            child: ListTile(
-                              title: Text(
-                                AppLocalizations.translate(ruleChapter.title),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              trailing: FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                              ),
-                              onTap: () => _goToRule(ruleChapter),
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              AppLocalizations.translate(ruleChapter.title),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          ))
-                      .toList(),
-                );
-              },
-            ),
+                            trailing: FaIcon(
+                              FontAwesomeIcons.chevronRight,
+                            ),
+                            onTap: () => _goToRule(ruleChapter),
+                          ),
+                        ))
+                    .toList(),
+              );
+            },
           ),
         ),
       ),

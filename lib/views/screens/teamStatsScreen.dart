@@ -8,17 +8,18 @@ import 'package:the_crew_companion/controller.dart';
 import 'package:darq/darq.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class TeamStatsScreen extends StatefulWidget {
-  const TeamStatsScreen({required this.controller, required this.team});
+class TeamStatsScreen extends LandscapableScreen {
+  const TeamStatsScreen({required Controller controller, required this.team})
+      : super(controller: controller);
 
   final Team team;
-  final Controller controller;
 
   @override
   _TeamStatsScreenState createState() => _TeamStatsScreenState();
 }
 
-class _TeamStatsScreenState extends State<TeamStatsScreen> {
+class _TeamStatsScreenState extends State<TeamStatsScreen>
+    with LandscapableScreenState {
   late List<Mission> achievedMissions;
 
   @override
@@ -38,18 +39,30 @@ class _TeamStatsScreenState extends State<TeamStatsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return LandscapableScreen(
-      controller: widget.controller,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.team.name),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(defaultPadding),
-          child: (widget.team.achievedMissions.length == 0)
-              ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  Widget buildBody(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.team.name),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(defaultPadding),
+        child: (widget.team.achievedMissions.length == 0)
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Text(AppLocalizations.translate('teamPlayers') +
+                      " : " +
+                      widget.team.players.join(", ")),
+                ),
+                Container(
+                  padding: EdgeInsets.all(defaultPadding),
+                  child: Text(AppLocalizations.translate('teamNoMission')),
+                ),
+              ])
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
                     child: Text(AppLocalizations.translate('teamPlayers') +
@@ -58,54 +71,39 @@ class _TeamStatsScreenState extends State<TeamStatsScreen> {
                   ),
                   Container(
                     padding: EdgeInsets.all(defaultPadding),
-                    child: Text(AppLocalizations.translate('teamNoMission')),
+                    child: Text(AppLocalizations.translate(
+                        'teamMissionsAchievedOnTotal', {
+                      'missionAchievedCount':
+                          widget.team.achievedMissions.length.toString(),
+                      'missionTotalCount':
+                          widget.controller.missions.length.toString()
+                    })),
                   ),
-                ])
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(defaultPadding),
-                      child: Text(AppLocalizations.translate('teamPlayers') +
-                          " : " +
-                          widget.team.players.join(", ")),
+                  MissionExpansionPanelList(
+                    missions: achievedMissions,
+                    expandedMissionId: widget.team.achievedMissions.last.id,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(defaultPadding),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(AppLocalizations.translate(
+                                'teamTotalAttemptsCount') +
+                            " : "),
+                        Text(
+                          widget.team.achievedMissions
+                              .map((e) => e.attempts)
+                              .reduce(
+                                  (value, element) => value = value + element)
+                              .toString(),
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
-                    Container(
-                      padding: EdgeInsets.all(defaultPadding),
-                      child: Text(AppLocalizations.translate(
-                          'teamMissionsAchievedOnTotal', {
-                        'missionAchievedCount':
-                            widget.team.achievedMissions.length.toString(),
-                        'missionTotalCount':
-                            widget.controller.missions.length.toString()
-                      })),
-                    ),
-                    MissionExpansionPanelList(
-                      missions: achievedMissions,
-                      expandedMissionId: widget.team.achievedMissions.last.id,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(defaultPadding),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(AppLocalizations.translate(
-                                  'teamTotalAttemptsCount') +
-                              " : "),
-                          Text(
-                            widget.team.achievedMissions
-                                .map((e) => e.attempts)
-                                .reduce(
-                                    (value, element) => value = value + element)
-                                .toString(),
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-        ),
+                  ),
+                ],
+              ),
       ),
     );
   }

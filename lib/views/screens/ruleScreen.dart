@@ -7,17 +7,17 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class RuleScreen extends StatefulWidget {
-  RuleScreen({required this.rule, required this.controller});
+class RuleScreen extends LandscapableScreen {
+  RuleScreen({required this.rule, required Controller controller})
+      : super(controller: controller);
 
   final RuleChapter rule;
-  final Controller controller;
 
   @override
   _RuleScreenState createState() => _RuleScreenState();
 }
 
-class _RuleScreenState extends State<RuleScreen> {
+class _RuleScreenState extends State<RuleScreen> with LandscapableScreenState {
   List<Widget> buildRuleSection(RuleSection ruleSection) {
     List<Widget> children = [
       Container(
@@ -44,43 +44,40 @@ class _RuleScreenState extends State<RuleScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return LandscapableScreen(
-      controller: widget.controller,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.translate(widget.rule.title),
-              overflow: TextOverflow.ellipsis),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: widget.rule.sections
-                  .map(
-                    (ruleSection) => Container(
-                      padding: EdgeInsets.only(
-                        left: defaultPadding,
-                        top: defaultPadding,
-                        right: defaultPadding,
-                      ),
-                      margin: EdgeInsets.all(defaultPadding),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(width: 1.0, color: primaryColor),
-                        ),
-                        color: secondaryColor,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: buildRuleSection(ruleSection),
-                      ),
+  Widget buildBody(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.translate(widget.rule.title),
+            overflow: TextOverflow.ellipsis),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: widget.rule.sections
+                .map(
+                  (ruleSection) => Container(
+                    padding: EdgeInsets.only(
+                      left: defaultPadding,
+                      top: defaultPadding,
+                      right: defaultPadding,
                     ),
-                  )
-                  .toList(),
-            ),
+                    margin: EdgeInsets.all(defaultPadding),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1.0, color: primaryColor),
+                      ),
+                      color: secondaryColor,
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: buildRuleSection(ruleSection),
+                    ),
+                  ),
+                )
+                .toList(),
           ),
         ),
       ),

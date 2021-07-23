@@ -6,17 +6,23 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/inputField.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class TeamCreationScreen extends StatelessWidget {
+class TeamCreationScreen extends LandscapableScreen {
   final Team team;
-  final Controller controller;
 
-  TeamCreationScreen({required this.team, required this.controller});
+  TeamCreationScreen({required this.team, required Controller controller})
+      : super(controller: controller);
 
   @override
-  Widget build(BuildContext context) {
-    final teamName = TextEditingController(text: team.name);
+  _TeamCreationScreenState createState() => _TeamCreationScreenState();
+}
 
-    final List<TextEditingController> playerControllers = team.players
+class _TeamCreationScreenState extends State<TeamCreationScreen>
+    with LandscapableScreenState {
+  @override
+  Widget buildBody(BuildContext context) {
+    final teamName = TextEditingController(text: widget.team.name);
+
+    final List<TextEditingController> playerControllers = widget.team.players
         .map(
           (p) => TextEditingController(text: p),
         )
@@ -37,68 +43,64 @@ class TeamCreationScreen extends StatelessWidget {
         ),
       );
 
-    return LandscapableScreen(
-      controller: controller,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(AppLocalizations.translate('teamCreation')),
-          centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.close),
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              InputField(
-                  hint: AppLocalizations.translate('teamName'),
-                  model: teamName),
-              Divider(),
-            ]..addAll(playerFields),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.translate('teamCreation')),
+        centerTitle: true,
+        leading: IconButton(
           onPressed: () {
-            final playerList = playerControllers
-                .where((p) => p.text != "")
-                .map((p) => p.text)
-                .toList();
-
-            if (playerList.length < minPlayer) {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text(
-                        AppLocalizations.translate('teamNotEnoughPlayers')),
-                    content: Text(AppLocalizations.translate(
-                        'teamMinPlayers', {'minPlayer': minPlayer.toString()})),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(AppLocalizations.translate('commonOk')
-                            .toUpperCase()),
-                      )
-                    ],
-                  );
-                },
-              );
-              return; //cancel save
-            }
-
-            team.name = teamName.text;
-            team.players = playerList;
-
-            Navigator.pop(context, true);
+            Navigator.pop(context);
           },
-          tooltip: AppLocalizations.translate('teamSave'),
-          child: Icon(Icons.save),
+          icon: Icon(Icons.close),
         ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            InputField(
+                hint: AppLocalizations.translate('teamName'), model: teamName),
+            Divider(),
+          ]..addAll(playerFields),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final playerList = playerControllers
+              .where((p) => p.text != "")
+              .map((p) => p.text)
+              .toList();
+
+          if (playerList.length < minPlayer) {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title:
+                      Text(AppLocalizations.translate('teamNotEnoughPlayers')),
+                  content: Text(AppLocalizations.translate(
+                      'teamMinPlayers', {'minPlayer': minPlayer.toString()})),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                          AppLocalizations.translate('commonOk').toUpperCase()),
+                    )
+                  ],
+                );
+              },
+            );
+            return; //cancel save
+          }
+
+          widget.team.name = teamName.text;
+          widget.team.players = playerList;
+
+          Navigator.pop(context, true);
+        },
+        tooltip: AppLocalizations.translate('teamSave'),
+        child: Icon(Icons.save),
       ),
     );
   }
