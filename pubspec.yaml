@@ -35,6 +35,8 @@ dependencies:
   package_info_plus: ^1.0.4
   progress_indicators: ^1.0.0
   provider: ^5.0.0
+  qr_code_scanner: ^0.5.2
+  qr_flutter: ^4.0.0
   shared_preferences: ^2.0.6
   url_launcher: ^6.0.9
 
