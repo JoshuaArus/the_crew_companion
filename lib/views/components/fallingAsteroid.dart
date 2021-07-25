@@ -18,15 +18,16 @@ class _FallingAsteroidState extends State<FallingAsteroid>
     with TickerProviderStateMixin {
   var rng = Random();
   late double asteroidSize;
-  late double rotation;
   late double paddingLeft;
   late double paddingRight;
   late double maxPosY;
-  late int speed;
+  late int fallingSpeed;
+  late int rotationSpeed;
 
   bool ready = false;
 
-  late AnimationController controller;
+  late AnimationController fallingController;
+  late AnimationController rotationController;
   late Animation<Offset> offset;
 
   @override
@@ -35,12 +36,16 @@ class _FallingAsteroidState extends State<FallingAsteroid>
 
     maxPosY = widget.parentHeight;
 
-    controller = AnimationController(
+    fallingController = AnimationController(
+      vsync: this,
+    );
+
+    rotationController = AnimationController(
       vsync: this,
     );
 
     final curve = CurvedAnimation(
-      parent: controller,
+      parent: fallingController,
       curve: Curves.linear,
     );
 
@@ -49,7 +54,7 @@ class _FallingAsteroidState extends State<FallingAsteroid>
       end: Offset(0, 1),
     ).animate(curve);
 
-    controller.addListener(() {
+    fallingController.addListener(() {
       setState(() {});
     });
 
@@ -61,18 +66,24 @@ class _FallingAsteroidState extends State<FallingAsteroid>
 
   void _scroll() {
     asteroidSize = rng.nextDouble() * 50 + 30; // [30 - 80] px
-    rotation = rng.nextDouble() * 360; // °
     paddingLeft = rng.nextDouble() * widget.parentWidth; //padding from left
     paddingRight = max(
       (widget.parentWidth - paddingLeft - asteroidSize),
       0,
     ); // padding from right
-    speed = rng.nextInt(10000) + 500; // [200 - 10200] milliseconds
 
-    controller.duration = Duration(milliseconds: speed);
-    controller.value = 0;
+    rotationSpeed = rng.nextInt(10000) + 1000; // [1000 - 10200] milliseconds
+    rotationController.duration = Duration(milliseconds: rotationSpeed);
+    rotationController.value = 0;
 
-    controller.forward().then((value) {
+    rotationController.repeat();
+
+    fallingSpeed = rng.nextInt(10000) + 500; // [500 - 10500] milliseconds
+
+    fallingController.duration = Duration(milliseconds: fallingSpeed);
+    fallingController.value = 0;
+
+    fallingController.forward().then((value) {
       _scroll();
     });
   }
@@ -90,11 +101,17 @@ class _FallingAsteroidState extends State<FallingAsteroid>
       ),
       child: SlideTransition(
         position: offset,
-        child: Transform.rotate(
-          angle: rotation,
+        child: AnimatedBuilder(
+          animation: rotationController,
           child: Image.asset(
             "assets/images/asteroid.png",
           ),
+          builder: (_, child) {
+            return Transform.rotate(
+              angle: rotationController.value * 2 * pi,
+              child: child,
+            );
+          },
         ),
       ),
     );
@@ -102,7 +119,8 @@ class _FallingAsteroidState extends State<FallingAsteroid>
 
   @override
   void dispose() {
-    controller.dispose();
+    fallingController.dispose();
+    rotationController.dispose();
     super.dispose();
   }
 }
