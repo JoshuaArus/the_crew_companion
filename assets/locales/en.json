@@ -44,6 +44,8 @@
   "teamDeleteConfirmation": "Are you sure you want to delete the $teamName team?",
   "teamDeletion": "Team deletion",
   "teamDelete": "Delete the team",
+  "teamLoadQrCode" : "Read from QR code",
+  "teamShare" : "Share the team",
   "teamEdit": "Edit the team",
   "teamSeeStatistics": "See team statistics",
   "teamTotalAttemptsCount": "Total number of attempts",
