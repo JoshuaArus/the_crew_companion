@@ -33,16 +33,6 @@ class Controller {
   final List<RuleChapter> rules = [];
 
   Future<void> init() async {
-    GetIt.instance.registerSingleton<RuleService>(
-      RuleService(),
-      signalsReady: true,
-    );
-
-    GetIt.instance.registerSingleton<MissionService>(
-      MissionService(),
-      signalsReady: true,
-    );
-
     infos = await PackageInfo.fromPlatform();
 
     await Future.wait(
