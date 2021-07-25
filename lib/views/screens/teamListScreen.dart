@@ -23,6 +23,17 @@ class TeamListScreen extends StatefulWidget {
 }
 
 class _TeamListScreenState extends State<TeamListScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.controller.teams.isEmpty) {
+      Future.delayed(Duration(milliseconds: 100), () {
+        _goToScanQrCode();
+      });
+    }
+  }
+
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
       context,
@@ -81,16 +92,18 @@ class _TeamListScreenState extends State<TeamListScreen> {
   }
 
   void _goToScanQrCode() async {
-    String serializedTeam = await Navigator.push(
+    String? serializedTeam = await Navigator.push(
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) => QrCodeScannerScreen(),
       ),
     );
 
-    Team newTeam = Team.fromJson(serializedTeam);
-
-    widget.controller.teams.add(newTeam);
+    if (serializedTeam != null && serializedTeam != "") {
+      Team newTeam = Team.fromJson(serializedTeam);
+      widget.controller.teams.add(newTeam);
+      await widget.controller.saveTeams();
+    }
 
     setState(() {});
   }
