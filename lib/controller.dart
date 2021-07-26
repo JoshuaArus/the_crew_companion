@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,20 +28,9 @@ class Controller {
   CustomThemes defaultTheme = CustomThemes.Dark;
   Locale defaultLocale = AppLocalizations.supportedLocales.first;
 
-  late RuleService _ruleService;
-  late MissionService _missionService;
-
   List<Team> teams = [];
   final List<Mission> missions = [];
   final List<RuleChapter> rules = [];
-
-  Controller({
-    required RuleService ruleService,
-    required MissionService missionService,
-  }) {
-    _ruleService = ruleService;
-    _missionService = missionService;
-  }
 
   Future<void> init() async {
     infos = await PackageInfo.fromPlatform();
@@ -109,13 +99,13 @@ class Controller {
     if (rules.isNotEmpty) {
       return;
     }
-    this.rules.addAll(_ruleService.getChapters());
+    this.rules.addAll(GetIt.instance<RuleService>().getChapters());
   }
 
   Future<void> populateMissions() async {
     if (missions.isNotEmpty) {
       return;
     }
-    this.missions.addAll(_missionService.getMissions());
+    this.missions.addAll(GetIt.instance<MissionService>().getMissions());
   }
 }
