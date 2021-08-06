@@ -1,5 +1,6 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
@@ -8,6 +9,7 @@ import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
 import 'package:the_crew_companion/views/screens/playGameScreen.dart';
+import 'package:the_crew_companion/views/screens/qrCodeScanner.dart';
 import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
@@ -21,6 +23,17 @@ class TeamListScreen extends StatefulWidget {
 }
 
 class _TeamListScreenState extends State<TeamListScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.controller.teams.isEmpty) {
+      Future.delayed(Duration(milliseconds: 100), () {
+        _goToScanQrCode();
+      });
+    }
+  }
+
   void _editTeam(Team team) async {
     final edited = await Navigator.push(
       context,
@@ -32,6 +45,24 @@ class _TeamListScreenState extends State<TeamListScreen> {
       await widget.controller.saveTeams();
       setState(() {}); //refresh UI
     }
+  }
+
+  void _shareTeam(Team team) {
+    showDialog(
+      context: context,
+      builder: (_) => new Dialog(
+        child: Container(
+          width: 300,
+          height: 300,
+          child: QrImage(
+            data: team.toJson(),
+            size: 200,
+            backgroundColor: Colors.white,
+          ),
+          // child: Text("coucou"),
+        ),
+      ),
+    );
   }
 
   void _resetProgress(Team team) async {
@@ -58,6 +89,23 @@ class _TeamListScreenState extends State<TeamListScreen> {
             TeamStatsScreen(controller: widget.controller, team: team),
       ),
     );
+  }
+
+  void _goToScanQrCode() async {
+    String? serializedTeam = await Navigator.push(
+      context,
+      new MaterialPageRoute(
+        builder: (BuildContext context) => QrCodeScannerScreen(),
+      ),
+    );
+
+    if (serializedTeam != null && serializedTeam != "") {
+      Team newTeam = Team.fromJson(serializedTeam);
+      widget.controller.teams.add(newTeam);
+      await widget.controller.saveTeams();
+    }
+
+    setState(() {});
   }
 
   void _removeTeam(Team team) async {
@@ -109,8 +157,12 @@ class _TeamListScreenState extends State<TeamListScreen> {
             value: 3,
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.translate('teamDelete')),
+            child: Text(AppLocalizations.translate('teamShare')),
             value: 4,
+          ),
+          PopupMenuItem(
+            child: Text(AppLocalizations.translate('teamDelete')),
+            value: 5,
           ),
         ];
       },
@@ -127,6 +179,9 @@ class _TeamListScreenState extends State<TeamListScreen> {
             _resetProgress(team);
             break;
           case 4:
+            _shareTeam(team);
+            break;
+          case 5:
             _removeTeam(team);
             break;
         }
@@ -140,6 +195,15 @@ class _TeamListScreenState extends State<TeamListScreen> {
       appBar: AppBar(
         title: Text(widget.controller.appName),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: _goToScanQrCode,
+            icon: Icon(
+              Icons.qr_code_2,
+            ),
+            tooltip: AppLocalizations.translate('teamLoadQrCode'),
+          ),
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),

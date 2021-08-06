@@ -112,9 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 60,
                           ),
                           HomeScreenButton(
-                            text: AppLocalizations.translate('homeLoadGame'),
+                            text: widget.controller.teams.length == 0
+                                ? AppLocalizations.translate('teamLoadQrCode')
+                                : AppLocalizations.translate('homeLoadGame'),
                             onPressed: _goToTeamList,
-                            disabled: widget.controller.teams.length == 0,
                           ),
                         ],
                       ),
