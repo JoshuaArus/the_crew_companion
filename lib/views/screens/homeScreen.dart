@@ -3,6 +3,7 @@ import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/entities/team.dart';
+import 'package:the_crew_companion/views/components/deepSpace.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
@@ -79,14 +80,9 @@ class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
               ),
             ),
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/homeScreenBackground.jpg"),
-            fit: BoxFit.fill,
-          ),
-        ),
         child: Stack(
           children: [
+            DeepSpace(),
             FallingAsteroids(asteroidNumber: 5),
             Container(
               padding: EdgeInsets.only(
@@ -121,9 +117,10 @@ class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
                             height: 60,
                           ),
                           HomeScreenButton(
-                            text: AppLocalizations.translate('homeLoadGame'),
+                            text: widget.controller.teams.length == 0
+                                ? AppLocalizations.translate('teamLoadQrCode')
+                                : AppLocalizations.translate('homeLoadGame'),
                             onPressed: _goToTeamList,
-                            disabled: widget.controller.teams.length == 0,
                           ),
                         ],
                       ),

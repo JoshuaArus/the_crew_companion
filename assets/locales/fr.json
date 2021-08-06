@@ -46,6 +46,8 @@
   "teamDeletion": "Suppression de l'équipe",
   "teamDelete": "Supprimer l'équipe",
   "teamEdit": "Editer l'équipe",
+  "teamShare" : "Partager l'équipe",
+  "teamLoadQrCode" : "Charger depuis un QR code",
   "teamSeeStatistics": "Voir les statistiques l'équipe",
   "teamTotalAttemptsCount": "Nombre de tentatives totales",
   "teamNoMission": "Aucune mission réalisée jusqu'à présent",

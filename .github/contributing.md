@@ -10,6 +10,8 @@ Afin de garder une base de code saine et commune, il est recommandé de travaill
 
 [Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist) pour la mise à jour du fichier pubspec.yaml de façon automatique et ordonnée
 
+[Error lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) affiche les warning/erreurs en permanence sur chaque ligne
+
 Une fois les extensions installées, il y'a quelques configurations à faire.
 
 ## settings.json
@@ -40,4 +42,4 @@ Pour votre confort, nous vous conseillons les extenions suivantes :
 
 [Prettify JSON](https://marketplace.visualstudio.com/items?itemName=mohsen1.prettify-json)
 
-[VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+[VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons) ou [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
