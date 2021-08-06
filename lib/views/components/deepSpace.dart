@@ -47,9 +47,6 @@ class _DeepSpaceState extends State<DeepSpace> {
         Duration(
           milliseconds: animationDuration,
         ), () {
-      print("opacity1 : " + opacity1.toString());
-      print("opacity2 : " + opacity2.toString());
-
       setState(() {
         double tmp = opacity1;
         opacity1 = opacity2;

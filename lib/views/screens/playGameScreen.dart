@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,8 +27,22 @@ class PlayGameScreen extends LandscapableScreen {
 
 class _PlayGameScreenState extends State<PlayGameScreen>
     with LandscapableScreenState {
+  TextEditingController comment = TextEditingController(text: "");
   TextEditingController attempts = TextEditingController(text: "");
   bool satUsed = false;
+  DateTime? missionStartDate;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 1), (_) => setState(() {}));
+  }
+
+  void _startTimer() {
+    setState(() {
+      missionStartDate = DateTime.now();
+    });
+  }
 
   void _setSwitch(bool value) {
     setState(() {
@@ -49,13 +65,27 @@ class _PlayGameScreenState extends State<PlayGameScreen>
           id: mission.id,
           attempts: int.parse(attempts.text == "" ? "1" : attempts.text),
           satelliteUsed: satUsed,
+          comment: comment.text,
+          durationInSeconds: missionStartDate == null
+              ? null
+              : DateTime.now().difference(missionStartDate!).inSeconds,
         ),
       );
+      missionStartDate = null;
+      comment.text = "";
       await widget.controller.saveTeams();
       attempts.text = "";
       satUsed = false;
       setState(() {});
     }
+  }
+
+  String _printDuration() {
+    Duration d = DateTime.now().difference(missionStartDate!);
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
   @override
@@ -144,18 +174,59 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(AppLocalizations.translate('gameTimeElapsed') + " : "),
+                    Text(
+                      missionStartDate == null ? "-" : _printDuration(),
+                    ),
+                  ],
+                ),
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(AppLocalizations.translate('commonComments') + " : "),
+                    Container(
+                      height: 100,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(defaultPadding),
+                          hintText: "",
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        controller: comment,
+                        maxLines: 5,
+                        minLines: 2,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _endCurrentMission(currentMission);
-        },
-        label: Text(AppLocalizations.translate('gameValidateMission')),
-        icon: Icon(Icons.check),
-      ),
+      floatingActionButton: missionStartDate == null
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                _startTimer();
+              },
+              label: Text(AppLocalizations.translate('gameStartTimer')),
+              icon: FaIcon(FontAwesomeIcons.clock),
+            )
+          : FloatingActionButton.extended(
+              onPressed: () {
+                _endCurrentMission(currentMission);
+              },
+              label: Text(AppLocalizations.translate('gameValidateMission')),
+              icon: Icon(Icons.check),
+            ),
     );
   }
 }

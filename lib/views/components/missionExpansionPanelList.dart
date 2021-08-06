@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 class MissionExpansionPanelList extends StatefulWidget {
@@ -28,6 +29,13 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     setState(() {
       expandedMissionId = !isExpanded ? widget.missions[index].id : null;
     });
+  }
+
+  String _printDuration(Duration d) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
   List<Widget> buildChildrens(Mission mission) {
@@ -62,7 +70,44 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
               onChanged: null,
             )
           ],
-        )
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppLocalizations.translate('gameTimeElapsed') + " : "),
+            Text(
+              mission.durationInSeconds == null
+                  ? "-"
+                  : _printDuration(
+                      Duration(seconds: mission.durationInSeconds!),
+                    ),
+            ),
+          ],
+        ),
+        if (mission.comment != null && mission.comment! != "")
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(AppLocalizations.translate('commonComments') + " : "),
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white30, width: 2),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+                padding: EdgeInsets.all(defaultPadding),
+                margin: EdgeInsets.only(
+                  top: defaultPadding,
+                  bottom: defaultPadding,
+                ),
+                child: Text(
+                  mission.comment!,
+                ),
+              )
+            ],
+          ),
       ]);
     }
 

@@ -30,9 +30,12 @@ class _TeamStatsScreenState extends State<TeamStatsScreen>
       (achievedMission, i) {
         Mission mission = widget.controller.missions
             .firstWhere((m) => m.id == achievedMission.id)
-            .copyWith();
-        mission.attempts = achievedMission.attempts;
-        mission.satelliteUsed = achievedMission.satelliteUsed;
+            .copyWith(
+              attempts: achievedMission.attempts,
+              satelliteUsed: achievedMission.satelliteUsed,
+              comment: achievedMission.comment,
+              durationInSeconds: achievedMission.durationInSeconds,
+            );
         return mission;
       },
     ).toList();

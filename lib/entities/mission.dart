@@ -12,6 +12,8 @@ class Mission {
   int attempts;
   bool satelliteUsed;
   List<AimOption> aimOptions;
+  String? comment;
+  int? durationInSeconds;
 
   Mission({
     required this.id,
@@ -19,6 +21,8 @@ class Mission {
     required this.attempts,
     required this.satelliteUsed,
     required this.aimOptions,
+    this.comment,
+    this.durationInSeconds,
   });
 
   String get title {
@@ -37,6 +41,8 @@ class Mission {
     int? attempts,
     bool? satelliteUsed,
     List<AimOption>? aimOptions,
+    String? comment,
+    int? durationInSeconds,
   }) {
     return Mission(
       id: id ?? this.id,
@@ -44,18 +50,20 @@ class Mission {
       attempts: attempts ?? this.attempts,
       satelliteUsed: satelliteUsed ?? this.satelliteUsed,
       aimOptions: aimOptions ?? this.aimOptions,
+      comment: comment ?? this.comment,
+      durationInSeconds: durationInSeconds ?? this.durationInSeconds,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'title': title,
-      'description': description,
       'aimCount': aimCount,
       'attempts': attempts,
       'satelliteUsed': satelliteUsed,
       'aimOptions': aimOptions.map((x) => x.toString()).toList(),
+      'comment': comment,
+      'durationInSeconds': durationInSeconds,
     };
   }
 
@@ -67,6 +75,8 @@ class Mission {
       satelliteUsed: map['satelliteUsed'],
       aimOptions: List<AimOption>.from(
           map['aimOptions']?.map((x) => AimOptionFactory.fromString(x))),
+      comment: map['comment'],
+      durationInSeconds: map['durationInSeconds'],
     );
   }
 
@@ -77,7 +87,7 @@ class Mission {
 
   @override
   String toString() {
-    return 'Mission(id: $id, title: $title, description: $description, aimCount: $aimCount, attempts: $attempts, satelliteUsed: $satelliteUsed, aimOptions: $aimOptions)';
+    return 'Mission(id: $id, aimCount: $aimCount, attempts: $attempts, satelliteUsed: $satelliteUsed, aimOptions: $aimOptions, comment: $comment, durationInSeconds: $durationInSeconds)';
   }
 
   @override
@@ -86,22 +96,22 @@ class Mission {
 
     return other is Mission &&
         other.id == id &&
-        other.title == title &&
-        other.description == description &&
         other.aimCount == aimCount &&
         other.attempts == attempts &&
         other.satelliteUsed == satelliteUsed &&
-        listEquals(other.aimOptions, aimOptions);
+        listEquals(other.aimOptions, aimOptions) &&
+        other.comment == comment &&
+        other.durationInSeconds == durationInSeconds;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        title.hashCode ^
-        description.hashCode ^
         aimCount.hashCode ^
         attempts.hashCode ^
         satelliteUsed.hashCode ^
-        aimOptions.hashCode;
+        aimOptions.hashCode ^
+        comment.hashCode ^
+        durationInSeconds.hashCode;
   }
 }
