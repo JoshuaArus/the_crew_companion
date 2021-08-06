@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/inputField.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class TeamCreationScreen extends StatelessWidget {
+class TeamCreationScreen extends LandscapableScreen {
   final Team team;
 
-  TeamCreationScreen({required this.team});
+  TeamCreationScreen({required this.team, required Controller controller})
+      : super(controller: controller);
 
   @override
-  Widget build(BuildContext context) {
-    final teamName = TextEditingController(text: team.name);
+  _TeamCreationScreenState createState() => _TeamCreationScreenState();
+}
 
-    final List<TextEditingController> playerControllers = team.players
+class _TeamCreationScreenState extends State<TeamCreationScreen>
+    with LandscapableScreenState {
+  @override
+  Widget buildBody(BuildContext context) {
+    final teamName = TextEditingController(text: widget.team.name);
+
+    final List<TextEditingController> playerControllers = widget.team.players
         .map(
           (p) => TextEditingController(text: p),
         )
@@ -85,8 +94,8 @@ class TeamCreationScreen extends StatelessWidget {
             return; //cancel save
           }
 
-          team.name = teamName.text;
-          team.players = playerList;
+          widget.team.name = teamName.text;
+          widget.team.players = playerList;
 
           Navigator.pop(context, true);
         },

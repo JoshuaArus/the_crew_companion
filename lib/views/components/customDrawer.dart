@@ -10,8 +10,9 @@ import 'package:the_crew_companion/views/screens/rulesScreen.dart';
 import 'package:the_crew_companion/views/screens/settingsScreen.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({required this.controller});
+  const CustomDrawer({required this.controller, this.shouldPop = true});
 
+  final bool shouldPop;
   final Controller controller;
 
   @override
@@ -20,12 +21,17 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   void _goto(Widget page) {
-    Navigator.pop(context); // hide menu
+    if (widget.shouldPop && Navigator.canPop(context))
+      Navigator.pop(context); // hide menu
 
     Navigator.push(
       context,
       new MaterialPageRoute(builder: (BuildContext context) => page),
     );
+  }
+
+  void _goToHome() {
+    Navigator.popUntil(context, (route) => !Navigator.canPop(context));
   }
 
   void _goToMissionList() {
@@ -46,74 +52,105 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ContainerGradient(
-        child: ListView(
-          children: [
-            Container(
-              child: DrawerHeader(
-                padding: EdgeInsets.all(defaultPadding),
-                child: Image(
-                  image: AssetImage("assets/images/astronautHelmet.png"),
-                ),
-              ),
+    return ContainerGradient(
+      constraints: BoxConstraints(
+        maxWidth: 300,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.all(defaultPadding),
+            child: Image(
+              image: AssetImage("assets/images/astronautHelmet.png"),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
+          Expanded(
+            child: ListView(
               children: [
-                ListTile(
-                  title: Text(
-                    AppLocalizations.translate('menuRules'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  onTap: _goToRules,
-                  leading: FaIcon(
-                    FontAwesomeIcons.questionCircle,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  title: Text(
-                    AppLocalizations.translate('menuMissionList'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  onTap: _goToMissionList,
-                  leading: FaIcon(
-                    FontAwesomeIcons.bookOpen,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  title: Text(
-                    AppLocalizations.translate('menuSettings'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  onTap: _goToSettings,
-                  leading: Icon(
-                    Icons.settings,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ListTile(
-                  title: Text(
-                    AppLocalizations.translate('menuAbout'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  onTap: _goToAbout,
-                  leading: Icon(
-                    Icons.lightbulb_outline,
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuHome'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToHome,
+                      leading: FaIcon(
+                        FontAwesomeIcons.home,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuRules'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToRules,
+                      leading: FaIcon(
+                        FontAwesomeIcons.questionCircle,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuMissionList'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToMissionList,
+                      leading: FaIcon(
+                        FontAwesomeIcons.bookOpen,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuSettings'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToSettings,
+                      leading: Icon(
+                        Icons.settings,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListTile(
+                      title: Text(
+                        AppLocalizations.translate('menuAbout'),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      onTap: _goToAbout,
+                      leading: Icon(
+                        Icons.lightbulb_outline,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            color: secondaryColor,
+            child: Center(
+              child: Text(
+                "v " + widget.controller.appVersion,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -8,21 +8,22 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/playGameScreen.dart';
 import 'package:the_crew_companion/views/screens/qrCodeScanner.dart';
 import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
-class TeamListScreen extends StatefulWidget {
-  TeamListScreen({required this.controller});
-
-  final Controller controller;
+class TeamListScreen extends LandscapableScreen {
+  TeamListScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _TeamListScreenState createState() => _TeamListScreenState();
 }
 
-class _TeamListScreenState extends State<TeamListScreen> {
+class _TeamListScreenState extends State<TeamListScreen>
+    with LandscapableScreenState {
   @override
   void initState() {
     super.initState();
@@ -38,7 +39,8 @@ class _TeamListScreenState extends State<TeamListScreen> {
     final edited = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreationScreen(team: team),
+        builder: (BuildContext context) =>
+            TeamCreationScreen(controller: widget.controller, team: team),
       ),
     );
     if (edited == true) {
@@ -59,7 +61,6 @@ class _TeamListScreenState extends State<TeamListScreen> {
             size: 200,
             backgroundColor: Colors.white,
           ),
-          // child: Text("coucou"),
         ),
       ),
     );
@@ -190,7 +191,7 @@ class _TeamListScreenState extends State<TeamListScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.controller.appName),

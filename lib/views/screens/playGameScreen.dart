@@ -10,19 +10,21 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/controller.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
-class PlayGameScreen extends StatefulWidget {
-  const PlayGameScreen({required this.team, required this.controller});
+class PlayGameScreen extends LandscapableScreen {
+  const PlayGameScreen({required this.team, required Controller controller})
+      : super(controller: controller);
 
   final Team team;
-  final Controller controller;
 
   @override
   _PlayGameScreenState createState() => _PlayGameScreenState();
 }
 
-class _PlayGameScreenState extends State<PlayGameScreen> {
+class _PlayGameScreenState extends State<PlayGameScreen>
+    with LandscapableScreenState {
   TextEditingController attempts = TextEditingController(text: "");
   bool satUsed = false;
 
@@ -57,14 +59,20 @@ class _PlayGameScreenState extends State<PlayGameScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     Mission currentMission = widget.controller.missions
         .firstWhere(
             (element) => element.id == widget.team.achievedMissions.length)
         .copyWith();
 
     return Scaffold(
-      drawer: CustomDrawer(controller: widget.controller),
+      drawer: MediaQuery.of(context).orientation == Orientation.landscape
+          ? null
+          : Drawer(
+              child: CustomDrawer(
+                controller: widget.controller,
+              ),
+            ),
       appBar: AppBar(
         title: Text(currentMission.title),
         centerTitle: true,

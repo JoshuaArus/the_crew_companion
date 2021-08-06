@@ -6,18 +6,20 @@ import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/missionExpansionPanelList.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:darq/darq.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class TeamStatsScreen extends StatefulWidget {
-  const TeamStatsScreen({required this.controller, required this.team});
+class TeamStatsScreen extends LandscapableScreen {
+  const TeamStatsScreen({required Controller controller, required this.team})
+      : super(controller: controller);
 
   final Team team;
-  final Controller controller;
 
   @override
   _TeamStatsScreenState createState() => _TeamStatsScreenState();
 }
 
-class _TeamStatsScreenState extends State<TeamStatsScreen> {
+class _TeamStatsScreenState extends State<TeamStatsScreen>
+    with LandscapableScreenState {
   late List<Mission> achievedMissions;
 
   @override
@@ -37,7 +39,7 @@ class _TeamStatsScreenState extends State<TeamStatsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.team.name),

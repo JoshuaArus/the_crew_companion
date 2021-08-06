@@ -9,20 +9,20 @@ import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/homeScreenButton.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/playGameScreen.dart';
 import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamListScreen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({required this.controller});
-
-  final Controller controller;
+class HomeScreen extends LandscapableScreen {
+  const HomeScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
   void _goToTeamList() async {
     bool? needRefresh = await Navigator.push(
       context,
@@ -40,7 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final created = await Navigator.push(
       context,
       new MaterialPageRoute(
-        builder: (BuildContext context) => TeamCreationScreen(team: newTeam),
+        builder: (BuildContext context) => TeamCreationScreen(
+          controller: widget.controller,
+          team: newTeam,
+        ),
       ),
     );
     if (created == true) {
@@ -50,8 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
       await Navigator.push(
         context,
         new MaterialPageRoute(
-          builder: (BuildContext context) =>
-              PlayGameScreen(controller: widget.controller, team: newTeam),
+          builder: (BuildContext context) => PlayGameScreen(
+            controller: widget.controller,
+            team: newTeam,
+          ),
         ),
       );
 
@@ -60,16 +65,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    String version = widget.controller.appVersion;
-
+  Widget buildBody(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: primaryColor.withOpacity(0),
       ),
-      drawer: CustomDrawer(controller: widget.controller),
+      drawer: MediaQuery.of(context).orientation == Orientation.landscape
+          ? null
+          : Drawer(
+              child: CustomDrawer(
+                controller: widget.controller,
+              ),
+            ),
       body: Container(
         child: Stack(
           children: [
@@ -118,21 +127,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomSheet: Container(
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "v " + version,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
               ),
             ),
           ],

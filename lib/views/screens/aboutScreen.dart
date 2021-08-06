@@ -6,24 +6,25 @@ import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
 import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class AboutScreen extends StatefulWidget {
-  const AboutScreen({required this.controller});
-
-  final Controller controller;
+class AboutScreen extends LandscapableScreen {
+  const AboutScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }
 
-class _AboutScreenState extends State<AboutScreen> {
+class _AboutScreenState extends State<AboutScreen>
+    with LandscapableScreenState {
   List<String> contributors = [
     "[Joshua Arus](https://github.com/JoshuaArus)",
     "[Maxime Rauch](https://github.com/schnapse)",
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     String version = widget.controller.appVersion;
 
     return Scaffold(
@@ -61,39 +62,44 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                   Expanded(
                     flex: 1,
-                    child: Container(
-                      padding: EdgeInsets.all(defaultPadding * 2),
-                      margin: EdgeInsets.all(defaultPadding),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 2),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
+                    child: SingleChildScrollView(
+                      child: Container(
+                        padding: EdgeInsets.all(defaultPadding * 2),
+                        margin: EdgeInsets.all(defaultPadding),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                          color: secondaryColor.withOpacity(0.90),
+                          shape: BoxShape.rectangle,
                         ),
-                        color: secondaryColor.withOpacity(0.90),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomMarkdownBody(
-                            data:
-                                AppLocalizations.translate('aboutPresentation'),
-                          ),
-                          CustomMarkdownBody(
-                            data:
-                                AppLocalizations.translate('aboutDevelopedBy') +
-                                    " : " +
-                                    contributors.join(" - "),
-                          ),
-                          CustomMarkdownBody(
-                            data: AppLocalizations.translate(
-                                'aboutFollowProject'),
-                          ),
-                          Text(AppLocalizations.translate('aboutVersion') +
-                              " " +
-                              version),
-                        ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomMarkdownBody(
+                              data: AppLocalizations.translate(
+                                  'aboutPresentation'),
+                            ),
+                            CustomMarkdownBody(
+                              data: AppLocalizations.translate(
+                                      'aboutDevelopedBy') +
+                                  " : " +
+                                  contributors.join(" - "),
+                            ),
+                            CustomMarkdownBody(
+                              data: AppLocalizations.translate(
+                                  'aboutFollowProject'),
+                            ),
+                            Text(AppLocalizations.translate('aboutVersion') +
+                                " " +
+                                version),
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -4,23 +4,25 @@ import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/ruleScreen.dart';
 
-class RulesScreen extends StatefulWidget {
-  const RulesScreen({required this.controller});
-
-  final Controller controller;
+class RulesScreen extends LandscapableScreen {
+  const RulesScreen({required Controller controller})
+      : super(controller: controller);
 
   @override
   _RulesScreenState createState() => _RulesScreenState();
 }
 
-class _RulesScreenState extends State<RulesScreen> {
+class _RulesScreenState extends State<RulesScreen>
+    with LandscapableScreenState {
   void _goToRule(RuleChapter rule) {
     Navigator.push(
       context,
       new MaterialPageRoute(
         builder: (BuildContext context) => RuleScreen(
+          controller: widget.controller,
           rule: rule,
         ),
       ),
@@ -28,7 +30,7 @@ class _RulesScreenState extends State<RulesScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.translate('gameRules')),

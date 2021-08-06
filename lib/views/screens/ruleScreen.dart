@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/ruleSection.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
+import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
-class RuleScreen extends StatefulWidget {
-  RuleScreen({required this.rule});
+class RuleScreen extends LandscapableScreen {
+  RuleScreen({required this.rule, required Controller controller})
+      : super(controller: controller);
 
   final RuleChapter rule;
 
@@ -14,7 +17,7 @@ class RuleScreen extends StatefulWidget {
   _RuleScreenState createState() => _RuleScreenState();
 }
 
-class _RuleScreenState extends State<RuleScreen> {
+class _RuleScreenState extends State<RuleScreen> with LandscapableScreenState {
   List<Widget> buildRuleSection(RuleSection ruleSection) {
     List<Widget> children = [
       Container(
@@ -41,7 +44,7 @@ class _RuleScreenState extends State<RuleScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.translate(widget.rule.title),
