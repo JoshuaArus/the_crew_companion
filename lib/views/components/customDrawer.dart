@@ -10,7 +10,7 @@ import 'package:the_crew_companion/views/screens/rulesScreen.dart';
 import 'package:the_crew_companion/views/screens/settingsScreen.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({required this.controller, this.shouldPop = true});
+  CustomDrawer({required this.controller, this.shouldPop = true});
 
   final bool shouldPop;
   final Controller controller;
