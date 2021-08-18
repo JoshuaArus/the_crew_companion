@@ -86,7 +86,7 @@ extension AimOptionExtension on AimOption {
 
   Widget buildIcon(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-    ThemeData currentTheme = themeNotifier.getThemeData();
+    final ThemeData currentTheme = themeNotifier.getThemeData();
     switch (this) {
       case AimOption.One:
       case AimOption.Two:
@@ -94,7 +94,7 @@ extension AimOptionExtension on AimOption {
       case AimOption.Four:
       case AimOption.Five:
         return Text(
-          this.displayValue,
+          displayValue,
           style: currentTheme.primaryTextTheme.headline6!.copyWith(
             fontWeight: FontWeight.bold,
           ),

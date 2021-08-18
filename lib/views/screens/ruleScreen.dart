@@ -8,7 +8,7 @@ import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 
 class RuleScreen extends LandscapableScreen {
-  RuleScreen({required this.rule, required Controller controller})
+  const RuleScreen({required this.rule, required Controller controller})
       : super(controller: controller);
 
   final RuleChapter rule;
@@ -19,12 +19,12 @@ class RuleScreen extends LandscapableScreen {
 
 class _RuleScreenState extends State<RuleScreen> with LandscapableScreenState {
   List<Widget> buildRuleSection(RuleSection ruleSection) {
-    List<Widget> children = [
+    final List<Widget> children = [
       Container(
-        margin: EdgeInsets.only(bottom: defaultPadding),
+        margin: const EdgeInsets.only(bottom: defaultPadding),
         child: Text(
           AppLocalizations.translate(ruleSection.title),
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       )
     ];
@@ -32,7 +32,7 @@ class _RuleScreenState extends State<RuleScreen> with LandscapableScreenState {
     children.addAll(
       ruleSection.paragraphs.map(
         (ruleSectionParagraph) => Container(
-          margin: EdgeInsets.only(bottom: defaultPadding),
+          margin: const EdgeInsets.only(bottom: defaultPadding),
           child: CustomMarkdownBody(
             data: AppLocalizations.translate(ruleSectionParagraph),
           ),
@@ -52,33 +52,30 @@ class _RuleScreenState extends State<RuleScreen> with LandscapableScreenState {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: widget.rule.sections
-                .map(
-                  (ruleSection) => Container(
-                    padding: EdgeInsets.only(
-                      left: defaultPadding,
-                      top: defaultPadding,
-                      right: defaultPadding,
-                    ),
-                    margin: EdgeInsets.all(defaultPadding),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(width: 1.0, color: primaryColor),
-                      ),
-                      color: secondaryColor,
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: buildRuleSection(ruleSection),
-                    ),
+        child: Column(
+          children: widget.rule.sections
+              .map(
+                (ruleSection) => Container(
+                  padding: const EdgeInsets.only(
+                    left: defaultPadding,
+                    top: defaultPadding,
+                    right: defaultPadding,
                   ),
-                )
-                .toList(),
-          ),
+                  margin: const EdgeInsets.all(defaultPadding),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: primaryColor),
+                    ),
+                    color: secondaryColor,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: buildRuleSection(ruleSection),
+                  ),
+                ),
+              )
+              .toList(),
         ),
       ),
     );

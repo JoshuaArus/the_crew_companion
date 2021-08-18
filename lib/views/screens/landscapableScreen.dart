@@ -19,12 +19,11 @@ mixin LandscapableScreenState<T extends LandscapableScreen> on State<T> {
     return Scaffold(
       body: Row(
         children: [
-          MediaQuery.of(context).orientation == Orientation.portrait
-              ? Container()
-              : CustomDrawer(
-                  controller: widget.controller,
-                  shouldPop: false,
-                ),
+          if (MediaQuery.of(context).orientation == Orientation.landscape)
+            CustomDrawer(
+              controller: widget.controller,
+              shouldPop: false,
+            ),
           Expanded(
             child: buildBody(context),
           ),

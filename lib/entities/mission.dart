@@ -22,13 +22,11 @@ class Mission {
   });
 
   String get title {
-    return AppLocalizations.translate(
-        'storyMission' + (this.id + 1).toString() + 'Title');
+    return AppLocalizations.translate('storyMission${id + 1}Title');
   }
 
   String get description {
-    return AppLocalizations.translate(
-        'storyMission' + (this.id + 1).toString() + 'Description');
+    return AppLocalizations.translate('storyMission${id + 1}Description');
   }
 
   Mission copyWith({

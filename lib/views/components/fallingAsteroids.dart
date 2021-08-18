@@ -4,7 +4,7 @@ import 'package:the_crew_companion/views/components/fallingAsteroid.dart';
 class FallingAsteroids extends StatefulWidget {
   final int asteroidNumber;
 
-  const FallingAsteroids({this.asteroidNumber = 5});
+  const FallingAsteroids({required this.asteroidNumber});
 
   @override
   _FallingAsteroidsState createState() => _FallingAsteroidsState();

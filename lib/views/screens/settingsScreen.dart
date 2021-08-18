@@ -37,14 +37,14 @@ class _SettingsScreenState extends State<SettingsScreen>
         centerTitle: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         child: Column(
           children: [
             ListTile(
               title: Text(
                 AppLocalizations.translate('settingsLanguage'),
               ),
-              trailing: Container(
+              trailing: SizedBox(
                 width: dropdownButtonWidth,
                 child: DropdownButton<String>(
                   value: currentLanguage,
@@ -73,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen>
               title: Text(
                 AppLocalizations.translate('settingsTheme'),
               ),
-              trailing: Container(
+              trailing: SizedBox(
                 width: dropdownButtonWidth,
                 child: DropdownButton<CustomThemes>(
                   value: currentTheme,

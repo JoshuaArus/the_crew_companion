@@ -23,10 +23,10 @@ class HomeScreen extends LandscapableScreen {
 }
 
 class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
-  void _goToTeamList() async {
-    bool? needRefresh = await Navigator.push(
+  Future<void> _goToTeamList() async {
+    final bool? needRefresh = await Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) => TeamListScreen(
           controller: widget.controller,
         ),
@@ -35,11 +35,11 @@ class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
     if (needRefresh == true) setState(() {});
   }
 
-  void _addTeam() async {
+  Future<void> _addTeam() async {
     final newTeam = Team.empty();
     final created = await Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) => TeamCreationScreen(
           controller: widget.controller,
           team: newTeam,
@@ -50,9 +50,10 @@ class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
       widget.controller.teams.add(newTeam);
       await widget.controller.saveTeams();
 
+      // ignore: use_build_context_synchronously
       await Navigator.push(
         context,
-        new MaterialPageRoute(
+        MaterialPageRoute(
           builder: (BuildContext context) => PlayGameScreen(
             controller: widget.controller,
             team: newTeam,
@@ -79,58 +80,52 @@ class _HomeScreenState extends State<HomeScreen> with LandscapableScreenState {
                 controller: widget.controller,
               ),
             ),
-      body: Container(
-        child: Stack(
-          children: [
-            DeepSpace(),
-            FallingAsteroids(asteroidNumber: 5),
-            Container(
-              padding: EdgeInsets.only(
-                top: defaultPadding * 2,
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                      ),
-                      child: DelayedAnimation(
-                        delay: 1000,
-                        child: JumpingHomeScreenTitle(),
-                      ),
+      body: Stack(
+        children: [
+          const DeepSpace(),
+          const FallingAsteroids(asteroidNumber: 5),
+          Container(
+            padding: const EdgeInsets.only(
+              top: defaultPadding * 2,
+            ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                    ),
+                    child: const DelayedAnimation(
+                      delay: 1000,
+                      child: JumpingHomeScreenTitle(),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          HomeScreenButton(
-                            text: AppLocalizations.translate('homeNewGame'),
-                            onPressed: _addTeam,
-                          ),
-                          SizedBox(
-                            height: 60,
-                          ),
-                          HomeScreenButton(
-                            text: widget.controller.teams.length == 0
-                                ? AppLocalizations.translate('teamLoadQrCode')
-                                : AppLocalizations.translate('homeLoadGame'),
-                            onPressed: _goToTeamList,
-                          ),
-                        ],
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      HomeScreenButton(
+                        text: AppLocalizations.translate('homeNewGame'),
+                        onPressed: _addTeam,
                       ),
-                    ),
-                  )
-                ],
-              ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      HomeScreenButton(
+                        text: widget.controller.teams.isEmpty
+                            ? AppLocalizations.translate('teamLoadQrCode')
+                            : AppLocalizations.translate('homeLoadGame'),
+                        onPressed: _goToTeamList,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -23,7 +23,7 @@ extension CustomThemesExtension on CustomThemes {
   String get value => describeEnum(this);
 
   CustomThemes get copy {
-    return CustomThemesFactory.fromString(this.toString());
+    return CustomThemesFactory.fromString(toString());
   }
 
   ThemeData getThemeData() {
@@ -39,11 +39,11 @@ extension CustomThemesExtension on CustomThemes {
             ThemeData.dark().textTheme,
           ),
           cardColor: secondaryColor,
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: primaryColor,
             foregroundColor: Colors.white,
           ),
-          cardTheme: CardTheme(
+          cardTheme: const CardTheme(
             shape: StadiumBorder(),
           ),
         );
@@ -58,11 +58,11 @@ extension CustomThemesExtension on CustomThemes {
             ThemeData.light().textTheme,
           ),
           // cardColor: secondaryColor,
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
             backgroundColor: primaryColor,
             foregroundColor: Colors.white,
           ),
-          cardTheme: CardTheme(
+          cardTheme: const CardTheme(
             shape: StadiumBorder(),
           ),
         );

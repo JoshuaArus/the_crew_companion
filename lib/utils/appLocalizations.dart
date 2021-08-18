@@ -31,16 +31,16 @@ class AppLocalizations extends ChangeNotifier {
     return _locale;
   }
 
-  setLocale(Locale newLocale) async {
+  Future<void> setLocale(Locale newLocale) async {
     await delegate.load(newLocale);
     notifyListeners();
   }
 
   Future<void> load() async {
-    String jsonString = await rootBundle
+    final String jsonString = await rootBundle
         .loadString('assets/locales/${_locale!.languageCode}.json');
 
-    Map<String, dynamic> jsonMap =
+    final Map<String, dynamic> jsonMap =
         json.decode(jsonString) as Map<String, dynamic>;
 
     _localizedStrings = jsonMap.map((key, value) {
@@ -52,14 +52,21 @@ class AppLocalizations extends ChangeNotifier {
       [Map<String, String> arguments = const {}]) {
     String translation = _localizedStrings[key] ?? key;
 
-    if (arguments.length == 0) {
+    if (arguments.isEmpty) {
       return translation;
     }
 
     arguments.forEach((argumentKey, value) {
       if (value.isEmpty) {
-        print(
-            'Value for "$argumentKey" is null in call of translate(\'$key\')');
+        assert(() {
+          //assert run only in debug mode
+          // ignore: avoid_print
+          print(
+            'Value for "$argumentKey" is null in call of translate(\'$key\')',
+          );
+          return true;
+        }());
+
         value = '';
       }
       translation = translation.replaceAll("\$$argumentKey", value);
@@ -75,7 +82,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) {
-    var isSupported = LanguageCodes.values
+    final isSupported = LanguageCodes.values
         .map((languageCode) => languageCode.value)
         .contains(
             locale.languageCode.toLowerCase().split('_').first.toLowerCase());
@@ -84,7 +91,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations localizations = AppLocalizations._init(locale);
+    final AppLocalizations localizations = AppLocalizations._init(locale);
     await localizations.load();
     return localizations;
   }
@@ -110,7 +117,7 @@ extension LanguagesCodeExtension on LanguageCodes {
         return AppLocalizations.translate('settingsLanguageEn');
 
       default:
-        return this.value;
+        return value;
     }
   }
 }

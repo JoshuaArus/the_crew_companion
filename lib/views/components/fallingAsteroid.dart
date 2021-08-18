@@ -16,7 +16,7 @@ class FallingAsteroid extends StatefulWidget {
 
 class _FallingAsteroidState extends State<FallingAsteroid>
     with TickerProviderStateMixin {
-  var rng = Random();
+  final Random rng = Random();
   late double asteroidSize;
   late double paddingLeft;
   late double paddingRight;
@@ -50,8 +50,8 @@ class _FallingAsteroidState extends State<FallingAsteroid>
     );
 
     offset = Tween<Offset>(
-      begin: Offset(0, -1),
-      end: Offset(0, 1),
+      begin: const Offset(0, -1),
+      end: const Offset(0, 1),
     ).animate(curve);
 
     fallingController.addListener(() {
@@ -68,7 +68,7 @@ class _FallingAsteroidState extends State<FallingAsteroid>
     asteroidSize = rng.nextDouble() * 50 + 30; // [30 - 80] px
     paddingLeft = rng.nextDouble() * widget.parentWidth; //padding from left
     paddingRight = max(
-      (widget.parentWidth - paddingLeft - asteroidSize),
+      widget.parentWidth - paddingLeft - asteroidSize,
       0,
     ); // padding from right
 
@@ -103,15 +103,15 @@ class _FallingAsteroidState extends State<FallingAsteroid>
         position: offset,
         child: AnimatedBuilder(
           animation: rotationController,
-          child: Image.asset(
-            "assets/images/asteroid.png",
-          ),
           builder: (_, child) {
             return Transform.rotate(
               angle: rotationController.value * 2 * pi,
               child: child,
             );
           },
+          child: Image.asset(
+            "assets/images/asteroid.png",
+          ),
         ),
       ),
     );

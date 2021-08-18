@@ -4,12 +4,10 @@ import 'package:the_crew_companion/utils/constant.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(
-          color: primaryColor,
-          strokeWidth: 5,
-        ),
+    return const Center(
+      child: CircularProgressIndicator(
+        color: primaryColor,
+        strokeWidth: 5,
       ),
     );
   }

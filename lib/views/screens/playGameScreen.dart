@@ -34,8 +34,8 @@ class _PlayGameScreenState extends State<PlayGameScreen>
     });
   }
 
-  void _endCurrentMission(Mission mission) async {
-    bool confirmed = await confirm(
+  Future<void> _endCurrentMission(Mission mission) async {
+    final bool confirmed = await confirm(
       context,
       content: Text(AppLocalizations.translate('commonValidateEntry')),
       textOK: Text(AppLocalizations.translate('commonYes')),
@@ -60,7 +60,7 @@ class _PlayGameScreenState extends State<PlayGameScreen>
 
   @override
   Widget buildBody(BuildContext context) {
-    Mission currentMission = widget.controller.missions
+    final Mission currentMission = widget.controller.missions
         .firstWhere(
             (element) => element.id == widget.team.achievedMissions.length)
         .copyWith();
@@ -87,7 +87,7 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                 ),
               );
             },
-            icon: FaIcon(
+            icon: const FaIcon(
               FontAwesomeIcons.calculator,
             ),
             tooltip: AppLocalizations.translate('gameTeamStatistics'),
@@ -95,12 +95,12 @@ class _PlayGameScreenState extends State<PlayGameScreen>
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
+        padding: const EdgeInsets.fromLTRB(
             defaultPadding, defaultPadding, defaultPadding, 100),
         child: Column(
           children: [
             MissionDescription(mission: currentMission),
-            Divider(
+            const Divider(
               height: 50,
             ),
             Column(
@@ -108,19 +108,15 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppLocalizations.translate('gameAttemptsCount') +
-                        " : "),
-                    Container(
+                    Text(
+                        "${AppLocalizations.translate('gameAttemptsCount')} : "),
+                    SizedBox(
                       width: 70,
                       child: TextField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(defaultPadding),
                           hintText: "1",
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                            ),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         textAlign: TextAlign.right,
                         controller: attempts,
@@ -135,8 +131,8 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppLocalizations.translate('gameSatelliteUsage') +
-                        " : "),
+                    Text(
+                        "${AppLocalizations.translate('gameSatelliteUsage')} : "),
                     Switch(
                       activeColor: primaryColor,
                       value: satUsed,
@@ -154,7 +150,7 @@ class _PlayGameScreenState extends State<PlayGameScreen>
           _endCurrentMission(currentMission);
         },
         label: Text(AppLocalizations.translate('gameValidateMission')),
-        icon: Icon(Icons.check),
+        icon: const Icon(Icons.check),
       ),
     );
   }
