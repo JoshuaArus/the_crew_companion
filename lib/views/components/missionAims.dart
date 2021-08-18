@@ -17,25 +17,23 @@ class MissionAims extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           AimButton(
               text: currentMission.aimCount > 0
                   ? currentMission.aimCount.toString()
-                  : "")
-        ]..addAll(
-            currentMission.aimOptions
-                .map(
-                  (ao) => GoalButton(
-                    child: ao.buildIcon(context),
-                    tooltip: ao.tooltip,
-                  ),
-                )
-                .toList(),
-          ),
+                  : ""),
+          ...currentMission.aimOptions
+              .map(
+                (ao) => GoalButton(
+                  tooltip: ao.tooltip,
+                  child: ao.buildIcon(context),
+                ),
+              )
+              .toList(),
+        ],
       ),
     );
   }

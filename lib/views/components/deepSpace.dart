@@ -22,7 +22,7 @@ class _DeepSpaceState extends State<DeepSpace> {
     super.initState();
 
     background = Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/homeScreenBackground.jpg"),
           fit: BoxFit.fill,
@@ -31,7 +31,7 @@ class _DeepSpaceState extends State<DeepSpace> {
     );
 
     rotatedBackground = Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/homeScreenBackground2.jpg"),
           fit: BoxFit.fill,
@@ -47,11 +47,8 @@ class _DeepSpaceState extends State<DeepSpace> {
         Duration(
           milliseconds: animationDuration,
         ), () {
-      print("opacity1 : " + opacity1.toString());
-      print("opacity2 : " + opacity2.toString());
-
       setState(() {
-        double tmp = opacity1;
+        final double tmp = opacity1;
         opacity1 = opacity2;
         opacity2 = tmp;
       });
@@ -62,7 +59,7 @@ class _DeepSpaceState extends State<DeepSpace> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.black,
       ),
       child: Stack(

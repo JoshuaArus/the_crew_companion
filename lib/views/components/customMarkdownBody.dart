@@ -24,7 +24,7 @@ class CustomMarkdownBody extends MarkdownBody {
         const <String, MarkdownElementBuilder>{},
     MarkdownListItemCrossAxisAlignment listItemCrossAxisAlignment =
         MarkdownListItemCrossAxisAlignment.baseline,
-    shrinkWrap = true,
+    bool shrinkWrap = true,
     bool fitContent = true,
   }) : super(
           key: key,
@@ -33,7 +33,7 @@ class CustomMarkdownBody extends MarkdownBody {
           styleSheet: styleSheet ??
               MarkdownStyleSheet(
                 textAlign: WrapAlignment.spaceEvenly,
-                p: TextStyle(
+                p: const TextStyle(
                   height: 2,
                 ),
               ),
@@ -54,5 +54,6 @@ class CustomMarkdownBody extends MarkdownBody {
           listItemCrossAxisAlignment: listItemCrossAxisAlignment,
           bulletBuilder: bulletBuilder,
           fitContent: fitContent,
+          shrinkWrap: shrinkWrap,
         );
 }

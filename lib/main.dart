@@ -53,8 +53,9 @@ class TheCrewCompanionApp extends StatelessWidget {
             ],
             child: MainWindows(controller: controller),
           );
-        } else
+        } else {
           return SplashScreen();
+        }
       },
     );
   }
@@ -75,7 +76,7 @@ class MainWindows extends StatelessWidget {
     return MaterialApp(
       theme: themeNotifier.getThemeData(),
       locale: appLocalizations.getLocale(),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -93,10 +94,11 @@ class MainWindows extends StatelessWidget {
           ],
         ),
         builder: (context, snapshot) {
-          if (snapshot.hasData)
+          if (snapshot.hasData) {
             return HomeScreen(controller: controller);
-          else
+          } else {
             return SplashScreen();
+          }
         },
       ),
     );

@@ -11,7 +11,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(defaultPadding),
+        contentPadding: const EdgeInsets.all(defaultPadding),
         labelText: hint,
         border: InputBorder.none,
       ),

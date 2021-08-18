@@ -15,8 +15,8 @@ class TeamProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(defaultPadding / 2),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(defaultPadding / 2),
+      decoration: const BoxDecoration(
         color: primaryColor,
         borderRadius: BorderRadius.all(
           Radius.circular(10),
@@ -24,9 +24,7 @@ class TeamProgress extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          AppLocalizations.translate('missionNext') +
-              " : " +
-              (team.achievedMissions.length + 1).toString(),
+          "${AppLocalizations.translate('missionNext')} : ${team.achievedMissions.length + 1}",
           style: Theme.of(context).textTheme.subtitle1,
         ),
       ),

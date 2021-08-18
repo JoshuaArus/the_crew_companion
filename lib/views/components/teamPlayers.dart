@@ -13,11 +13,9 @@ class TeamPlayers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: defaultPadding),
+      padding: const EdgeInsets.only(top: defaultPadding),
       child: Wrap(
-        alignment: WrapAlignment.start,
         spacing: 5,
-        direction: Axis.horizontal,
         children: team.players
             .map(
               (player) => Chip(

@@ -24,7 +24,7 @@ class _MissionListState extends State<MissionList>
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(defaultPadding),
+          padding: const EdgeInsets.all(defaultPadding),
           child: MissionExpansionPanelList(
             missions: widget.controller.missions,
           ),

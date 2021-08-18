@@ -3,7 +3,7 @@ import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 
 class AimButton extends StatelessWidget {
-  AimButton({
+  const AimButton({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -19,20 +19,18 @@ class AimButton extends StatelessWidget {
       width: 35,
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 2),
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(8),
         ),
         color: primaryColor.withOpacity(0.7),
-        shape: BoxShape.rectangle,
       ),
       child: IconButton(
-        tooltip: text +
-            " " +
-            AppLocalizations.translate('commonPriority').toLowerCase(),
+        tooltip:
+            "$text ${AppLocalizations.translate('commonPriority').toLowerCase()}",
         onPressed: null,
         icon: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),

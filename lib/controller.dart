@@ -99,13 +99,13 @@ class Controller {
     if (rules.isNotEmpty) {
       return;
     }
-    this.rules.addAll(GetIt.instance<RuleService>().getChapters());
+    rules.addAll(GetIt.instance<RuleService>().getChapters());
   }
 
   Future<void> populateMissions() async {
     if (missions.isNotEmpty) {
       return;
     }
-    this.missions.addAll(GetIt.instance<MissionService>().getMissions());
+    missions.addAll(GetIt.instance<MissionService>().getMissions());
   }
 }

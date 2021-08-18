@@ -17,10 +17,10 @@ class MissionDescription extends StatelessWidget {
         CustomMarkdownBody(
           data: mission.description,
         ),
-        SizedBox(
+        const SizedBox(
           height: defaultPadding / 2,
         ),
-        Divider(),
+        const Divider(),
         MissionAims(currentMission: mission)
       ],
     );

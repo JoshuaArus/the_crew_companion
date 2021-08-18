@@ -2,5 +2,5 @@ include: package:lint/analysis_options.yaml
 
 linter:
   rules:
-    file_names:
-      lowercase_with_underscore: false
+    file_names: false
+    constant_identifier_names: false

@@ -15,7 +15,7 @@ import 'package:the_crew_companion/views/screens/teamCreationScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
 class TeamListScreen extends LandscapableScreen {
-  TeamListScreen({required Controller controller})
+  const TeamListScreen({required Controller controller})
       : super(controller: controller);
 
   @override
@@ -29,16 +29,19 @@ class _TeamListScreenState extends State<TeamListScreen>
     super.initState();
 
     if (widget.controller.teams.isEmpty) {
-      Future.delayed(Duration(milliseconds: 100), () {
-        _goToScanQrCode();
-      });
+      Future.delayed(
+        const Duration(milliseconds: 100),
+        () {
+          _goToScanQrCode();
+        },
+      );
     }
   }
 
-  void _editTeam(Team team) async {
+  Future<void> _editTeam(Team team) async {
     final edited = await Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) =>
             TeamCreationScreen(controller: widget.controller, team: team),
       ),
@@ -52,8 +55,8 @@ class _TeamListScreenState extends State<TeamListScreen>
   void _shareTeam(Team team) {
     showDialog(
       context: context,
-      builder: (_) => new Dialog(
-        child: Container(
+      builder: (_) => Dialog(
+        child: SizedBox(
           width: 300,
           height: 300,
           child: QrImage(
@@ -66,8 +69,8 @@ class _TeamListScreenState extends State<TeamListScreen>
     );
   }
 
-  void _resetProgress(Team team) async {
-    bool confirmed = await confirm(
+  Future<void> _resetProgress(Team team) async {
+    final bool confirmed = await confirm(
       context,
       content: Text(AppLocalizations.translate(
           'teamReinitializeConfirmation', {'teamName': team.name})),
@@ -82,26 +85,26 @@ class _TeamListScreenState extends State<TeamListScreen>
     }
   }
 
-  void _goToStats(Team team) async {
+  Future<void> _goToStats(Team team) async {
     Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) =>
             TeamStatsScreen(controller: widget.controller, team: team),
       ),
     );
   }
 
-  void _goToScanQrCode() async {
-    String? serializedTeam = await Navigator.push(
+  Future<void> _goToScanQrCode() async {
+    final String? serializedTeam = await Navigator.push(
       context,
-      new MaterialPageRoute(
-        builder: (BuildContext context) => QrCodeScannerScreen(),
+      MaterialPageRoute(
+        builder: (BuildContext context) => const QrCodeScannerScreen(),
       ),
     );
 
     if (serializedTeam != null && serializedTeam != "") {
-      Team newTeam = Team.fromJson(serializedTeam);
+      final Team newTeam = Team.fromJson(serializedTeam);
       widget.controller.teams.add(newTeam);
       await widget.controller.saveTeams();
     }
@@ -109,8 +112,8 @@ class _TeamListScreenState extends State<TeamListScreen>
     setState(() {});
   }
 
-  void _removeTeam(Team team) async {
-    bool confirmed = await confirm(
+  Future<void> _removeTeam(Team team) async {
+    final bool confirmed = await confirm(
       context,
       content: Text(AppLocalizations.translate(
           'teamDeleteConfirmation', {'teamName': team.name})),
@@ -122,18 +125,20 @@ class _TeamListScreenState extends State<TeamListScreen>
       widget.controller.teams.remove(team);
       await widget.controller.saveTeams();
 
-      if (widget.controller.teams.length == 0)
+      if (widget.controller.teams.isEmpty) {
+        // ignore: use_build_context_synchronously
         Navigator.pop(context, true);
-      else
+      } else {
         setState(() {});
+      }
     }
   }
 
-  void _play(Team team) async {
+  Future<void> _play(Team team) async {
     Navigator.pop(context, false);
     Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) =>
             PlayGameScreen(controller: widget.controller, team: team),
       ),
@@ -145,29 +150,29 @@ class _TeamListScreenState extends State<TeamListScreen>
       itemBuilder: (context) {
         return [
           PopupMenuItem(
-            child: Text(AppLocalizations.translate('teamEdit')),
             value: 1,
+            child: Text(AppLocalizations.translate('teamEdit')),
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.translate('teamSeeStatistics')),
             value: 2,
+            child: Text(AppLocalizations.translate('teamSeeStatistics')),
           ),
           PopupMenuItem(
+            value: 3,
             child:
                 Text(AppLocalizations.translate('teamReinitializeProgression')),
-            value: 3,
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.translate('teamShare')),
             value: 4,
+            child: Text(AppLocalizations.translate('teamShare')),
           ),
           PopupMenuItem(
-            child: Text(AppLocalizations.translate('teamDelete')),
             value: 5,
+            child: Text(AppLocalizations.translate('teamDelete')),
           ),
         ];
       },
-      icon: Icon(Icons.more_vert, color: Colors.white54),
+      icon: const Icon(Icons.more_vert, color: Colors.white54),
       onSelected: (value) async {
         switch (value) {
           case 1:
@@ -199,7 +204,7 @@ class _TeamListScreenState extends State<TeamListScreen>
         actions: [
           IconButton(
             onPressed: _goToScanQrCode,
-            icon: Icon(
+            icon: const Icon(
               Icons.qr_code_2,
             ),
             tooltip: AppLocalizations.translate('teamLoadQrCode'),
@@ -207,16 +212,16 @@ class _TeamListScreenState extends State<TeamListScreen>
         ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),
+        padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
         child: Column(
           children: [
             Expanded(
-              child: new ListView.builder(
+              child: ListView.builder(
                 itemCount: widget.controller.teams.length,
                 itemBuilder: (BuildContext ctxt, int index) {
                   final team = widget.controller.teams[index];
                   return Container(
-                    padding: EdgeInsets.fromLTRB(defaultPadding,
+                    padding: const EdgeInsets.fromLTRB(defaultPadding,
                         defaultPadding / 2, defaultPadding, defaultPadding / 2),
                     child: OutlinedButton(
                       onPressed: () {
@@ -225,7 +230,7 @@ class _TeamListScreenState extends State<TeamListScreen>
                       style: OutlinedButton.styleFrom(
                         backgroundColor:
                             Theme.of(context).backgroundColor.withOpacity(0.30),
-                        padding: EdgeInsets.all(defaultPadding),
+                        padding: const EdgeInsets.all(defaultPadding),
                         elevation: 10,
                         side: BorderSide(
                           width: 2,
@@ -245,7 +250,7 @@ class _TeamListScreenState extends State<TeamListScreen>
                             trailing: buildTeamMenu(team),
                           ),
                           TeamPlayers(team: team),
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.only(top: defaultPadding),
                           ),
                           TeamProgress(team: team)
