@@ -20,7 +20,7 @@ class _RulesScreenState extends State<RulesScreen>
   void _goToRule(RuleChapter rule) {
     Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (BuildContext context) => RuleScreen(
           controller: widget.controller,
           rule: rule,
@@ -38,18 +38,17 @@ class _RulesScreenState extends State<RulesScreen>
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(defaultPadding),
+          padding: const EdgeInsets.all(defaultPadding),
           child: FutureBuilder(
             future: widget.controller.populateRules(),
             builder: (context, snapshot) {
               return Column(
                 children: widget.controller.rules
                     .map((ruleChapter) => Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: secondaryColor,
                             border: Border(
-                              bottom:
-                                  BorderSide(width: 1.0, color: primaryColor),
+                              bottom: BorderSide(color: primaryColor),
                             ),
                           ),
                           child: ListTile(
@@ -57,7 +56,7 @@ class _RulesScreenState extends State<RulesScreen>
                               AppLocalizations.translate(ruleChapter.title),
                               overflow: TextOverflow.ellipsis,
                             ),
-                            trailing: FaIcon(
+                            trailing: const FaIcon(
                               FontAwesomeIcons.chevronRight,
                             ),
                             onTap: () => _goToRule(ruleChapter),

@@ -25,7 +25,7 @@ class _AboutScreenState extends State<AboutScreen>
 
   @override
   Widget buildBody(BuildContext context) {
-    String version = widget.controller.appVersion;
+    final String version = widget.controller.appVersion;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class _AboutScreenState extends State<AboutScreen>
         centerTitle: true,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/homeScreenBackground.jpg"),
             fit: BoxFit.fill,
@@ -41,41 +41,40 @@ class _AboutScreenState extends State<AboutScreen>
         ),
         child: Stack(
           children: [
-            FallingAsteroids(
+            const FallingAsteroids(
+              // ignore: avoid_redundant_argument_values
               asteroidNumber: 5,
             ),
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Column(
                 children: [
                   Expanded(
-                    flex: 1,
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 30,
                       ),
-                      child: DelayedAnimation(
+                      child: const DelayedAnimation(
                         delay: 1000,
                         child: JumpingHomeScreenTitle(),
                       ),
                     ),
                   ),
                   Expanded(
-                    flex: 1,
                     child: SingleChildScrollView(
                       child: Container(
-                        padding: EdgeInsets.all(defaultPadding * 2),
-                        margin: EdgeInsets.all(defaultPadding),
+                        padding: const EdgeInsets.all(defaultPadding * 2),
+                        margin: const EdgeInsets.all(defaultPadding),
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.white,
                             width: 2,
                           ),
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(8),
                           ),
                           color: secondaryColor.withOpacity(0.90),
-                          shape: BoxShape.rectangle,
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -86,18 +85,15 @@ class _AboutScreenState extends State<AboutScreen>
                                   'aboutPresentation'),
                             ),
                             CustomMarkdownBody(
-                              data: AppLocalizations.translate(
-                                      'aboutDevelopedBy') +
-                                  " : " +
-                                  contributors.join(" - "),
+                              data:
+                                  "${AppLocalizations.translate('aboutDevelopedBy')} : ${contributors.join(" - ")}",
                             ),
                             CustomMarkdownBody(
                               data: AppLocalizations.translate(
                                   'aboutFollowProject'),
                             ),
-                            Text(AppLocalizations.translate('aboutVersion') +
-                                " " +
-                                version),
+                            Text(
+                                "${AppLocalizations.translate('aboutVersion')} $version"),
                           ],
                         ),
                       ),

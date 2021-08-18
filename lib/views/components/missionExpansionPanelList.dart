@@ -6,7 +6,8 @@ import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 class MissionExpansionPanelList extends StatefulWidget {
-  MissionExpansionPanelList({required this.missions, this.expandedMissionId});
+  const MissionExpansionPanelList(
+      {required this.missions, this.expandedMissionId});
 
   final List<Mission> missions;
   final int? expandedMissionId;
@@ -39,30 +40,30 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
   }
 
   List<Widget> buildChildrens(Mission mission) {
-    List<Widget> children = [
+    final List<Widget> children = [
       MissionDescription(mission: mission),
     ];
 
     if (mission.attempts > 0) {
       children.addAll([
-        Divider(),
-        SizedBox(
+        const Divider(),
+        const SizedBox(
           height: defaultPadding,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(AppLocalizations.translate('commonAttempts') + " : "),
+            Text("${AppLocalizations.translate('commonAttempts')} : "),
             Text(
               mission.attempts.toString(),
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             )
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(AppLocalizations.translate('commonSatellite') + " : "),
+            Text("${AppLocalizations.translate('commonSatellite')} : "),
             Switch(
               thumbColor: MaterialStateProperty.resolveWith(getStateColor),
               trackColor: MaterialStateProperty.resolveWith(getStateFadedColor),

@@ -17,9 +17,9 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: defaultPadding * 2),
+      padding: const EdgeInsets.symmetric(horizontal: defaultPadding * 2),
       width: double.infinity,
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxWidth: 500,
       ),
       height: 50,
@@ -28,6 +28,14 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
           if (widget.disabled) return;
           widget.onPressed();
         },
+        style: OutlinedButton.styleFrom(
+          backgroundColor: secondaryColor.withOpacity(0.5),
+          side: BorderSide(
+            width: 2,
+            color: primaryColor.withOpacity(0.70),
+          ),
+          shape: const StadiumBorder(),
+        ),
         child: Text(
           widget.text.toUpperCase(),
           style: Theme.of(context).textTheme.headline5!.copyWith(
@@ -35,14 +43,6 @@ class _HomeScreenButtonState extends State<HomeScreenButton> {
                 color: Colors.white.withOpacity(widget.disabled ? 0.2 : 1),
               ),
           overflow: TextOverflow.ellipsis,
-        ),
-        style: OutlinedButton.styleFrom(
-          backgroundColor: secondaryColor.withOpacity(0.5),
-          side: BorderSide(
-            width: 2,
-            color: primaryColor.withOpacity(0.70),
-          ),
-          shape: StadiumBorder(),
         ),
       ),
     );

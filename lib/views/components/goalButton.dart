@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 
 class GoalButton extends StatelessWidget {
-  GoalButton({required this.child, required this.tooltip});
+  const GoalButton({required this.child, required this.tooltip});
 
   final Widget child;
   final String tooltip;

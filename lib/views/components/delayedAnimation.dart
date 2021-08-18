@@ -23,15 +23,15 @@ class _DelayedAnimationState extends State<DelayedAnimation>
 
     animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1000),
     );
 
     final curve =
         CurvedAnimation(parent: animationController, curve: Curves.decelerate);
 
     offset = Tween<Offset>(
-      begin: Offset(0, -0.5),
-      end: Offset(0, 0),
+      begin: const Offset(0, -0.5),
+      end: Offset.zero,
     ).animate(curve);
 
     Timer(Duration(milliseconds: widget.delay), () {
@@ -44,8 +44,8 @@ class _DelayedAnimationState extends State<DelayedAnimation>
     return FadeTransition(
       opacity: animationController,
       child: SlideTransition(
-        child: widget.child,
         position: offset,
+        child: widget.child,
       ),
     );
   }

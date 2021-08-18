@@ -23,11 +23,14 @@ jobs:
       - uses: subosito/flutter-action@v1
 
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: Analyze project source
-        run: dart analyze
-        
+        uses: zgosalvez/github-actions-analyze-dart@v1.5.3
+        with:
+          fail-on-warnings: true
+          working-directory: "./lib"
+
   unit_test:
     runs-on: ubuntu-latest
 
@@ -54,10 +57,9 @@ jobs:
 
       - name: Install dependencies
         run: dart pub get
-      
+
       - name: Build APK
         run: flutter build apk
-        
 
   build_macos:
     runs-on: macos-latest
@@ -66,14 +68,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: '12.x'
+          java-version: "12.x"
 
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       - uses: subosito/flutter-action@v1
 
       - name: Install dependencies
         run: dart pub get
-      
+
       - name: Build IOS
         run: flutter build ios --release --no-codesign
 
@@ -82,31 +84,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       - uses: subosito/flutter-action@v1
 
       - name: Install dependencies
         run: dart pub get
-      
+
       - name: Build Web
         run: flutter build web
-        
-  
+
   build_windows:
     runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       - uses: subosito/flutter-action@v1
 
       - name: Install dependencies
         run: dart pub get
-      
+
       - name: Config
         run: flutter config --enable-windows-desktop
-        
+
       - name: Build Windows
         run: flutter build web

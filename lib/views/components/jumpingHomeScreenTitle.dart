@@ -18,7 +18,7 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 75),
+      duration: const Duration(milliseconds: 75),
     );
 
     final curve = CurvedAnimation(
@@ -27,8 +27,8 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
     );
 
     offset = Tween<Offset>(
-      begin: Offset(0, 0),
-      end: Offset(0, 0.02),
+      begin: Offset.zero,
+      end: const Offset(0, 0.02),
     ).animate(curve);
   }
 
@@ -53,7 +53,8 @@ class _JumpingHomeScreenTitleState extends State<JumpingHomeScreenTitle>
     );
   }
 
-  dispose() {
+  @override
+  void dispose() {
     controller.dispose();
     super.dispose();
   }

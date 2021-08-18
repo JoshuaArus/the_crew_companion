@@ -9,7 +9,7 @@ import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 class TeamCreationScreen extends LandscapableScreen {
   final Team team;
 
-  TeamCreationScreen({required this.team, required Controller controller})
+  const TeamCreationScreen({required this.team, required Controller controller})
       : super(controller: controller);
 
   @override
@@ -28,13 +28,14 @@ class _TeamCreationScreenState extends State<TeamCreationScreen>
         )
         .toList();
 
-    while (playerControllers.length < 5)
+    while (playerControllers.length < 5) {
       playerControllers.add(
         TextEditingController(),
       );
+    }
 
     final List<Widget> playerFields = [];
-    for (int i = 0; i < playerControllers.length; i++)
+    for (int i = 0; i < playerControllers.length; i++) {
       playerFields.add(
         InputField(
           hint: AppLocalizations.translate(
@@ -42,6 +43,7 @@ class _TeamCreationScreenState extends State<TeamCreationScreen>
           model: playerControllers[i],
         ),
       );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +53,7 @@ class _TeamCreationScreenState extends State<TeamCreationScreen>
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
         ),
       ),
       body: SingleChildScrollView(
@@ -59,8 +61,9 @@ class _TeamCreationScreenState extends State<TeamCreationScreen>
           children: [
             InputField(
                 hint: AppLocalizations.translate('teamName'), model: teamName),
-            Divider(),
-          ]..addAll(playerFields),
+            const Divider(),
+            ...playerFields,
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -100,7 +103,7 @@ class _TeamCreationScreenState extends State<TeamCreationScreen>
           Navigator.pop(context, true);
         },
         tooltip: AppLocalizations.translate('teamSave'),
-        child: Icon(Icons.save),
+        child: const Icon(Icons.save),
       ),
     );
   }

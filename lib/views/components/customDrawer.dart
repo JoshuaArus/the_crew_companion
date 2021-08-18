@@ -21,12 +21,13 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   void _goto(Widget page) {
-    if (widget.shouldPop && Navigator.canPop(context))
-      Navigator.pop(context); // hide menu
+    if (widget.shouldPop && Navigator.canPop(context)) {
+      Navigator.pop(context);
+    } // hide menu
 
     Navigator.push(
       context,
-      new MaterialPageRoute(builder: (BuildContext context) => page),
+      MaterialPageRoute(builder: (BuildContext context) => page),
     );
   }
 
@@ -53,13 +54,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return ContainerGradient(
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         maxWidth: 300,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          DrawerHeader(
+          const DrawerHeader(
             padding: EdgeInsets.all(defaultPadding),
             child: Image(
               image: AssetImage("assets/images/astronautHelmet.png"),
@@ -77,11 +78,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       onTap: _goToHome,
-                      leading: FaIcon(
+                      leading: const FaIcon(
                         FontAwesomeIcons.home,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -90,11 +91,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       onTap: _goToRules,
-                      leading: FaIcon(
+                      leading: const FaIcon(
                         FontAwesomeIcons.questionCircle,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -103,11 +104,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       onTap: _goToMissionList,
-                      leading: FaIcon(
+                      leading: const FaIcon(
                         FontAwesomeIcons.bookOpen,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -116,11 +117,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       onTap: _goToSettings,
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.settings,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -129,7 +130,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       onTap: _goToAbout,
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.lightbulb_outline,
                       ),
                     ),
@@ -142,8 +143,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
             color: secondaryColor,
             child: Center(
               child: Text(
-                "v " + widget.controller.appVersion,
-                style: TextStyle(
+                "v ${widget.controller.appVersion}",
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                 ),

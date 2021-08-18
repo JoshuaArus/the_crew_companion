@@ -10,14 +10,14 @@ class Team {
   List<String> players = [];
   List<AchievedMission> achievedMissions = [];
 
-  Team.empty();
-
   Team({
     required this.name,
     required this.creationDate,
     required this.players,
     required this.achievedMissions,
   });
+
+  Team.empty();
 
   Team copyWith({
     String? name,

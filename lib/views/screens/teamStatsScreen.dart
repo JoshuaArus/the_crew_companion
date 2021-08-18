@@ -28,7 +28,7 @@ class _TeamStatsScreenState extends State<TeamStatsScreen>
 
     achievedMissions = widget.team.achievedMissions.select<Mission>(
       (achievedMission, i) {
-        Mission mission = widget.controller.missions
+        final Mission mission = widget.controller.missions
             .firstWhere((m) => m.id == achievedMission.id)
             .copyWith(
               attempts: achievedMission.attempts,
@@ -49,17 +49,16 @@ class _TeamStatsScreenState extends State<TeamStatsScreen>
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(defaultPadding),
-        child: (widget.team.achievedMissions.length == 0)
+        padding: const EdgeInsets.all(defaultPadding),
+        child: (widget.team.achievedMissions.isEmpty)
             ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
-                  padding: EdgeInsets.all(defaultPadding),
-                  child: Text(AppLocalizations.translate('teamPlayers') +
-                      " : " +
-                      widget.team.players.join(", ")),
+                  padding: const EdgeInsets.all(defaultPadding),
+                  child: Text(
+                      "${AppLocalizations.translate('teamPlayers')} : ${widget.team.players.join(", ")}"),
                 ),
                 Container(
-                  padding: EdgeInsets.all(defaultPadding),
+                  padding: const EdgeInsets.all(defaultPadding),
                   child: Text(AppLocalizations.translate('teamNoMission')),
                 ),
               ])
@@ -67,13 +66,12 @@ class _TeamStatsScreenState extends State<TeamStatsScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(defaultPadding),
-                    child: Text(AppLocalizations.translate('teamPlayers') +
-                        " : " +
-                        widget.team.players.join(", ")),
+                    padding: const EdgeInsets.all(defaultPadding),
+                    child: Text(
+                        "${AppLocalizations.translate('teamPlayers')} : ${widget.team.players.join(", ")}"),
                   ),
                   Container(
-                    padding: EdgeInsets.all(defaultPadding),
+                    padding: const EdgeInsets.all(defaultPadding),
                     child: Text(AppLocalizations.translate(
                         'teamMissionsAchievedOnTotal', {
                       'missionAchievedCount':
@@ -87,20 +85,19 @@ class _TeamStatsScreenState extends State<TeamStatsScreen>
                     expandedMissionId: widget.team.achievedMissions.last.id,
                   ),
                   Container(
-                    padding: EdgeInsets.all(defaultPadding),
+                    padding: const EdgeInsets.all(defaultPadding),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(AppLocalizations.translate(
-                                'teamTotalAttemptsCount') +
-                            " : "),
+                        Text(
+                            "${AppLocalizations.translate('teamTotalAttemptsCount')} : "),
                         Text(
                           widget.team.achievedMissions
                               .map((e) => e.attempts)
                               .reduce(
                                   (value, element) => value = value + element)
                               .toString(),
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
