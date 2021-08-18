@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
-import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 class MissionExpansionPanelList extends StatefulWidget {
@@ -34,8 +33,8 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
 
   String _printDuration(Duration d) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
+    final String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
+    final String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
     return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
@@ -75,7 +74,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(AppLocalizations.translate('gameTimeElapsed') + " : "),
+            Text("${AppLocalizations.translate('gameTimeElapsed')} : "),
             Text(
               mission.durationInSeconds == null
                   ? "-"
@@ -89,17 +88,17 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(AppLocalizations.translate('commonComments') + " : "),
+              Text("${AppLocalizations.translate('commonComments')} : "),
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.white30, width: 2),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
-                padding: EdgeInsets.all(defaultPadding),
-                margin: EdgeInsets.only(
+                padding: const EdgeInsets.all(defaultPadding),
+                margin: const EdgeInsets.only(
                   top: defaultPadding,
                   bottom: defaultPadding,
                 ),
