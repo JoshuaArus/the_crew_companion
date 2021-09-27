@@ -26,7 +26,7 @@ jobs:
         run: flutter pub get
 
       - name: Analyze project source
-        uses: zgosalvez/github-actions-analyze-dart@v1.5.3
+        uses: joshuaarus/github-actions-analyze-dart@v1.5.4
         with:
           fail-on-warnings: true
           working-directory: "./lib"
