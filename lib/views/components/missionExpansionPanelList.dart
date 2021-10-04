@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/utils/constant.dart';
+import 'package:the_crew_companion/utils/stringFormatter.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 class MissionExpansionPanelList extends StatefulWidget {
@@ -29,13 +30,6 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
     setState(() {
       expandedMissionId = !isExpanded ? widget.missions[index].id : null;
     });
-  }
-
-  String _printDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    final String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
-    final String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
   List<Widget> buildChildrens(Mission mission) {
@@ -78,7 +72,7 @@ class _MissionExpansionPanelListState extends State<MissionExpansionPanelList> {
             Text(
               mission.durationInSeconds == null
                   ? "-"
-                  : _printDuration(
+                  : StringFormatter.formatDuration(
                       Duration(seconds: mission.durationInSeconds!),
                     ),
             ),

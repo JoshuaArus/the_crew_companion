@@ -10,6 +10,7 @@ import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/utils/constant.dart';
+import 'package:the_crew_companion/utils/stringFormatter.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
@@ -78,14 +79,6 @@ class _PlayGameScreenState extends State<PlayGameScreen>
       satUsed = false;
       setState(() {});
     }
-  }
-
-  String _printDuration() {
-    final Duration d = DateTime.now().difference(missionStartDate!);
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    final String twoDigitMinutes = twoDigits(d.inMinutes.remainder(60));
-    final String twoDigitSeconds = twoDigits(d.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
   @override
@@ -175,7 +168,11 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                   children: [
                     Text("${AppLocalizations.translate('gameTimeElapsed')} : "),
                     Text(
-                      missionStartDate == null ? "-" : _printDuration(),
+                      missionStartDate == null
+                          ? "-"
+                          : StringFormatter.formatDuration(
+                              DateTime.now().difference(missionStartDate!),
+                            ),
                     ),
                   ],
                 ),
