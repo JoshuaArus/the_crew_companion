@@ -19,7 +19,7 @@ enum AimOption {
   Hidden
 }
 
-class AimOptionFactory {
+mixin AimOptionFactory {
   static AimOption fromString(String val) {
     return AimOption.values.firstWhere((element) => element.toString() == val);
   }
