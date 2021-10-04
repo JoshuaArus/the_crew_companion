@@ -27,6 +27,7 @@
   "missionNext": "Next mission",
   "missionList": "List of missions",
 
+  "gameNextAttempt": "Retry mission",
   "gameValidateMission": "Validate the mission",
   "gameTeamStatistics": "Team statistics",
   "gameAttemptsCount": "Number of attempts",
