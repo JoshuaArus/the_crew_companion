@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/entities/team.dart';
-import 'package:the_crew_companion/views/components/deepSpace.dart';
-import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
+import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
+import 'package:the_crew_companion/views/components/deepSpace.dart';
 import 'package:the_crew_companion/views/components/delayedAnimation.dart';
+import 'package:the_crew_companion/views/components/fallingAsteroids.dart';
 import 'package:the_crew_companion/views/components/homeScreenButton.dart';
 import 'package:the_crew_companion/views/components/jumpingHomeScreenTitle.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';

@@ -2,14 +2,14 @@ import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:the_crew_companion/utils/constant.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/achievedMission.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
-import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 import 'package:the_crew_companion/views/screens/teamStatsScreen.dart';
 
