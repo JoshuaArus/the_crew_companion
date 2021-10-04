@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/components/missionAims.dart';
 

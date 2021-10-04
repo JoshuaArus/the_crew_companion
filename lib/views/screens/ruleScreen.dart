@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/ruleChapter.dart';
 import 'package:the_crew_companion/entities/ruleSection.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/customMarkdownBody.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 

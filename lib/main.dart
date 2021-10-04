@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/services/missionService.dart';
 import 'package:the_crew_companion/services/ruleService.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
-import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/utils/themeNotifier.dart';
 import 'package:the_crew_companion/views/screens/homeScreen.dart';
 import 'package:the_crew_companion/views/screens/splashScreen.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:the_crew_companion/utils/themeNotifier.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/themeNotifier.dart';
 
 enum AimOption {
   One,
@@ -19,7 +19,7 @@ enum AimOption {
   Hidden
 }
 
-class AimOptionFactory {
+mixin AimOptionFactory {
   static AimOption fromString(String val) {
     return AimOption.values.firstWhere((element) => element.toString() == val);
   }

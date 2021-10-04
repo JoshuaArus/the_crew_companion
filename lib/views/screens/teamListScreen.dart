@@ -1,10 +1,10 @@
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/teamName.dart';
 import 'package:the_crew_companion/views/components/teamPlayers.dart';
 import 'package:the_crew_companion/views/components/teamProgress.dart';
