@@ -4,3 +4,5 @@ linter:
   rules:
     file_names: false
     constant_identifier_names: false
+    depend_on_referenced_packages: false
+    require_trailing_commas: false

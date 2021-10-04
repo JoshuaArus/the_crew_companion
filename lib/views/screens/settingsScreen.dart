@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/controller.dart';
-import 'package:the_crew_companion/utils/customThemes.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
+import 'package:the_crew_companion/utils/customThemes.dart';
 import 'package:the_crew_companion/utils/themeNotifier.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
 

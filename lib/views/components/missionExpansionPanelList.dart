@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
+import 'package:the_crew_companion/utils/constant.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 
 class MissionExpansionPanelList extends StatefulWidget {

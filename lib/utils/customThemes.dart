@@ -8,7 +8,7 @@ enum CustomThemes {
   Light,
 }
 
-class CustomThemesFactory {
+mixin CustomThemesFactory {
   static bool exist(String val) {
     return CustomThemes.values.any((element) => element.toString() == val);
   }
