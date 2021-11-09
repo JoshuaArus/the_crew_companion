@@ -45,6 +45,15 @@ jobs:
       - name: Unit tests
         run: flutter test -r expanded
 
+      - name: Build Web
+        run: flutter build web
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.JOSHUAARUS_GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_THE_CREW_COMPANION }}"
+          projectId: the-crew-companion
+
       - name: Build APK
         run: flutter build apk --build-name ${{ steps.release.outputs.tag }} --build-number ${{ steps.release.outputs.buildNumber }} --split-per-abi --release
 
