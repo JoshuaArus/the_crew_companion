@@ -14,6 +14,7 @@
   "commonLast": "Lastly",
   "commonDisruptedCommunications": "Disrupted communications",
   "commonFaceDownCards": "Face down cards",
+  "commonComments": "Comments",
 
   "menuHome": "Home",
   "menuRules": "The rules",
@@ -27,6 +28,8 @@
   "missionNext": "Next mission",
   "missionList": "List of missions",
 
+  "gameStartTimer": "Start the timer",
+  "gameTimeElapsed": "Mission elapsed time",
   "gameValidateMission": "Validate the mission",
   "gameTeamStatistics": "Team statistics",
   "gameAttemptsCount": "Number of attempts",

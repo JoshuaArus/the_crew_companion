@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +10,7 @@ import 'package:the_crew_companion/entities/mission.dart';
 import 'package:the_crew_companion/entities/team.dart';
 import 'package:the_crew_companion/utils/appLocalizations.dart';
 import 'package:the_crew_companion/utils/constant.dart';
+import 'package:the_crew_companion/utils/stringFormatter.dart';
 import 'package:the_crew_companion/views/components/customDrawer.dart';
 import 'package:the_crew_companion/views/components/missionDescription.dart';
 import 'package:the_crew_companion/views/screens/landscapableScreen.dart';
@@ -25,8 +28,22 @@ class PlayGameScreen extends LandscapableScreen {
 
 class _PlayGameScreenState extends State<PlayGameScreen>
     with LandscapableScreenState {
+  TextEditingController comment = TextEditingController(text: "");
   TextEditingController attempts = TextEditingController(text: "");
   bool satUsed = false;
+  DateTime? missionStartDate;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
+  }
+
+  void _startTimer() {
+    setState(() {
+      missionStartDate = DateTime.now();
+    });
+  }
 
   void _setSwitch(bool value) {
     setState(() {
@@ -49,8 +66,14 @@ class _PlayGameScreenState extends State<PlayGameScreen>
           id: mission.id,
           attempts: int.parse(attempts.text == "" ? "1" : attempts.text),
           satelliteUsed: satUsed,
+          comment: comment.text,
+          durationInSeconds: missionStartDate == null
+              ? null
+              : DateTime.now().difference(missionStartDate!).inSeconds,
         ),
       );
+      missionStartDate = null;
+      comment.text = "";
       await widget.controller.saveTeams();
       attempts.text = "";
       satUsed = false;
@@ -140,18 +163,59 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("${AppLocalizations.translate('gameTimeElapsed')} : "),
+                    Text(
+                      missionStartDate == null
+                          ? "-"
+                          : StringFormatter.formatDuration(
+                              DateTime.now().difference(missionStartDate!),
+                            ),
+                    ),
+                  ],
+                ),
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("${AppLocalizations.translate('commonComments')} : "),
+                    SizedBox(
+                      height: 100,
+                      child: TextField(
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.all(defaultPadding),
+                          hintText: "",
+                          border: OutlineInputBorder(),
+                        ),
+                        controller: comment,
+                        maxLines: 5,
+                        minLines: 2,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _endCurrentMission(currentMission);
-        },
-        label: Text(AppLocalizations.translate('gameValidateMission')),
-        icon: const Icon(Icons.check),
-      ),
+      floatingActionButton: missionStartDate == null
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                _startTimer();
+              },
+              label: Text(AppLocalizations.translate('gameStartTimer')),
+              icon: const FaIcon(FontAwesomeIcons.clock),
+            )
+          : FloatingActionButton.extended(
+              onPressed: () {
+                _endCurrentMission(currentMission);
+              },
+              label: Text(AppLocalizations.translate('gameValidateMission')),
+              icon: const Icon(Icons.check),
+            ),
     );
   }
 }

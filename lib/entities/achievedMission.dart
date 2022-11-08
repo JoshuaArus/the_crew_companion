@@ -5,21 +5,30 @@ class AchievedMission {
   int id;
   int attempts;
   bool satelliteUsed;
+  String? comment;
+  int? durationInSeconds;
+
   AchievedMission({
     required this.id,
     required this.attempts,
     required this.satelliteUsed,
+    this.comment,
+    this.durationInSeconds,
   });
 
   AchievedMission copyWith({
     int? id,
     int? attempts,
     bool? satelliteUsed,
+    String? comment,
+    int? durationInSeconds,
   }) {
     return AchievedMission(
       id: id ?? this.id,
       attempts: attempts ?? this.attempts,
       satelliteUsed: satelliteUsed ?? this.satelliteUsed,
+      comment: comment ?? this.comment,
+      durationInSeconds: durationInSeconds ?? this.durationInSeconds,
     );
   }
 
@@ -28,6 +37,8 @@ class AchievedMission {
       'id': id,
       'attempts': attempts,
       'satelliteUsed': satelliteUsed,
+      'comment': comment,
+      'durationInSeconds': durationInSeconds,
     };
   }
 
@@ -36,6 +47,8 @@ class AchievedMission {
       id: map['id'],
       attempts: map['attempts'],
       satelliteUsed: map['satelliteUsed'],
+      comment: map['comment'],
+      durationInSeconds: map['durationInSeconds'],
     );
   }
 
@@ -45,8 +58,9 @@ class AchievedMission {
       AchievedMission.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'AchievedMission(id: $id, attempts: $attempts, satelliteUsed: $satelliteUsed)';
+  String toString() {
+    return 'AchievedMission(id: $id, attempts: $attempts, satelliteUsed: $satelliteUsed, comment: $comment, durationInSeconds: $durationInSeconds)';
+  }
 
   @override
   bool operator ==(Object other) {
@@ -55,9 +69,17 @@ class AchievedMission {
     return other is AchievedMission &&
         other.id == id &&
         other.attempts == attempts &&
-        other.satelliteUsed == satelliteUsed;
+        other.satelliteUsed == satelliteUsed &&
+        other.comment == comment &&
+        other.durationInSeconds == durationInSeconds;
   }
 
   @override
-  int get hashCode => id.hashCode ^ attempts.hashCode ^ satelliteUsed.hashCode;
+  int get hashCode {
+    return id.hashCode ^
+        attempts.hashCode ^
+        satelliteUsed.hashCode ^
+        comment.hashCode ^
+        durationInSeconds.hashCode;
+  }
 }

@@ -14,6 +14,7 @@
   "commonLast": "En dernier",
   "commonDisruptedCommunications": "Communications perturbées",
   "commonFaceDownCards": "Cartes faces cachées",
+  "commonComments": "Commentaires",
 
   "menuHome": "Accueil",
   "menuRules": "Les règles",
@@ -26,7 +27,9 @@
 
   "missionNext": "Prochaine mission",
   "missionList": "Liste des missions",
-
+  
+  "gameStartTimer": "Lancer le chonomètre",
+  "gameTimeElapsed": "Durée de la mission",
   "gameValidateMission": "Valider la mission",
   "gameTeamStatistics": "Statistiques de l'équipe",
   "gameAttemptsCount": "Nombre de tentatives",
