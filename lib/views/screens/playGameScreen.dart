@@ -25,13 +25,18 @@ class PlayGameScreen extends LandscapableScreen {
 
 class _PlayGameScreenState extends State<PlayGameScreen>
     with LandscapableScreenState {
-  TextEditingController attempts = TextEditingController(text: "");
+  TextEditingController attempts = TextEditingController(text: "1");
   bool satUsed = false;
 
   void _setSwitch(bool value) {
     setState(() {
       satUsed = value;
     });
+  }
+
+  void _nextAttempt() {
+    final int attemptsCount = int.parse(attempts.text);
+    attempts.text = (attemptsCount + 1).toString();
   }
 
   Future<void> _endCurrentMission(Mission mission) async {
@@ -52,9 +57,11 @@ class _PlayGameScreenState extends State<PlayGameScreen>
         ),
       );
       await widget.controller.saveTeams();
-      attempts.text = "";
-      satUsed = false;
-      setState(() {});
+
+      setState(() {
+        attempts.text = "1";
+        satUsed = false;
+      });
     }
   }
 
@@ -115,7 +122,7 @@ class _PlayGameScreenState extends State<PlayGameScreen>
                       child: TextField(
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.all(defaultPadding),
-                          hintText: "1",
+                          // hintText: "1",
                           border: OutlineInputBorder(),
                         ),
                         textAlign: TextAlign.right,
@@ -145,12 +152,28 @@ class _PlayGameScreenState extends State<PlayGameScreen>
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          _endCurrentMission(currentMission);
-        },
-        label: Text(AppLocalizations.translate('gameValidateMission')),
-        icon: const Icon(Icons.check),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton.extended(
+            onPressed: () {
+              _nextAttempt();
+            },
+            label: Text(AppLocalizations.translate('gameNextAttempt')),
+            icon: const Icon(Icons.plus_one),
+            backgroundColor: Colors.red,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          FloatingActionButton.extended(
+            onPressed: () {
+              _endCurrentMission(currentMission);
+            },
+            label: Text(AppLocalizations.translate('gameValidateMission')),
+            icon: const Icon(Icons.check),
+          ),
+        ],
       ),
     );
   }
